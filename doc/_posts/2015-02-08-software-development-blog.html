@@ -1,38 +1,27 @@
 ---
-title: Concordion community blog
+layout: post
+title: Software Development Blog
 author: concordion.org
 homepage: http://concordion.org
 ---
-<!DOCTYPE html>
-<html lang="en-US">
-  <head>
-    <meta content="text/html; charset=windows-1252" http-equiv="content-type">
-	<meta http-equiv="Content-Language" content="en-US">
-    <title>{{ page.title }} by {{ page.author }}</title>
-	<link rel="stylesheet" type="text/css" href="../css/blog.css" />
-    <link href="image/favicon.ico" rel="icon" type="../image/vnd.microsoft.icon">
-  </head>
-  <body>
-    <div class="page">
-	{% include header.html %}
-	
-	<article>
-	    <h1>Software Development Blog</h1>
-		<p>Welcome to the Concordion community blog. The primary goal of this 
+
+        <p>Welcome to the Concordion community blog. The primary goal of this 
 		blog is to deliver interesting content for the software development 
-		community. If you have valuable ideas, tips, or experiences, then you’re more than welcome to 
-		contribute. Sharing practical examples are important. After reading your 
-		blog post, your readers should not only have gained new insights and 
-		ideas, but also know how to actually implement these in practice. We 
-		also want you to share your expertise, things you’ve learned throughout 
-		your career and things you wish you had known earlier. The more 
-		practical your tips, techniques and ideas are, the better.</p>
+		community. If you have valuable ideas, tips, or experiences, then you are 
+		more than welcome to contribute. Sharing practical examples are 
+		important. After reading your blog post, your readers should not only 
+		have gained new insights and ideas, but also know how to actually 
+		implement these in practice. We also want you to share your expertise, 
+		things you have learned throughout your career and things you wish you had 
+		known earlier. The more practical your tips, techniques and ideas are, 
+		the better.</p>
 		<p>This community blog is based on Jekyll to allow blogging using simple 
 		static HTML web pages, with all of the content hosted on the version 
 		controll plattform of GitHub. The goal was to eliminate the complexity 
-		of other blogging platforms by creating a workflow that allows you to 		<a href="http://tom.preston-werner.com/2008/11/17/blogging-like-a-hacker.html">
-		blog like a hacker</a>.. To create a new blog entry you shold get started 
-		with the following steps:</p>
+		of other blogging platforms by creating a workflow that allows you to 	
+		<a href="http://tom.preston-werner.com/2008/11/17/blogging-like-a-hacker.html">
+		blog like a hacker</a>.. To create a new blog entry you shold get 
+		started with the following steps:</p>
 		<ol>
 			<li>Create your own fork of the blog.</li>
 			<li>Copy the blog template and rename it according to the topic you 
@@ -57,10 +46,10 @@ homepage: http://concordion.org
 		your fork of the blog that you have created in the previous step. Click 
 		on the plus sign on top of the page 
 		(concordion-website/static-content/_posts/+). Set the file name to 
-		include today’s date and the title of your post. The naming convention 
+		include today's date and the title of your post. The naming convention 
 		requires posts to be named <code>year-month-day-title.html</code>.</p>
-		<p>The _posts 
-		directory also contains template for your article (<a href="https://github.com/concordion/concordion-website/tree/master/static-content/_posts/_yyyy-mm-dd-title-of-your-post.html">_yyyy-mm-dd--title-of-your-post.html</a>). 
+		<p>The _posts directory also contains template for your article 
+		(<a href="https://github.com/concordion/concordion-website/tree/master/static-content/_posts/_yyyy-mm-dd-title-of-your-post.html">_yyyy-mm-dd--title-of-your-post.html</a>). 
 		Open it in the browser and copy the content into the new blog post you 
 		have just created. Save your new post file with the copied content from 
 		the template file by pressing the propose-new-file button on the lower 
@@ -75,18 +64,18 @@ homepage: http://concordion.org
 		at the top of your blog post, similar to the information you see in this 
 		blog example.</p>
 		<p>Please, describe your valuable tips, ideas, or experiances in between 
-		the <code>&lt;article&gt;</code> tags further down in the template text. 
-		You can either type your content using HTML syntax directly in the 
-		browser or <a href="https://help.github.com/articles/fork-a-repo/">clone 
-		the fork of your blog onto your computer</a> and use one of the 
-		available html editors.
+		the <code>&lt;article&gt;</code> tags further down in the template text. You 
+		can either type your content using HTML syntax directly in the browser 
+		or <a href="https://help.github.com/articles/fork-a-repo/">clone the 
+		fork of your blog onto your computer</a> and use one of the available 
+		html editors.
 		<a href="http://www.thefreecountry.com/webmaster/htmleditors.shtml#wysiwyg">
 		WYSIWYG editors</a> help you to write your content in a Word-like 
 		fashion.</p>
 		<p><code>&lt;article&gt;<br>&nbsp; Please, add your article content here.<br>
 		&lt;/article&gt;</code></p>
 		<h2>4. Publish your blog post</h2>
-		<p>Your blog post is now written and looking good - you have just to 
+				<p>Your blog post is now written and looking good - you have just to 
 		publish it. This is done through issuing a
 		<a href="https://help.github.com/articles/using-pull-requests/">pull 
 		request on github.com</a>. Open the fork of the blog you have created in 
@@ -96,23 +85,3 @@ homepage: http://concordion.org
 		of the page. After the pull request has been accepted, you can
 		<a href="http://concordion.org/Blog.html">view your blog on the 
 		Concordion webpage</a>.</p>
-		<p>To contribute to the blog, you need to 		<a href="https://help.github.com/articles/fork-a-repo/">fork the github 
-		project</a> and add a file containing your post. This sounds more 
-		complicated than it is. All blog posts are maintained togehter with 
-		other web content within the
-		<a href="https://github.com/concordion/concordion-website">website 
-		repository on github</a>. Within the
-		<a href="https://github.com/concordion/concordion-website/tree/master/static-content/_posts">
-		_post directory</a> you find a
-		<a href="https://github.com/concordion/concordion-website/tree/master/static-content/_posts/yyyy-mm-dd-title-of-your-blog.html">
-		template for new posts</a> named yyyy-mm-dd-title-of-your-blog.html. You 
-		need to make a copy of it and rename it to fit the naming convention: at 
-		the beginning enter the current year, month and day, followed by the 
-		title words of your post. All this parts of the file name have to be 
-		seperated by a hyphen, &quot;-&quot;.</p>
-	</article>
-	
-	{% include footer.html %}
-	</div><!-- page -->
-  </body>
-</html>
