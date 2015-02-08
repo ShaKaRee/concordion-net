@@ -1,4 +1,4 @@
-body {
+﻿body {
   background: white;
   font: 18px/1.4;
 }
@@ -9,8 +9,7 @@ h1, h2, h3, h4, .copyright {
   font-family: Arial, Helvetica, SansSerif;
 }
 div, span, p, li, td, th, h4 {
-  font-family: Arial, Helvetica, SansSerif;
-  font-size: 10pt;  
+  font-family: Arial, Helvetica, SansSerif;  
 }
 code, pre {
   font-size: 10pt;  
@@ -213,9 +212,9 @@ pre.console {
     background-color: #f0f0f0;
 }
 .header {
-  margin-bottom: 50px;
-  padding: 20px 0;
+  padding: 10px 0px 70px;
   border-bottom: 1px solid #eeeeee;
+  margin-bottom: 20px;
 }
 @media screen and (max-width: 640px) {
   .header {
@@ -249,6 +248,16 @@ pre.console {
 @media screen and (max-width: 640px) {
   .author-url {
     margin: 3px 0;
+  }
+}
+nav {
+  float: right;
+}
+@media screen and (max-width: 640px) {
+  nav {
+    float: none;
+    margin-top: 9px;
+    display: block;
   }
 }
 .footer {
