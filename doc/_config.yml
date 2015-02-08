@@ -13,10 +13,10 @@ disqus:
 livefyre_id: 369922
 
 # Enter your Google Analytics web tracking code (e.g. UA-2110908-2) to activate tracking
-google_analytics: #UA-58172036-1
+google_analytics: UA-58172036-1
 
 # Enter your addthis code to activate the sharing buttons
-addhis_id: #ra-543bae9469f79b87
+addhis_id: ra-543bae9469f79b87
 
 # Your website URL (e.g. http://barryclark.github.io or http://www.barryclark.co)
 # Used for Sitemap.xml and your RSS feed
