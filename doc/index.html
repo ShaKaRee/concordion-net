@@ -1,13 +1,13 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:concordion="http://www.concordion.org/2007/concordion" lang="en-US">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:concordion="http://www.concordion.org/2007/concordion" lang="en-us">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta content="text/html; charset=UTF-8" http-equiv="content-type" />
 	<meta http-equiv="Content-Language" content="en-US" />
     <title>BDD Acceptance Testing in plain English|Concordion.NET</title>
     <meta name="description" content="Enables BDD and ATDD for .NET and C# in plain English without the need to specify requirements in specially structured language." />
-    <meta name="keywords" content="BDD, Behavior Driven Development, ATDD, Acceptance Test Driven Development, framework, .NET, C#" />
+    <meta name="keywords" content="BDD, behavior driven development, test driven development, ATDD, acceptance tests, automated testing, framework, .NET, C#" />
     <link href="css/default.css" rel="stylesheet" type="text/css" />
     <link href="image/favicon.ico" rel="icon" type="image/vnd.microsoft.icon" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -17,7 +17,7 @@
       <div class="header"> <a href="http://www.opensource.org/"> <img class="open-source-logo" src="image/opensource-110x95.png"
 
             alt="Open source (Apache 2.0 license)" /> </a> <a href="index.html"> 
-		  <img src="image/front-page-banner.png" alt="BDD in plain English" /> </a> 
+		  <img src="image/front-page-banner.png" alt="test driven development" /> </a> 
       </div>
       <!-- header -->
       
@@ -41,28 +41,27 @@
 			* There are versions for <a href="Download.html">.NET</a>, <a href="http://concordion.org/Download.html">Java</a>, 
 			<a href="http://concordion.org/Ports.html#python">Python</a>, 
             <a href="https://rubygems.org/gems/concordion">Ruby</a>, 
-            and other [<a href="http://concordion.org/Ports.html">supported platforms</a>
-          </p>
+            and other [<a href="http://concordion.org/Ports.html">supported platforms</a>]</p>
 			
-          <p>Concordion.NET supports <em>Behavior Driven Development (BDD)</em> similar to
+          <p>Concordion.NET supports the <em>lean / agile</em> technique of <em>BDD (Behavior Driven Development)</em> similar to
           great frameworks such as Cucumber, SpecFlow,
           FitNesse, and NBehave. According to the
           excellent <a class="externalLink" href="http://blog.jonasbandi.net/2010/03/classifying-bdd-tools-unit-test-driven.html">classification
             of BDD tools</a>, this <em>BDD framework</em> focuses on business readable input (and reaches business readable output as well).</p>
-		  <p> <a href="Concordion/Concordion.html">Concordion.NET specifications</a> are so readable, they can 
-		  double up as system documentation. They are written in HTML, so can be 
-		  easily hyperlinked into a navigable structure. With this automated acceptance testing,
+		  <p>Concordion.NET <a href="Concordion/Concordion.html">software specifications</a> are so readable, they can 
+		  double up as <strong>system documentation</strong>. They are written in HTML, so can be 
+		  easily hyperlinked into a navigable structure to establish a living 
+		  documentation system. With the <strong>automated testing</strong>,
           you can be confident the documentation is always up-to-date.</p>
           <br/>
           <p>
-		  <img alt="acceptance testing" src="image/HowItWorks.jpg" /></p>
+		  <img alt="tdd" src="image/HowItWorks.jpg" /></p>
           
-        <h2 style="margin-bottom: 0px; border-bottom : 1px dotted black; padding-bottom: 6px;">
-		Software Requirements Engineering based on Technical Documentation</h2>
+        <h2>Test Driven Development</h2>
 		  <p>Agile methods help to get the highest possible value from the time 
 		  invested. When investing a lot of effort into 
-		  <a href="RunningTests.html">automated acceptance testing</a> with 
-		  techniques such as Test Driven Development (TDD) the idea arises to 
+		  <a href="RunningTests.html">automated testing</a> with 
+		  techniques such as <em>Test Driven Development</em> (TDD) the idea arises to 
 		  use tests as documentation. But automated testing frameworks often prevent 
 		  non-developers from participation. Additionally, tests are often 
 		  strongly related to the technical aspects of the system and are 
@@ -90,7 +89,7 @@
 		  with the help of Concordion.NET enables to work outside in: first 
 		  describe the customer benefits, drive your tests with this 
 		  description, use the tests as basis for your implementation.</p>
-		  <h3>Customer Needs to Living Documentation</h3>
+		  <h3>From Customer Needs to Living Documentation</h3>
 		  <p>Traditionally specifications often focus on the product and the 
 		  capabilities it should deliver. Thus, this type of documentation 
 		  describes what the system does instead of what the user gains. It 
@@ -120,27 +119,26 @@
   
         <h2 style="margin-bottom: 0px; border-bottom : 1px dotted black; padding-bottom: 6px;">
 		Agile Requirements Management with Specification by Example</h2>
-        <div class="memo">
           <p>As Concordion.NET specifications are written in simple HTML, it provides a good basis for a <a class="externalLink" href="http://specificationbyexample.com/key_ideas.html">living
               documentation system</a>. You can use a what-you-see-is-what-you-get (WYSIWYG) editor like BlueGriffon 
 		  or Microsoft Web Expression
               to describe your intended behavior of your software in simple HTML documents and instrument them to
             verify your system under test.</p>
           <p>Watch the <a class="externalLink" href="http://gojko.net/2009/09/01/acceptance-testing-in-plain-english-with-concordion-net/">video
-              to see how to use Concordion.NET</a>. As the <span style="font-style: italic;">active specifications</span>
+              to see how to use Concordion.NET for Test Driven Development</a>. As the <span style="font-style: italic;">active specifications</span>
             are readable to business people, it can help to achieve the goal of <a class="externalLink" href="http://jacekratzinger.blogspot.co.at/2012/01/purpose-driven-development-pdd.html">purpose
               driven development</a>. Concrete examples within your specifications are turned into executable
-            specifications with a <a href="http://concordion.org/dist/1.4.4/spec/concordion/Concordion.html">small set
+            specifications with a <a href="Concordion/Concordion.html">small set
               of commands</a> (e.g. "set", "execute", "assertEquals"). These allow checking the examples against the
             real-life system.</p>
-          <img alt="Behavior Driven Development" src="image/AnatomyOfAnActiveSpec.jpg" /> </div>
-
+          <img alt="Behavior Driven Development" src="image/AnatomyOfAnActiveSpec.jpg" />
+          
           <h2 style="margin-bottom: 0px; border-bottom : 1px dotted black; padding-bottom: 6px;">
 		Behavior Driven Development with 
 		  Executable Specifications</h2>
         <div>
           <ul class="keyBenefits">
-            <li> Start using Concordion.NET, a flexible BDD tool. To setup your infrastructure, please <a href="Download.html">Download</a> the latest version of
+            <li>Start using Concordion.NET, a flexible BDD tool. To setup your infrastructure, please <a href="Download.html">Download</a> the latest version of
               Concordion.NET. </li>
             <li> On the <a href="GettingStarted.html">Getting Started</a> page you'll find a kick-start solution for
               your C# projects in Visual Studio as well as a first example.</li>
@@ -179,9 +177,9 @@
     </div>
     <!-- page -->
     
-    <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-543bae9469f79b87" async></script>
+    <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-543bae9469f79b87"></script>
 	
-    <script>
+    <script type="text/javascript">
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
       (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
       m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
@@ -191,7 +189,7 @@
       ga('send', 'pageview');
     </script>
 	
-	<script>(function(t,e,o,s){var n,c,a;t.SMCX=t.SMCX||[],e.getElementById(s)||(n=e.getElementsByTagName(o),c=n[n.length-1],a=e.createElement(o),a.type="text/javascript",a.async=!0,a.id=s,a.src=["https:"===location.protocol?"https://":"http://","widget.surveymonkey.com/collect/website/js/4oEgbX2h1Ax0GqfQMTPVUQE8ZbLFT37_2BjVVyAxoLHXmAspt7YhxhWemaQSuRW2qH.js"].join(""),c.parentNode.insertBefore(a,c))})(window,document,"script","smcx-sdk");</script>
+	<script type="text/javascript">(function(t,e,o,s){var n,c,a;t.SMCX=t.SMCX||[],e.getElementById(s)||(n=e.getElementsByTagName(o),c=n[n.length-1],a=e.createElement(o),a.type="text/javascript",a.async=!0,a.id=s,a.src=["https:"===location.protocol?"https://":"http://","widget.surveymonkey.com/collect/website/js/4oEgbX2h1Ax0GqfQMTPVUQE8ZbLFT37_2BjVVyAxoLHXmAspt7YhxhWemaQSuRW2qH.js"].join(""),c.parentNode.insertBefore(a,c))})(window,document,"script","smcx-sdk");</script>
                 
   </body>
 </html>
