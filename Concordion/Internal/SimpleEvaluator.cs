@@ -13,10 +13,9 @@
 // limitations under the License.
 
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using Concordion.Api;
 using System.Text.RegularExpressions;
 
 namespace Concordion.Internal
@@ -107,6 +106,32 @@ namespace Concordion.Internal
             throw new InvalidOperationException("Invalid expression [" + expression + "]");
         }
 
+        private static object AdaptType(object result)
+        {
+            if (result is Boolean)
+            {
+                return new java.lang.Boolean(result.ToString());
+            }
+
+            if (result is string)
+            {
+                return java.lang.String.valueOf(result);
+            }
+
+            if (result is IEnumerable)
+            {
+                var enumerable = result as IEnumerable;
+                var iterable = new java.util.ArrayList();
+                foreach (var resultItem in enumerable)
+                {
+                    iterable.Add(resultItem);
+                }
+                return iterable;
+            }
+
+            return result;
+        }
+
         #endregion
 
         #region Override Methods
@@ -115,7 +140,7 @@ namespace Concordion.Internal
         {
             ValidateEvaluationExpression(expression);
             var result = base.evaluate(expression);
-            return result;
+            return AdaptType(result);
         }
 
         public override void setVariable(string expression, object value)
