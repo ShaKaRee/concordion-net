@@ -68,15 +68,16 @@ namespace Concordion.Internal
             catch (Exception e)
             {
                 Console.WriteLine(e);
-                var exceptionResult = new ExtendedSummarizingResultRecorder();
-                exceptionResult.Error(e);
+                var exceptionResult = new org.concordion.@internal.SummarizingResultRecorder();
+                exceptionResult.record(org.concordion.api.Result.EXCEPTION);
+                //exceptionResult.Error(e);
                 return exceptionResult;
             }
         }
 
         private ResultSummary RunAllSpecifications(IEnumerable<string> fileExtensions)
         {
-            var testSummary = new ExtendedSummarizingResultRecorder();
+            var testSummary = new org.concordion.@internal.SummarizingResultRecorder();
             var anySpecExecuted = false;
             foreach (var fileExtension in fileExtensions)
             {
@@ -102,10 +103,11 @@ namespace Concordion.Internal
                     specPath = string.Format("assembly {0}",
                         m_Fixture.GetType().Assembly.GetName().Name);
                 }
-                testSummary.Error(new AssertionErrorException(string.Format(
-                    "no active specification found for {0} in {1}",
-                    this.m_Fixture.GetType().Name,
-                    specPath)));
+                testSummary.record(org.concordion.api.Result.EXCEPTION);
+                //testSummary.Error(new AssertionErrorException(string.Format(
+                //    "no active specification found for {0} in {1}",
+                //    this.m_Fixture.GetType().Name,
+                //    specPath)));
             }
             return testSummary;
         }
@@ -127,10 +129,7 @@ namespace Concordion.Internal
             //extensionLoader.AddExtensions(m_Fixture, concordionExtender);
 
             var concordion = concordionExtender.build();
-            var result = concordion.process(specificationLocator.locateSpecification(m_Fixture), m_Fixture);
-            var extendedSummarizingResultRecorder = new ExtendedSummarizingResultRecorder();
-            AddToTestResults(result, extendedSummarizingResultRecorder);
-            return extendedSummarizingResultRecorder;
+            return concordion.process(specificationLocator.locateSpecification(this.m_Fixture), this.m_Fixture);
         }
 
         private void AddToTestResults(ResultSummary singleResult, ResultRecorder resultSummary)
