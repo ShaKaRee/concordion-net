@@ -15,15 +15,14 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using Concordion.Api;
 using ognl;
 using Concordion.Internal.Util;
 using System.Data;
+using org.concordion.api;
 
 namespace Concordion.Internal
 {
-    public class OgnlEvaluator : IEvaluator
+    public class OgnlEvaluator : Evaluator
     {
         #region Properties
 
@@ -73,19 +72,19 @@ namespace Concordion.Internal
 
         #region IEvaluator Members
 
-        public virtual object GetVariable(string expression)
+        public virtual object getVariable(string expression)
         {
             AssertStartsWithHash(expression);
             string rawVariableName = expression.Substring(1);
             return OgnlContext[rawVariableName];
         }
 
-        public virtual void SetVariable(string expression, object value)
+        public virtual void setVariable(string expression, object value)
         {
             AssertStartsWithHash(expression);
             if (expression.Contains("="))
             {
-                Evaluate(expression);
+                evaluate(expression);
             }
             else
             {
@@ -94,11 +93,17 @@ namespace Concordion.Internal
             }
         }
 
-        public virtual object Evaluate(string expression)
+        public virtual object evaluate(string expression)
         {
             Check.NotNull(Fixture, "Root object is null");
             Check.NotNull(expression, "Expression to evaluate cannot be null");
-            return Ognl.getValue(expression, OgnlContext, Fixture);
+            var result = Ognl.getValue(expression, OgnlContext, Fixture);
+            var resultType = result.GetType();
+            if (result is Boolean)
+            {
+                result = new java.lang.Boolean(result.ToString());
+            }
+            return result;
         }
 
         #endregion

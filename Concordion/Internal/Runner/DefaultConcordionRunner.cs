@@ -19,6 +19,7 @@ using System.Text;
 using Concordion.Api;
 using System.Text.RegularExpressions;
 using System.Reflection;
+using org.concordion.@internal;
 
 namespace Concordion.Internal.Runner
 {
@@ -67,18 +68,18 @@ namespace Concordion.Internal.Runner
             var runnerFixture = GetFixture(resource, href, callingFixture);
 
             var concordion = new ConcordionBuilder()
-                                        .WithSource(Source)
-                                        .WithTarget(Target)
-                                        .Build();
+                                        //.withSource(Source)
+                                        //.withTarget(Target)
+                                        .build();
 
-            var results = concordion.Process(runnerFixture);
+            var results = concordion.process(runnerFixture);
 
             Result result;
-            if (results.HasFailures)
+            if (results.getFailureCount() > 0)
             {
                 result = Result.Failure;
             }
-            else if (results.HasExceptions)
+            else if (results.hasExceptions())
             {
                 result = Result.Exception;
             }

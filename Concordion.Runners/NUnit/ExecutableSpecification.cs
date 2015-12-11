@@ -15,13 +15,13 @@ namespace Concordion.Runners.NUnit
         public void ConcordionTest()
         {
             var concordionResult = new FixtureRunner().Run(this);
-            if (concordionResult.HasExceptions)
+            if (concordionResult.hasExceptions())
             {
                 throw new Exception("Exception in Concordion test: please see Concordion test reports");
             }
-            else if (concordionResult.HasFailures)
+            else if (concordionResult.getFailureCount() > 0)
             {
-                Assert.Fail("Concordion Test Failures: " + concordionResult.FailureCount,
+                Assert.Fail("Concordion Test Failures: " + concordionResult.getFailureCount(),
                                    "for stack trace, please see Concordion test reports");
             }
             else

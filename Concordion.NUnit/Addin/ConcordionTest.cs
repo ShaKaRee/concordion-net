@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using Concordion.Internal;
+using Concordion.NET.Internal;
 using NUnit.Core;
 using Concordion.Api;
+using org.concordion.api;
 
 namespace Concordion.NUnit.Addin
 {
@@ -84,8 +86,10 @@ namespace Concordion.NUnit.Addin
             }
         }
 
-        private TestResult NUnitTestResult(IResultSummary concordionResult, string resultPath)
+        private TestResult NUnitTestResult(ResultSummary extendedConcordionResult, string resultPath)
         {
+            var concordionResult = (ExtendedSummarizingResultRecorder) extendedConcordionResult;
+
             var testResult = new TestResult(this);
 
             if (concordionResult.HasExceptions)

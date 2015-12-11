@@ -111,16 +111,17 @@ namespace Concordion.Internal
 
         #region Override Methods
 
-        public override object  Evaluate(string expression)
+        public override object  evaluate(string expression)
         {
             ValidateEvaluationExpression(expression);
-            return base.Evaluate(expression);
+            var result = base.evaluate(expression);
+            return result;
         }
 
-        public override void SetVariable(string expression, object value)
+        public override void setVariable(string expression, object value)
         {
             ValidateSetVariableExpression(expression);
-            base.SetVariable(expression, value);
+            base.setVariable(expression, value);
         }
 
 

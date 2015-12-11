@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Text;
+using System.IO;
 using Concordion.Api;
-using Concordion.Internal.Extension;
+using Concordion.NET.Internal;
+using org.concordion.api;
+using org.concordion.@internal;
+using ClassNameBasedSpecificationLocator = Concordion.NET.Internal.ClassNameBasedSpecificationLocator;
 
 namespace Concordion.Internal
 {
@@ -12,7 +14,7 @@ namespace Concordion.Internal
     {
         private object m_Fixture;
 
-        private ISource m_Source;
+        private Source m_Source;
 
         private FileTarget m_Target;
 
@@ -28,8 +30,10 @@ namespace Concordion.Internal
             m_SpecificationConfig = specificationConfig;
         }
 
-        public IResultSummary Run(object fixture)
+        public ResultSummary Run(object fixture)
         {
+            Console.WriteLine("starting test: " + fixture);
+
             try
             {
                 this.m_Fixture = fixture;
@@ -39,7 +43,7 @@ namespace Concordion.Internal
                 }
                 if (!string.IsNullOrEmpty(m_SpecificationConfig.BaseInputDirectory))
                 {
-                    this.m_Source = new FileSource(m_SpecificationConfig.BaseInputDirectory);
+                    this.m_Source = new FileSource(fixture.GetType().Assembly, m_SpecificationConfig.BaseInputDirectory);
                 }
                 else
                 {
@@ -64,21 +68,21 @@ namespace Concordion.Internal
             catch (Exception e)
             {
                 Console.WriteLine(e);
-                var exceptionResult = new SummarizingResultRecorder();
+                var exceptionResult = new ExtendedSummarizingResultRecorder();
                 exceptionResult.Error(e);
                 return exceptionResult;
             }
         }
 
-        private IResultSummary RunAllSpecifications(IEnumerable<string> fileExtensions)
+        private ResultSummary RunAllSpecifications(IEnumerable<string> fileExtensions)
         {
-            var testSummary = new SummarizingResultRecorder();
+            var testSummary = new ExtendedSummarizingResultRecorder();
             var anySpecExecuted = false;
             foreach (var fileExtension in fileExtensions)
             {
                 var specLocator = new ClassNameBasedSpecificationLocator(fileExtension);
-                var specResource = specLocator.LocateSpecification(m_Fixture);
-                if (m_Source.CanFind(specResource))
+                var specResource = specLocator.locateSpecification(m_Fixture);
+                if (m_Source.canFind(specResource))
                 {
                     var fixtureResult = RunSingleSpecification(fileExtension);
                     AddToTestResults(fixtureResult, testSummary);
@@ -91,7 +95,7 @@ namespace Concordion.Internal
                 if (!string.IsNullOrEmpty(m_SpecificationConfig.BaseInputDirectory))
                 {
                     specPath = string.Format("directory {0}",
-                        Path.GetFullPath(m_SpecificationConfig.BaseInputDirectory)); 
+                        Path.GetFullPath(m_SpecificationConfig.BaseInputDirectory));
                 }
                 else
                 {
@@ -99,43 +103,48 @@ namespace Concordion.Internal
                         m_Fixture.GetType().Assembly.GetName().Name);
                 }
                 testSummary.Error(new AssertionErrorException(string.Format(
-                    "no active specification found for {0} in {1}", 
+                    "no active specification found for {0} in {1}",
                     this.m_Fixture.GetType().Name,
                     specPath)));
             }
             return testSummary;
         }
 
-        private IResultSummary RunSingleSpecification(string fileExtension)
+        private ResultSummary RunSingleSpecification(string fileExtension)
         {
             var specificationLocator = new ClassNameBasedSpecificationLocator(fileExtension);
-            ResultPath = m_Target.ResolvedPathFor(specificationLocator.LocateSpecification(m_Fixture));
-            var concordionExtender = new ConcordionBuilder();
+            //ToDo? ResultPath = m_Target.ResolvedPathFor(specificationLocator.locateSpecification(m_Fixture));
+            var embeddedStylesheetResource = HtmlFramework.EMBEDDED_STYLESHEET_RESOURCE;
+            var concordionExtender = new ConcordionBuilder(embeddedStylesheetResource.Replace("\r", ""));
+            //var concordionExtender = new ConcordionBuilder();
             concordionExtender
-                .WithSource(m_Source)
-                .WithTarget(m_Target)
-                .WithSpecificationLocator(specificationLocator);
-            var extensionLoader = new ExtensionLoader(m_SpecificationConfig);
-            extensionLoader.AddExtensions(m_Fixture, concordionExtender);
-            var concordion = concordionExtender.Build();
-            return concordion.Process(m_Fixture);
+                .withSource(m_Source)
+                //ToDo? .withTarget(m_Target)
+                .withSpecificationLocator(specificationLocator)
+                .withFixture(m_Fixture)
+                .withEvaluatorFactory(new SimpleEvaluatorFactory());
+            //ToDo: var extensionLoader = new ExtensionLoader(m_SpecificationConfig);
+            //extensionLoader.AddExtensions(m_Fixture, concordionExtender);
+
+            var concordion = concordionExtender.build();
+            return concordion.process(specificationLocator.locateSpecification(m_Fixture), m_Fixture);
         }
 
-        private void AddToTestResults(IResultSummary singleResult, IResultRecorder resultSummary)
+        private void AddToTestResults(ResultSummary singleResult, ResultRecorder resultSummary)
         {
             if (resultSummary == null) return;
 
-            if (singleResult.HasExceptions)
+            if (singleResult.hasExceptions())
             {
-                resultSummary.AddResultDetails(singleResult.ErrorDetails);
+                //resultSummary.AddResultDetails(singleResult.ErrorDetails);
             }
-            else if (singleResult.HasFailures)
+            else if (singleResult.getFailureCount() > 0)
             {
-                resultSummary.AddResultDetails(singleResult.FailureDetails);
+                //resultSummary.AddResultDetails(singleResult.FailureDetails);
             }
             else
             {
-                resultSummary.Success();
+                //ToDo: resultSummary..Success();
             }
         }
     }

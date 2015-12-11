@@ -8,7 +8,7 @@ pre {
   padding: 6px 28px 6px 28px;
   background-color: #E8EEF7;
 }
-pre, pre *, code, kbd {
+pre, pre *, code, code *, kbd {
   font-family: Courier New, Courier;
   font-size: 10pt;
 }
@@ -20,6 +20,7 @@ p, td, th, li, .breadcrumbs {
 }
 p, li {
   line-height: 140%;
+  max-width: 720px;
 }
 table {
   border-collapse: collapse;
@@ -42,9 +43,8 @@ li {
   margin-bottom: 6px; 
 }
 
-
 .example {
-  padding: 2px 12px 6px 12px;
+  padding: 6px 16px 6px 16px;
   border: 1px solid #C3D9FF;
   margin: 6px 0px 28px 0px;
   background-color: #F5F9FD;
@@ -124,6 +124,8 @@ ins {
 }
 .missing, .missing * {
   background-color: #ff9999;
+  color:#bb5050;
+  text-decoration: line-through;
 }
 .surplus, .surplus * {
   background-color: #ff9999;

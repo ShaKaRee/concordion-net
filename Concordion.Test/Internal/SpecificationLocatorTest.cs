@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using Concordion.Api;
 using Concordion.Internal;
+using Concordion.NET.Internal;
 using NUnit.Framework;
 
 namespace Concordion.Test.Internal
@@ -16,8 +17,8 @@ namespace Concordion.Test.Internal
         public void ShouldRemoveTestSuffixes()
         {
             var specificationLocator = new ClassNameBasedSpecificationLocator();
-            var resource = specificationLocator.LocateSpecification(this);
-            var path = resource.Path.Replace(Path.DirectorySeparatorChar, '/');
+            var resource = specificationLocator.locateSpecification(this);
+            var path = resource.getPath().Replace(Path.DirectorySeparatorChar, '/');
             Assert.AreEqual("Concordion/Test/Internal/SpecificationLocator.html", path, "path from SpecificationLocator contains 'Test'");
         }
 
@@ -25,8 +26,8 @@ namespace Concordion.Test.Internal
         public void ShouldNotRemoreWordTestInBetween()
         {
             var specificationLocator = new ClassNameBasedSpecificationLocator();
-            var resource = specificationLocator.LocateSpecification(new DummyContainingTestInNameTest());
-            var path = resource.Path.Replace(Path.DirectorySeparatorChar, '/');
+            var resource = specificationLocator.locateSpecification(new DummyContainingTestInNameTest());
+            var path = resource.getPath().Replace(Path.DirectorySeparatorChar, '/');
             Assert.AreEqual("Concordion/Test/Internal/DummyContainingTestInName.html", path, "path from SpecificiationLocator removed 'Test' in the middle");
         }
     }

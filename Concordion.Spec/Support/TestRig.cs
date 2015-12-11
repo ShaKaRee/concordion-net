@@ -5,6 +5,10 @@ using Concordion.Api;
 using Concordion.Api.Extension;
 using Concordion.Internal;
 using Concordion.Internal.Extension;
+using org.concordion.api;
+using org.concordion.@internal;
+using Resource = Concordion.Api.Resource;
+using SimpleEvaluatorFactory = Concordion.Internal.SimpleEvaluatorFactory;
 
 namespace Concordion.Spec.Support
 {
@@ -18,7 +22,7 @@ namespace Concordion.Spec.Support
             set;
         }
 
-        private IEvaluatorFactory EvaluatorFactory
+        private EvaluatorFactory EvaluatorFactory
         {
             get;
             set;
@@ -56,30 +60,31 @@ namespace Concordion.Spec.Support
             var eventRecorder = new EventRecorder();
             this.Target = new StubTarget();
 
-            var concordionBuilder = new ConcordionBuilder()
-                .WithEvaluatorFactory(this.EvaluatorFactory)
-                .WithSource(this.Source)
-                .WithTarget(this.Target)
-                .WithAssertEqualsListener(eventRecorder)
-                .WithExceptionListener(eventRecorder);
+            var concordionBuilder = new ConcordionBuilder();
+                //ToDo .withEvaluatorFactory(this.EvaluatorFactory)
+                //.withSource(this.Source)
+                //.withTarget(this.Target)
+                //.withAssertEqualsListener(eventRecorder)
+                //.withExceptionListener(eventRecorder);
 
-            if (this.Fixture != null)
-            {
-                new ExtensionLoader(this.Configuration).AddExtensions(this.Fixture, concordionBuilder);
-            }
+            //ToDo
+            //if (this.Fixture != null)
+            //{
+            //    new ExtensionLoader(this.Configuration).AddExtensions(this.Fixture, concordionBuilder);
+            //}
             
-            if (this.Extension != null)
-            {
-                this.Extension.AddTo(concordionBuilder);
-            }
+            //if (this.Extension != null)
+            //{
+            //    this.Extension.AddTo(concordionBuilder);
+            //}
 
-            var concordion = concordionBuilder.Build();
+            var concordion = concordionBuilder.build();
 
             try
             {
-                IResultSummary resultSummary = concordion.Process(resource, this.Fixture);
+                ResultSummary resultSummary = concordion.process(this.Fixture); //ToDo process(resource, this.Fixture);
                 string xml = this.Target.GetWrittenString(resource);
-                return new ProcessingResult(resultSummary, eventRecorder, xml);
+                return null; //ToDo new ProcessingResult(resultSummary, eventRecorder, xml);
             }
             catch (Exception e)
             {
@@ -102,7 +107,7 @@ namespace Concordion.Spec.Support
 
         public TestRig WithStubbedEvaluationResult(object evaluationResult)
         {
-            this.EvaluatorFactory = new StubEvaluator(this.Fixture).withStubbedResult(evaluationResult);
+            //ToDo: this.EvaluatorFactory = new StubEvaluator(this.Fixture).withStubbedResult(evaluationResult);
             return this;
         }
 

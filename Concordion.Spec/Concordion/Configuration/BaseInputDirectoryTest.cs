@@ -4,6 +4,7 @@ using System.Linq;
 using Concordion.Integration;
 using Concordion.Internal;
 using System.IO;
+using Concordion.NET.Internal;
 
 namespace Concordion.Spec.Concordion.Configuration
 {
@@ -28,7 +29,7 @@ namespace Concordion.Spec.Concordion.Configuration
             var specificationConfig = new SpecificationConfig().Load(this.GetType());
             specificationConfig.BaseInputDirectory = baseInputDirectory;
             var fixtureRunner = new FixtureRunner(specificationConfig);
-            var testResult = fixtureRunner.Run(this);
+            var testResult = (ExtendedSummarizingResultRecorder) fixtureRunner.Run(this);
 
             m_InTestRun = false;
 
@@ -55,7 +56,7 @@ namespace Concordion.Spec.Concordion.Configuration
             var specificationConfig = new SpecificationConfig().Load(this.GetType());
             specificationConfig.BaseInputDirectory = null;
             var fixtureRunner = new FixtureRunner(specificationConfig);
-            var testResult = fixtureRunner.Run(this);
+            var testResult = (ExtendedSummarizingResultRecorder) fixtureRunner.Run(this);
 
             m_InTestRun = false;
 

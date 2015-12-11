@@ -17,14 +17,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Concordion.Api;
+using org.concordion.api;
 
 namespace Concordion.Internal
 {
-    public class SimpleEvaluatorFactory : IEvaluatorFactory
+    public class SimpleEvaluatorFactory : EvaluatorFactory
     {
         #region IEvaluatorFactory Members
 
-        public IEvaluator CreateEvaluator(object fixture)
+        public Evaluator createEvaluator(object fixture)
         {
             return new SimpleEvaluator(fixture);
         }
