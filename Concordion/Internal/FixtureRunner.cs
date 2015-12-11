@@ -2,11 +2,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.IO;
+using System.Reflection;
 using Concordion.Api;
 using Concordion.NET.Internal;
+using ikvm.extensions;
+using java.lang;
 using org.concordion.api;
 using org.concordion.@internal;
 using ClassNameBasedSpecificationLocator = Concordion.NET.Internal.ClassNameBasedSpecificationLocator;
+using Exception = System.Exception;
 using File = java.io.File;
 using FileTarget = org.concordion.@internal.FileTarget;
 
@@ -116,9 +120,7 @@ namespace Concordion.Internal
         {
             var specificationLocator = new ClassNameBasedSpecificationLocator(fileExtension);
             ResultPath = m_Target.resolvedPathFor(specificationLocator.locateSpecification(m_Fixture));
-            var embeddedStylesheetResource = HtmlFramework.EMBEDDED_STYLESHEET_RESOURCE;
-            var concordionExtender = new ConcordionBuilder(embeddedStylesheetResource.Replace("\r", ""));
-            //var concordionExtender = new ConcordionBuilder();
+            var concordionExtender = new ConcordionBuilder();
             concordionExtender
                 .withSource(m_Source)
                 .withTarget(m_Target)
