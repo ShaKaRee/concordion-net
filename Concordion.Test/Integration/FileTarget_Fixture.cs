@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
+using java.io;
 using NUnit.Framework;
 using Moq;
-using Concordion.Api;
-using Concordion.Internal;
+using org.concordion.api;
+using org.concordion.@internal;
 
 namespace Concordion.Test.Integration
 {
@@ -16,11 +16,11 @@ namespace Concordion.Test.Integration
         public void Test_Can_Get_File_Path_Successfully()
         {
             var resource = new Mock<Resource>("blah\\blah.txt");
-            resource.Expect(x => x.Path).Returns("blah\\blah.txt");
+            resource.Expect(x => x.getPath()).Returns("blah\\blah.txt");
 
-            var target = new FileTarget(@"c:\temp");
+            var target = new FileTarget(new File(@"c:\temp"));
 
-            Assert.AreEqual(@"c:\temp\blah\blah.txt", target.GetTargetPath(resource.Object));
+            Assert.AreEqual(@"c:\temp\blah\blah.txt", target.resolvedPathFor(resource.Object));
         }
     }
 }

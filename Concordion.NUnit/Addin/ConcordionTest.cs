@@ -86,24 +86,27 @@ namespace Concordion.NUnit.Addin
             }
         }
 
-        private TestResult NUnitTestResult(ResultSummary extendedConcordionResult, string resultPath)
+        private TestResult NUnitTestResult(ResultSummary concordionResult, string resultPath)
         {
-            var concordionResult = (ExtendedSummarizingResultRecorder) extendedConcordionResult;
-
             var testResult = new TestResult(this);
 
-            if (concordionResult.HasExceptions)
+            if (concordionResult.hasExceptions())
             {
-                var errorDetails = concordionResult.ErrorDetails.First();
-                testResult.Error(errorDetails.Exception);
-                testResult.SetResult(testResult.ResultState, 
-                                     resultPath + Environment.NewLine + testResult.Message, 
-                                     testResult.StackTrace);
+                //ToDo
+                //var errorDetails = concordionResult.ErrorDetails.First();
+                //testResult.Error(errorDetails.Exception);
+                //testResult.SetResult(testResult.ResultState, 
+                //                     resultPath + Environment.NewLine + testResult.Message, 
+                //                     testResult.StackTrace);
+                testResult.Error(new NUnitException("Exception in Concordion test: please see Concordion test reports"));
             }
-            else if (concordionResult.HasFailures)
+            else if (concordionResult.getFailureCount() > 0)
             {
-                var failureDetails = concordionResult.FailureDetails.First();
-                testResult.Failure(resultPath + Environment.NewLine + failureDetails.Message, failureDetails.StackTrace);
+                //ToDo
+                //var failureDetails = concordionResult.FailureDetails.First();
+                //testResult.Failure(resultPath + Environment.NewLine + failureDetails.Message, failureDetails.StackTrace);
+                testResult.Failure("Concordion Test Failures: " + concordionResult.getFailureCount(),
+                                   "for stack trace, please see Concordion test reports");
             } else
             {
                 testResult.Success(resultPath);

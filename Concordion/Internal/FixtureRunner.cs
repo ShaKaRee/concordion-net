@@ -7,6 +7,8 @@ using Concordion.NET.Internal;
 using org.concordion.api;
 using org.concordion.@internal;
 using ClassNameBasedSpecificationLocator = Concordion.NET.Internal.ClassNameBasedSpecificationLocator;
+using File = java.io.File;
+using FileTarget = org.concordion.@internal.FileTarget;
 
 namespace Concordion.Internal
 {
@@ -32,8 +34,6 @@ namespace Concordion.Internal
 
         public ResultSummary Run(object fixture)
         {
-            Console.WriteLine("starting test: " + fixture);
-
             try
             {
                 this.m_Fixture = fixture;
@@ -49,7 +49,7 @@ namespace Concordion.Internal
                 {
                     this.m_Source = new EmbeddedResourceSource(fixture.GetType().Assembly);
                 }
-                this.m_Target = new FileTarget(this.m_SpecificationConfig.BaseOutputDirectory);
+                this.m_Target = new FileTarget(new File(this.m_SpecificationConfig.BaseOutputDirectory));
 
                 var fileExtensions = this.m_SpecificationConfig.SpecificationFileExtensions;
                 if (fileExtensions.Count > 1)
@@ -113,13 +113,13 @@ namespace Concordion.Internal
         private ResultSummary RunSingleSpecification(string fileExtension)
         {
             var specificationLocator = new ClassNameBasedSpecificationLocator(fileExtension);
-            //ToDo? ResultPath = m_Target.ResolvedPathFor(specificationLocator.locateSpecification(m_Fixture));
+            ResultPath = m_Target.resolvedPathFor(specificationLocator.locateSpecification(m_Fixture));
             var embeddedStylesheetResource = HtmlFramework.EMBEDDED_STYLESHEET_RESOURCE;
             var concordionExtender = new ConcordionBuilder(embeddedStylesheetResource.Replace("\r", ""));
             //var concordionExtender = new ConcordionBuilder();
             concordionExtender
                 .withSource(m_Source)
-                //ToDo? .withTarget(m_Target)
+                .withTarget(m_Target)
                 .withSpecificationLocator(specificationLocator)
                 .withFixture(m_Fixture)
                 .withEvaluatorFactory(new SimpleEvaluatorFactory());
@@ -127,7 +127,10 @@ namespace Concordion.Internal
             //extensionLoader.AddExtensions(m_Fixture, concordionExtender);
 
             var concordion = concordionExtender.build();
-            return concordion.process(specificationLocator.locateSpecification(m_Fixture), m_Fixture);
+            var result = concordion.process(specificationLocator.locateSpecification(m_Fixture), m_Fixture);
+            var extendedSummarizingResultRecorder = new ExtendedSummarizingResultRecorder();
+            AddToTestResults(result, extendedSummarizingResultRecorder);
+            return extendedSummarizingResultRecorder;
         }
 
         private void AddToTestResults(ResultSummary singleResult, ResultRecorder resultSummary)
@@ -137,14 +140,17 @@ namespace Concordion.Internal
             if (singleResult.hasExceptions())
             {
                 //resultSummary.AddResultDetails(singleResult.ErrorDetails);
+                resultSummary.record(singleResult);
             }
             else if (singleResult.getFailureCount() > 0)
             {
                 //resultSummary.AddResultDetails(singleResult.FailureDetails);
+                resultSummary.record(singleResult);
             }
             else
             {
                 //ToDo: resultSummary..Success();
+                resultSummary.record(singleResult);
             }
         }
     }

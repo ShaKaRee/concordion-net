@@ -301,7 +301,6 @@
     <Compile Include="Internal\FixtureRunner.cs" />
     <Compile Include="Internal\IExpectationChecker.cs" />
     <Compile Include="Internal\ExpectedToFailFixtureState.cs" />
-    <Compile Include="Internal\FileTarget.cs" />
     <Compile Include="Internal\IFixtureState.cs" />
     <Compile Include="Internal\IExpressionValidator.cs" />
     <Compile Include="Internal\Listener\AssertResultRenderer.cs" />
