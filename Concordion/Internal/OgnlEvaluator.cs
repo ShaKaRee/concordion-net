@@ -98,7 +98,6 @@ namespace Concordion.Internal
             Check.NotNull(Fixture, "Root object is null");
             Check.NotNull(expression, "Expression to evaluate cannot be null");
             var result = Ognl.getValue(expression, OgnlContext, Fixture);
-            var resultType = result.GetType();
             if (result is Boolean)
             {
                 result = new java.lang.Boolean(result.ToString());
