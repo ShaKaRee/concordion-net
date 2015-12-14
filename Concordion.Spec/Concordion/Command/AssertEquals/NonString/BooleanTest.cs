@@ -15,7 +15,7 @@ namespace Concordion.Spec.Concordion.Command.AssertEquals.NonString
         public string OutcomeOfPerformingAssertEquals(string fragment, bool boolValue, string boolString)
         {
             return new TestRig()
-                .WithStubbedEvaluationResult(boolValue)
+                .WithStubbedEvaluationResult(new java.lang.Boolean(boolValue.ToString()))
                 .ProcessFragment(Regex.Replace(fragment, "\\(some boolean string\\)", boolString))
                 .SuccessOrFailureInWords();
         }
