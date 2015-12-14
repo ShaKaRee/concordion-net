@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Concordion.Api;
 using Concordion.Internal.Util;
 using System.IO;
+using java.io;
+using org.concordion.api;
 
 namespace Concordion.Spec.Support
 {
-    class StubSource : ISource
+    class StubSource : Source
     {
         private Dictionary<Resource, string> resources = new Dictionary<Resource, string>();
 
@@ -32,19 +33,13 @@ namespace Concordion.Spec.Support
 
         #region ISource Members
 
-        public System.IO.Stream CreateInputStream(Resource resource)
+        public InputStream createInputStream(Resource resource)
         {
-            Check.IsTrue(this.CanFind(resource), "No such resource exists in simulator: " + resource.Path);
-            return new MemoryStream(UTF8Encoding.UTF8.GetBytes(this.resources[resource]));
+            Check.IsTrue(canFind(resource), "No such resource exists in simulator: " + resource.getPath());
+            return new ByteArrayInputStream(Encoding.UTF8.GetBytes(this.resources[resource]));
         }
 
-        public TextReader CreateReader(Resource resource)
-        {
-            Check.IsTrue(this.CanFind(resource), "No such resource exists in simulator: " + resource.Path);
-            return new StreamReader(new MemoryStream(UTF8Encoding.UTF8.GetBytes(this.resources[resource])));
-        }
-
-        public bool CanFind(Resource resource)
+        public bool canFind(Resource resource)
         {
             return this.resources.ContainsKey(resource);
         }

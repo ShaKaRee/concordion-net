@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Concordion.Api.Listener;
+using org.concordion.api.listener;
 
 namespace Concordion.Spec.Support
 {
-    public class EventRecorder : IAssertEqualsListener, IExceptionCaughtListener
+    public class EventRecorder : AssertEqualsListener, ThrowableCaughtListener
     {
         private readonly List<Object> m_Events;
 
@@ -24,19 +24,19 @@ namespace Concordion.Spec.Support
             return lastMatch;
         }
 
-        public void ExceptionCaught(ExceptionCaughtEvent caughtEvent)
+        public void throwableCaught(ThrowableCaughtEvent caughtEvent)
         {
             this.m_Events.Add(caughtEvent);
         }
 
         #region IAssertEqualsListener Members
 
-        public void SuccessReported(AssertSuccessEvent successEvent)
+        public void successReported(AssertSuccessEvent successEvent)
         {
             this.m_Events.Add(successEvent);
         }
 
-        public void FailureReported(AssertFailureEvent failureEvent)
+        public void failureReported(AssertFailureEvent failureEvent)
         {
             this.m_Events.Add(failureEvent);
         }

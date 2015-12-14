@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using Concordion.Api;
+using java.io;
+using org.concordion.api;
 using Concordion.Internal.Util;
 using System.Drawing;
 
 namespace Concordion.Spec.Support
 {
-    class StubTarget : ITarget
+    class StubTarget : Target
     {
         private readonly Dictionary<Resource, String> writtenStrings;
         private readonly List<Resource> m_CopiedResources = new List<Resource>();
@@ -20,45 +21,50 @@ namespace Concordion.Spec.Support
 
         public string GetWrittenString(Resource resource)
         {
-            Check.IsTrue(this.writtenStrings.ContainsKey(resource), "Expected resource '" + resource.Path + "' was not written to target");
+            Check.IsTrue(this.writtenStrings.ContainsKey(resource), "Expected resource '" + resource.getPath() + "' was not written to target");
             return this.writtenStrings[resource];
         }
 
-        #region ITarget Members
+        #region Target Members
 
-        public void Write(Resource resource, string s)
+        public void write(Resource resource, string image)
         {
-            this.writtenStrings.Add(resource, s);
-        }
-
-        public void Write(Resource resource, Bitmap image)
-        {
-            // Do nothing
+            this.writtenStrings.Add(resource, image);
         }
 
         public void CopyTo(Resource resource, string destination)
         {
         }
 
-        public void CopyTo(Resource resource, TextReader inputReader)
+        public void copyTo(Resource resource, InputStream inputStream)
         {
             this.m_CopiedResources.Add(resource);
         }
 
-        public bool HasCopiedResource(Resource resource)
+        public bool exists(Resource resource)
         {
-            return this.m_CopiedResources.Contains(resource);
+            return this.HasCopiedResource(resource) || this.writtenStrings.ContainsKey(resource);
         }
 
-        public void Delete(Resource resource)
+        public void delete(Resource resource)
         {
         }
 
-        public string ResolvedPathFor(Resource resource)
+        public OutputStream getOutputStream(Resource r)
+        {
+            throw new NotImplementedException();
+        }
+
+        public string resolvedPathFor(Resource resource)
         {
             return "";
         }
 
         #endregion
+
+        public bool HasCopiedResource(Resource resource)
+        {
+            return this.m_CopiedResources.Contains(resource);
+        }
     }
 }

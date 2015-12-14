@@ -1,39 +1,39 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Concordion.Api;
+using org.concordion.api;
 
 namespace Concordion.Spec.Support
 {
-    public class StubEvaluator : IEvaluator, IEvaluatorFactory
+    public class StubEvaluator : Evaluator, EvaluatorFactory
     {
-        private object evaluationResult = null;
+        private object m_EvaluationResult = null;
 
         public StubEvaluator(object fixture)
         {
             this.Fixture = fixture;
         }
 
-        public IEvaluator CreateEvaluator(object fixture)
+        public Evaluator createEvaluator(object fixture)
         {
             return this;
         }
 
-        public object Evaluate(string expression) 
+        public object evaluate(string expression) 
         {
-            if (this.evaluationResult is Exception) 
+            if (this.m_EvaluationResult is Exception) 
             {
-                throw (Exception) this.evaluationResult;
+                throw (Exception) this.m_EvaluationResult;
             }
-            return this.evaluationResult;
+            return this.m_EvaluationResult;
         }
 
-        public object GetVariable(string variableName)
+        public object getVariable(string variableName)
         {
             return null;
         }
 
-        public void SetVariable(string variableName, object value)
+        public void setVariable(string variableName, object value)
         {
         }
 
@@ -43,9 +43,9 @@ namespace Concordion.Spec.Support
             private set;
         }
 
-        public IEvaluatorFactory withStubbedResult(object evaluationResult)
+        public EvaluatorFactory WithStubbedResult(object evaluationResult)
         {
-            this.evaluationResult = evaluationResult;
+            this.m_EvaluationResult = evaluationResult;
             return this;
         }
     }

@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using Concordion.Api;
 using System.Xml.Linq;
+using org.concordion.api;
 using Concordion.Spec.Support;
 
 namespace Concordion.Spec.Concordion.Results.Breadcrumbs

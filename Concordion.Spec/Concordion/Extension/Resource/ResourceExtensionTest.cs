@@ -17,7 +17,7 @@ namespace Concordion.Spec.Concordion.Extension.Resource
 
         protected override void ConfigureTestRig()
         {
-            TestRig.WithResource(new Api.Resource(ResourceExtension.SourcePath), "0101");
+            TestRig.WithResource(new org.concordion.api.Resource(ResourceExtension.SourcePath), "0101");
         }
     
         public int getMeaningOfLife()

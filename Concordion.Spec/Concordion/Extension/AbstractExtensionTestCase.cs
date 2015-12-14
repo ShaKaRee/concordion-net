@@ -56,7 +56,7 @@ namespace Concordion.Spec.Concordion.Extension
         }
 
         public bool isAvailable(string resourcePath) {
-            return TestRig.HasCopiedResource(new global::Concordion.Api.Resource(resourcePath));
+            return TestRig.HasCopiedResource(new org.concordion.api.Resource(resourcePath));
         }
     }
 }

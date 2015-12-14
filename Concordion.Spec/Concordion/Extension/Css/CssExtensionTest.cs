@@ -22,7 +22,7 @@ namespace Concordion.Spec.Concordion.Extension.Css
 
         protected override void ConfigureTestRig()
         {
-            this.TestRig.WithResource(new global::Concordion.Api.Resource(SourcePath), TestCss);
+            this.TestRig.WithResource(new org.concordion.api.Resource(SourcePath), TestCss);
         }
     
         public bool hasCSSDeclaration(String cssFilename)

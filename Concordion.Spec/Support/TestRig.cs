@@ -1,13 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Concordion.Api;
 using Concordion.Api.Extension;
 using Concordion.Internal;
 using Concordion.Internal.Extension;
 using org.concordion.api;
 using org.concordion.@internal;
-using Resource = Concordion.Api.Resource;
 using SimpleEvaluatorFactory = Concordion.Internal.SimpleEvaluatorFactory;
 
 namespace Concordion.Spec.Support
@@ -60,12 +58,12 @@ namespace Concordion.Spec.Support
             var eventRecorder = new EventRecorder();
             this.Target = new StubTarget();
 
-            var concordionBuilder = new ConcordionBuilder();
-                //ToDo .withEvaluatorFactory(this.EvaluatorFactory)
-                //.withSource(this.Source)
-                //.withTarget(this.Target)
-                //.withAssertEqualsListener(eventRecorder)
-                //.withExceptionListener(eventRecorder);
+            var concordionBuilder = new ConcordionBuilder()
+                .withEvaluatorFactory(this.EvaluatorFactory)
+                .withSource(this.Source)
+                .withTarget(this.Target)
+                .withAssertEqualsListener(eventRecorder)
+                .withThrowableListener(eventRecorder);
 
             //ToDo
             //if (this.Fixture != null)
@@ -82,9 +80,9 @@ namespace Concordion.Spec.Support
 
             try
             {
-                ResultSummary resultSummary = concordion.process(this.Fixture); //ToDo process(resource, this.Fixture);
+                ResultSummary resultSummary = concordion.process(resource, this.Fixture);
                 string xml = this.Target.GetWrittenString(resource);
-                return null; //ToDo new ProcessingResult(resultSummary, eventRecorder, xml);
+                return new ProcessingResult(resultSummary, eventRecorder, xml);
             }
             catch (Exception e)
             {
@@ -94,7 +92,7 @@ namespace Concordion.Spec.Support
 
         public ProcessingResult Process(string html)
         {
-            Resource resource = new Resource("/testrig");
+            var resource = new Resource("/testrig");
             this.WithResource(resource, html);
             return this.Process(resource);
         }
@@ -107,7 +105,7 @@ namespace Concordion.Spec.Support
 
         public TestRig WithStubbedEvaluationResult(object evaluationResult)
         {
-            //ToDo: this.EvaluatorFactory = new StubEvaluator(this.Fixture).withStubbedResult(evaluationResult);
+            this.EvaluatorFactory = new StubEvaluator(this.Fixture).WithStubbedResult(evaluationResult);
             return this;
         }
 

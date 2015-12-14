@@ -22,7 +22,7 @@ namespace Concordion.Spec.Concordion.Extension.JavaScript
 
         protected override void ConfigureTestRig()
         {
-            this.TestRig.WithResource(new global::Concordion.Api.Resource(SourcePath), TestJs);
+            this.TestRig.WithResource(new org.concordion.api.Resource(SourcePath), TestJs);
         }
     
         public bool hasJavaScriptDeclaration(string cssFilename)
