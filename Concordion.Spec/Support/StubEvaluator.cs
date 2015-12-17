@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Concordion.Internal;
 using org.concordion.api;
 
 namespace Concordion.Spec.Support
@@ -21,11 +22,9 @@ namespace Concordion.Spec.Support
 
         public object evaluate(string expression) 
         {
-            if (this.m_EvaluationResult is Exception) 
-            {
-                throw (Exception) this.m_EvaluationResult;
-            }
-            return this.m_EvaluationResult;
+            if (this.m_EvaluationResult is Exception) throw (Exception) this.m_EvaluationResult;
+
+            return SimpleEvaluator.ConvertToJavaTypes(this.m_EvaluationResult);
         }
 
         public object getVariable(string variableName)
