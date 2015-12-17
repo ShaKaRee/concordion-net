@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Concordion.Internal;
+using Concordion.NET.Internal;
 using org.concordion.api;
 
 namespace Concordion.Spec.Support

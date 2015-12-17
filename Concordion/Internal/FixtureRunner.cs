@@ -13,6 +13,7 @@ using ClassNameBasedSpecificationLocator = Concordion.NET.Internal.ClassNameBase
 using Exception = System.Exception;
 using File = java.io.File;
 using FileTarget = org.concordion.@internal.FileTarget;
+using SimpleEvaluatorFactory = Concordion.NET.Internal.SimpleEvaluatorFactory;
 
 namespace Concordion.Internal
 {

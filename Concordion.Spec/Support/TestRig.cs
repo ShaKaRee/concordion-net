@@ -6,7 +6,7 @@ using Concordion.Internal;
 using Concordion.Internal.Extension;
 using org.concordion.api;
 using org.concordion.@internal;
-using SimpleEvaluatorFactory = Concordion.Internal.SimpleEvaluatorFactory;
+using SimpleEvaluatorFactory = Concordion.NET.Internal.SimpleEvaluatorFactory;
 
 namespace Concordion.Spec.Support
 {

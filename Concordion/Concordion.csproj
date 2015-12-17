@@ -257,6 +257,7 @@
     <Compile Include="NET.Internal\FileSource.cs" />
     <Compile Include="NET.Internal\FileTarget.cs" />
     <Compile Include="NET.Internal\IOUtil.cs" />
+    <Compile Include="NET.Internal\OgnlEvaluator.cs" />
     <Compile Include="NET.Internal\Resource.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="HtmlFramework.Designer.cs">
@@ -320,13 +321,10 @@
     <Compile Include="Internal\ListSupport.cs" />
     <Compile Include="Internal\ObjectFactory.cs" />
     <Compile Include="Internal\UnimplementedFixtureState.cs" />
-    <Compile Include="Internal\OgnlEvaluator.cs" />
     <Compile Include="Internal\ParsingEventArgs.cs" />
     <Compile Include="Internal\ExpectedToPassFixtureState.cs" />
     <Compile Include="Internal\Row.cs" />
     <Compile Include="Internal\Runner\DefaultConcordionRunner.cs" />
-    <Compile Include="Internal\SimpleEvaluator.cs" />
-    <Compile Include="Internal\SimpleEvaluatorFactory.cs" />
     <Compile Include="Internal\SpecificationConfig.cs" />
     <Compile Include="Internal\SpecificationConfigParser.cs" />
     <Compile Include="Internal\StringExtensionMethods.cs" />
@@ -340,6 +338,8 @@
     <Compile Include="Internal\XmlSpecification.cs" />
     <Compile Include="Internal\XmlSpecificationReader.cs" />
     <Compile Include="NET.Internal\ExtendedSummarizingResultRecorder.cs" />
+    <Compile Include="NET.Internal\SimpleEvaluator.cs" />
+    <Compile Include="NET.Internal\SimpleEvaluatorFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
