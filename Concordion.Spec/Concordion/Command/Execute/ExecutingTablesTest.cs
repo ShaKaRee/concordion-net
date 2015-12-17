@@ -25,8 +25,8 @@ namespace Concordion.Spec.Concordion.Command.Execute
             var lastEvent = r.GetLastAssertEqualsFailureEvent();
             if (lastEvent != null)
             {
-                result.lastActualValue = lastEvent.Actual;
-                result.lastExpectedValue = lastEvent.Expected;
+                result.lastActualValue = lastEvent.getActual();
+                result.lastExpectedValue = lastEvent.getExpected();
             }
             
             return result;

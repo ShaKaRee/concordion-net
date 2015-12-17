@@ -106,21 +106,16 @@ namespace Concordion.Internal
             throw new InvalidOperationException("Invalid expression [" + expression + "]");
         }
 
-        private static object AdaptType(object result)
+        public static object ConvertToJavaTypes(object value)
         {
-            if (result is Boolean)
+            if (value is Boolean) return new java.lang.Boolean((bool)value);
+            if (value is int) return new java.lang.Integer((int)value);
+            if (value is Int64) return new java.lang.Long((Int64)value);
+            if (value is double) return new java.lang.Double((double)value);
+            if (value is string) return java.lang.String.valueOf(value);
+            if (value is IEnumerable)
             {
-                return new java.lang.Boolean(result.ToString());
-            }
-
-            if (result is string)
-            {
-                return java.lang.String.valueOf(result);
-            }
-
-            if (result is IEnumerable)
-            {
-                var enumerable = result as IEnumerable;
+                var enumerable = value as IEnumerable;
                 var iterable = new java.util.ArrayList();
                 foreach (var resultItem in enumerable)
                 {
@@ -129,7 +124,18 @@ namespace Concordion.Internal
                 return iterable;
             }
 
-            return result;
+            return value;
+        }
+
+        public static object ConvertToDotnetTypes(object value)
+        {
+            if (value is java.lang.Boolean) return Convert.ToBoolean(value.ToString());
+            if (value is java.lang.Integer) return Convert.ToInt32(value.ToString());
+            if (value is java.lang.Long) return Convert.ToInt64(value.ToString());
+            if (value is java.lang.Double) return Convert.ToDouble(value.ToString());
+            //if (value is ) return Convert.ToDateTime(value);
+            if (value is java.lang.String) return Convert.ToString(value.ToString());
+            return value;
         }
 
         #endregion
@@ -140,15 +146,20 @@ namespace Concordion.Internal
         {
             ValidateEvaluationExpression(expression);
             var result = base.evaluate(expression);
-            return AdaptType(result);
+            return ConvertToJavaTypes(result);
         }
 
         public override void setVariable(string expression, object value)
         {
             ValidateSetVariableExpression(expression);
-            base.setVariable(expression, value);
+            base.setVariable(expression, ConvertToDotnetTypes(value));
         }
 
+        public override object getVariable(string expression)
+        {
+            var result = base.getVariable(expression);
+            return ConvertToJavaTypes(result);
+        }
 
         #endregion
     }
