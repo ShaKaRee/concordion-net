@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using Concordion.Integration;
+﻿using Concordion.Integration;
 using Concordion.Internal;
 using System.IO;
-using Concordion.NET.Internal;
 
 namespace Concordion.Spec.Concordion.Configuration
 {
@@ -19,7 +15,7 @@ namespace Concordion.Spec.Concordion.Configuration
 
             m_InTestRun = true;
 
-            //work around for bug of NUnit GUI runner
+            //work around for problem of NUnit GUI runner
             baseInputDirectory = baseInputDirectory +
                                  Path.DirectorySeparatorChar +
                                  ".." +
@@ -29,22 +25,11 @@ namespace Concordion.Spec.Concordion.Configuration
             var specificationConfig = new SpecificationConfig().Load(this.GetType());
             specificationConfig.BaseInputDirectory = baseInputDirectory;
             var fixtureRunner = new FixtureRunner(specificationConfig);
-            var testResult = (ExtendedSummarizingResultRecorder) fixtureRunner.Run(this);
+            var testResult = fixtureRunner.Run(this);
 
             m_InTestRun = false;
 
-            foreach (var failureDetail in testResult.FailureDetails) {
-                Console.WriteLine(failureDetail.Message);
-                Console.WriteLine(failureDetail.StackTrace);
-            }
-            foreach (var errorDetail in testResult.ErrorDetails)
-            {
-                Console.WriteLine(errorDetail.Message);
-                Console.WriteLine(errorDetail.StackTrace);
-                Console.WriteLine(errorDetail.Exception);
-            }
-
-            return !testResult.HasFailures && !testResult.HasExceptions;
+            return testResult.getFailureCount() == 0 && !testResult.hasExceptions();
         }
 
         public bool EmbeddedExecuted()
@@ -56,11 +41,13 @@ namespace Concordion.Spec.Concordion.Configuration
             var specificationConfig = new SpecificationConfig().Load(this.GetType());
             specificationConfig.BaseInputDirectory = null;
             var fixtureRunner = new FixtureRunner(specificationConfig);
-            var testResult = (ExtendedSummarizingResultRecorder) fixtureRunner.Run(this);
+            var testResult = fixtureRunner.Run(this);
 
             m_InTestRun = false;
 
-            return !testResult.HasFailures && !testResult.HasExceptions;
+            bool hasFailures = testResult.getFailureCount() == 0;
+            bool hasExceptions = !testResult.hasExceptions();
+            return hasFailures && hasExceptions;
         }
     }
 }
