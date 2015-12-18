@@ -232,6 +232,7 @@
     <Compile Include="Concordion\Command\VerifyRows\VerifyRowsTest.cs" />
     <Compile Include="Concordion\Command\VerifyRows\VerifyRowsXHTMLNamespaceTest.cs" />
     <Compile Include="Concordion\ConcordionTest.cs" />
+    <Compile Include="Concordion\Configuration\BaseOutputDirectoryTesty.cs" />
     <Compile Include="Concordion\Configuration\BaseInputDirectoryTest.cs" />
     <Compile Include="Concordion\Configuration\SpecificationSuffixXhtmlTest.cs" />
     <Compile Include="Concordion\ExampleTest.cs" />

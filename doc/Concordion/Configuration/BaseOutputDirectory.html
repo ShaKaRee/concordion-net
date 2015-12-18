@@ -7,10 +7,12 @@
 		where to place the resulting Concordion test reports. If this element is 
 		not specified then Concordion.NET places the output in the directory 
 		defined by the users TEMP environment variable.</p>
-	<div concordion:execute="#isRun = DirectoryBasedExecuted(#directoryPath)">
+	<div concordion:execute="WithTargetDirectory(#directoryPath)">
+	<p>To <span concordion:assertTrue="IsReportLocatedIn(#directoryPath)">use a specific directory 
+	as destination of Concordion.NET reports</span>, you can use the following configuration:</p>
         <pre class="html">&lt;?xml version="1.0" encoding="utf-8" ?&gt;
 &lt;Specification&gt;
-  &lt;BaseOutputDirectory path=&quot;C:\Dev\concordion-net\Results&quot; /&gt;
+  &lt;BaseOutputDirectory path=&quot;<span concordion:set="#directoryPath">C:\Dev\Concordion.NET\Reports</span>&quot; /&gt;
 &lt;/Specification&gt;</pre>
     </div>
     </body>
