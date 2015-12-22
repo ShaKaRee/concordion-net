@@ -18,7 +18,8 @@ namespace Concordion.Spec.Concordion.Command.Results.Stylesheet
                                     .GetXDocument()
                                     .Root;
             RemoveIrrelevantElements(rootElement);
-            return rootElement.ToString(SaveOptions.DisableFormatting);
+            var result = rootElement.ToString(SaveOptions.None);
+            return result;
         }
 
         private void RemoveIrrelevantElements(XElement rootElement)
