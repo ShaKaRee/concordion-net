@@ -4,6 +4,7 @@ using System.Linq;
 using Concordion.Api.Extension;
 using Concordion.Internal;
 using Concordion.Internal.Extension;
+using Concordion.NET.Internal;
 using org.concordion.api;
 using org.concordion.@internal;
 using SimpleEvaluatorFactory = Concordion.NET.Internal.SimpleEvaluatorFactory;

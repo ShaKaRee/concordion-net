@@ -4,6 +4,7 @@ using System.Linq;
 using System.Reflection;
 using Concordion.Api.Extension;
 using Concordion.Internal.Util;
+using Concordion.NET.Internal;
 
 namespace Concordion.Internal.Extension
 {
