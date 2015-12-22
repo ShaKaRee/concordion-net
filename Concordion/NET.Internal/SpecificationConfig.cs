@@ -14,14 +14,12 @@
 
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Concordion.Api;
-using System.Reflection;
 using System.IO;
+using System.Reflection;
 using Concordion.Api.Extension;
+using Concordion.Internal;
 
-namespace Concordion.Internal
+namespace Concordion.NET.Internal
 {
     /// <summary>
     /// Loads the configuration file for a specification assembly

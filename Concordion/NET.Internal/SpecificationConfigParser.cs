@@ -12,15 +12,12 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Xml.Linq;
-using Concordion.Api;
 using System.IO;
+using System.Linq;
+using System.Xml.Linq;
 
-namespace Concordion.Internal
+namespace Concordion.NET.Internal
 {
     /// <summary>
     /// 
@@ -78,6 +75,7 @@ namespace Concordion.Internal
                 LoadBaseOutputDirectory(configElement);
                 LoadConcordionExtensions(configElement);
                 LoadSpecificationSuffix(configElement);
+                LoadRunners(configElement);
             }
         }
 
@@ -116,6 +114,28 @@ namespace Concordion.Internal
                 {
                     Config.BaseInputDirectory = pathAttribute.Value;
                 }
+            }
+        }
+
+        /// <summary>
+        /// Loads the runners.
+        /// </summary>
+        /// <param name="element">The element.</param>
+        private void LoadRunners(XElement element)
+        {
+            java.lang.System.setProperty("concordion.runner.concordion.net",
+                "Concordion.NET.Internal.Runner.DefaultConcordionRunner, Concordion, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null");
+
+            var runners = element.Element("Runners");
+            if (runners == null) return;
+
+            foreach (var runner in runners.Elements("Runner"))
+            {
+                var alias = runner.Attribute("alias");
+                var runnerTypeText = runner.Attribute("type");
+                if (alias == null || runnerTypeText == null) continue;
+                java.lang.System.setProperty("concordion.runner.",
+                    runnerTypeText.Value);
             }
         }
 
