@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Linq;
 using Concordion.Integration;
-using Concordion.Internal;
 using System.IO;
+using Concordion.NET.Internal;
+using Concordion.NET.Internal.Runner;
 
 namespace Concordion.Spec.Concordion.Configuration
 {
@@ -27,8 +28,8 @@ namespace Concordion.Spec.Concordion.Configuration
                 }
                 var specificationConfig = new SpecificationConfig().Load(this.GetType());
                 specificationConfig.BaseOutputDirectory = baseOutputDirectory;
-                var fixtureRunner = new FixtureRunner(specificationConfig);
-                var testResult = fixtureRunner.Run(this);
+                var testRunner = new DefaultConcordionRunner();
+                var testResult = testRunner.Run(this, specificationConfig);
             }
             catch (Exception e)
             {

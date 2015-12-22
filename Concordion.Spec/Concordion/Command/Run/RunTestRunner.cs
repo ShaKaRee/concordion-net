@@ -1,19 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using Concordion.Api;
-using Concordion.Integration;
+using org.concordion.api;
+using org.concordion.@internal;
 
 namespace Concordion.Spec.Concordion.Command.Run
 {
-    class RunTestRunner : IRunner
+    public class RunTestRunner : Runner
     {
         public static Result Result;
 
-        public RunnerResult Execute(object fixture, Resource resource, string href)
+        public ResultSummary execute(Resource resource, string href)
         {
-		    return new RunnerResult(Result);
+            return new SingleResultSummary(Result);
 	    }
     }
 }
