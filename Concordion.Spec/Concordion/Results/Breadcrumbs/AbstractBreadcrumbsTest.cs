@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Xml.Linq;
 using org.concordion.api;
 using Concordion.Spec.Support;
 
@@ -20,17 +19,16 @@ namespace Concordion.Spec.Concordion.Results.Breadcrumbs
         {
             var spanElements = testRig
                 .Process(new Resource(resourceName))
-                .GetXDocument()
-                .Root
-                .Descendants("span");
+                .GetRootElement()
+                .getDescendantElements("span");
             
             Result result = new Result();
             foreach (var span in spanElements) 
             {
-                if ("breadcrumbs" == span.Attribute("class").Value) 
+                if ("breadcrumbs" == span.getAttributeValue("class")) 
                 {
-                    result.html = span.ToString(SaveOptions.DisableFormatting);
-                    result.text = span.Value;
+                    result.html = span.toXML();
+                    result.text = span.getText();
                 }
             }
             return result;

@@ -1,15 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using Concordion.Api.Listener;
-using Concordion.Internal.Listener;
-using System.Xml.Linq;
 using Concordion.Spec.Support;
-using System.Diagnostics;
-using Concordion.Internal.Commands;
-using Concordion.Api;
 using Concordion.Integration;
+using org.concordion.api;
+using org.concordion.api.listener;
+using org.concordion.@internal.listener;
 
 namespace Concordion.Spec.Concordion.Results.Exception
 {
@@ -30,13 +26,16 @@ namespace Concordion.Spec.Concordion.Results.Exception
 
             var document = new TestRig()
                                 .ProcessFragment(fragment)
-                                .GetXDocument();
+                                .GetDocument();
+            var xmlDocument = document.toXML();
 
-            var element = new Element(document.Descendants("p").ToArray()[0]);
+            var element = new Element((nu.xom.Element) document.query("//p").get(0));
+            var xmlSTringBeforeException = element.toXML();
 
-            new ExceptionRenderer().ExceptionCaught(new ExceptionCaughtEvent(exception, element, expression));
+            new ThrowableRenderer().throwableCaught(new ThrowableCaughtEvent(exception, element, expression));
 
-            return element.ToXml();
+            var xmlString = element.toXML();
+            return xmlString;
         }
     }
 }

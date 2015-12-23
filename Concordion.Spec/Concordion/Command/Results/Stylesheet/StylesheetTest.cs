@@ -1,29 +1,27 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Xml.Linq;
 using Concordion.Integration;
 using Concordion.Spec.Support;
+using org.concordion.api;
 
 namespace Concordion.Spec.Concordion.Command.Results.Stylesheet
 {
     [ConcordionTest]
     public class StylesheetTest
     {
-        private XElement outputDocument;
+        private Element outputDocument;
 
         public void processDocument(string html)
         {
             outputDocument = new TestRig()
                 .Process(html)
-                .GetXDocument()
-                .Root;
+                .GetRootElement();
         }
 
         public String getRelativePosition(string outer, string target, string sibling)
         {
-            var outerElement = outputDocument.Element(outer);
+            var outerElement = outputDocument.getFirstDescendantNamed(outer);
 
             int targetIndex = indexOfFirstChildWithName(outerElement, target);
             int siblingIndex = indexOfFirstChildWithName(outerElement, sibling);
@@ -31,12 +29,12 @@ namespace Concordion.Spec.Concordion.Command.Results.Stylesheet
             return targetIndex > siblingIndex ? "after" : "before";
         }
 
-        private int indexOfFirstChildWithName(XElement element, string name) 
+        private int indexOfFirstChildWithName(Element element, string name) 
         {
             int index = 0;
-            foreach (var e in element.Elements()) 
+            foreach (var e in element.getChildElements()) 
             {
-                if (e.Name.LocalName.Equals(name)) 
+                if (e.getLocalName().Equals(name)) 
                 {
                     return index;
                 }
@@ -47,8 +45,8 @@ namespace Concordion.Spec.Concordion.Command.Results.Stylesheet
 
         public bool elementTextContains(string elementName, string s1, string s2)
         {
-            var element = outputDocument.Document.Root.Descendants(elementName).ToArray()[0];
-            string text = element.Value;
+            var element = outputDocument.getRootElement().getFirstDescendantNamed(elementName);
+            string text = element.getText();
             return text.Contains(s1) && text.Contains(s2);
         }
     }
