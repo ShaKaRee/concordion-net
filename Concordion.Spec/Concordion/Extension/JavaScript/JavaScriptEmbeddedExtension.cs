@@ -1,12 +1,12 @@
-using Concordion.Api.Extension;
+using org.concordion.api.extension;
 
 namespace Concordion.Spec.Concordion.Extension.JavaScript
 {
-    public class JavaScriptEmbeddedExtension : IConcordionExtension
+    public class JavaScriptEmbeddedExtension : ConcordionExtension
     {
-        public void AddTo(IConcordionExtender concordionExtender)
+        public void addTo(ConcordionExtender concordionExtender)
         {
-            concordionExtender.WithEmbeddedJavaScript(JavaScriptExtensionTest.TestJs);
+            concordionExtender.withEmbeddedJavaScript(JavaScriptExtensionTest.TestJs);
         }
     }
 }

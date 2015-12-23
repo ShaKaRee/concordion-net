@@ -5,6 +5,9 @@ using System.Text;
 using System.Xml.Linq;
 using org.concordion.api;
 using org.concordion.api.listener;
+using nu.xom;
+using org.concordion.@internal;
+using Element = org.concordion.api.Element;
 
 namespace Concordion.Spec.Support
 {
@@ -66,29 +69,19 @@ namespace Concordion.Spec.Support
             return this.HasFailures ? "FAILURE" : "SUCCESS";
         }
 
-        public XElement GetOutputFragment()
+        public Element GetOutputFragment()
         {
-            foreach (var descendant in this.GetXDocument().Root.Descendants("fragment"))
-            {
-                return descendant;
-            }
-            return null;
+            return this.GetRootElement().getFirstDescendantNamed("fragment");
         }
 
         public string GetOutputFragmentXML()
         {
-            var fragment = this.GetOutputFragment();
-            var xmlFragmentBuilder = new StringBuilder();
-            foreach (var child in fragment.Elements())
-            {
-                xmlFragmentBuilder.Append(child.ToString().Replace(" xmlns:concordion=\"http://www.concordion.org/2007/concordion\"", String.Empty));
-            }
-            return xmlFragmentBuilder.ToString();
+            return this.GetOutputFragment().toXML().Replace("<fragment>", "").Replace("</fragment>", "").Replace("\u00A0", "&#160;");
         }
 
-        public XDocument GetXDocument()
+        public Document GetDocument()
         {
-            return XDocument.Parse(this.documentXML);
+            return XMLParser.parse(this.documentXML);
         }
 
         public AssertFailureEvent GetLastAssertEqualsFailureEvent()
@@ -98,49 +91,39 @@ namespace Concordion.Spec.Support
 
         public Element GetRootElement()
         {
-            //ToDo
-            //return new Element(this.GetXDocument().Root);
-            return null;
+            return new Element(this.GetDocument().getRootElement());
         }
 
         public bool HasCssDeclaration(string cssFilename)
         {
-            //ToDo
-            //var head = this.GetRootElement().GetFirstChildElement("head");
-            //return head.GetChildElements("link").Any(
-            //    link =>
-            //        string.Equals("text/css", link.GetAttributeValue("type")) &&
-            //        string.Equals("stylesheet", link.GetAttributeValue("rel")) &&
-            //        string.Equals(cssFilename, link.GetAttributeValue("href")));
-            return false;
+            var head = this.GetRootElement().getFirstChildElement("head");
+            return head.getChildElements("link").Any(
+                link =>
+                    string.Equals("text/css", link.getAttributeValue("type")) &&
+                    string.Equals("stylesheet", link.getAttributeValue("rel")) &&
+                    string.Equals(cssFilename, link.getAttributeValue("href")));
         }
 
         public bool HasEmbeddedCss(string css)
         {
-            //ToDo
-            //var head = this.GetRootElement().GetFirstChildElement("head");
-            //return head.GetChildElements("style").Any(style => style.Text.Contains(css));
-            return false;
+            var head = this.GetRootElement().getFirstChildElement("head");
+            return head.getChildElements("style").Any(style => style.getText().Contains(css));
         }
 
         public bool HasJavaScriptDeclaration(string cssFilename) {
-            //ToDo
-            //var head = this.GetRootElement().GetFirstChildElement("head");
-            //return head.GetChildElements("script").Any(
-            //    script => 
-            //        string.Equals("text/javascript", script.GetAttributeValue("type")) && 
-            //        string.Equals(cssFilename, script.GetAttributeValue("src")));
-            return false;
+            var head = this.GetRootElement().getFirstChildElement("head");
+            return head.getChildElements("script").Any(
+                script =>
+                    string.Equals("text/javascript", script.getAttributeValue("type")) &&
+                    string.Equals(cssFilename, script.getAttributeValue("src")));
         }
 
         public bool HasEmbeddedJavaScript(string javaScript) {
-            //ToDo
-            //var head = this.GetRootElement().GetFirstChildElement("head");
-            //return head.GetChildElements("script").Any(
-            //    script => 
-            //        string.Equals("text/javascript", (string) script.GetAttributeValue("type")) && 
-            //        script.Text.Contains(javaScript));
-            return false;
+            var head = this.GetRootElement().getFirstChildElement("head");
+            return head.getChildElements("script").Any(
+                script =>
+                    string.Equals("text/javascript", (string)script.getAttributeValue("type")) &&
+                    script.getText().Contains(javaScript));
         }
     }
 }

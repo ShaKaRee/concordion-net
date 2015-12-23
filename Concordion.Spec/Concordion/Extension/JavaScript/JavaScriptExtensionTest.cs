@@ -1,5 +1,4 @@
 using System;
-using Concordion.Api;
 using Concordion.Integration;
 
 namespace Concordion.Spec.Concordion.Extension.JavaScript

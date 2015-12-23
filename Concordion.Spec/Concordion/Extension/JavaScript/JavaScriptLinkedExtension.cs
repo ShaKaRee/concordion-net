@@ -1,15 +1,14 @@
-using Concordion.Api;
-using Concordion.Api.Extension;
+using org.concordion.api.extension;
 
 namespace Concordion.Spec.Concordion.Extension.JavaScript
 {
-    class JavaScriptLinkedExtension : IConcordionExtension
+    class JavaScriptLinkedExtension : ConcordionExtension
     {
-        public void AddTo(IConcordionExtender concordionExtender)
+        public void addTo(ConcordionExtender concordionExtender)
         {
-            concordionExtender.WithLinkedJavaScript(
+            concordionExtender.withLinkedJavaScript(
                                     JavaScriptExtensionTest.SourcePath, 
-                                    new global::Concordion.Api.Resource("/js/my.js"));
+                                    new org.concordion.api.Resource("/js/my.js"));
         }
     }
 }
