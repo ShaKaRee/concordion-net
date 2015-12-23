@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using Concordion.Integration;
-using System.Xml.Linq;
 using Concordion.Spec.Support;
 
 namespace Concordion.Spec.Concordion.Command.VerifyRows
@@ -31,11 +29,11 @@ namespace Concordion.Spec.Concordion.Command.VerifyRows
             var document = new TestRig()
                                 .WithFixture(this)
                                 .ProcessFragment(inputFragment)
-                                .GetXDocument();
+                                .GetDocument();
 
-            var table = document.Element("html").Element("body").Element("fragment").Element("table");
+            var table = document.query("//table").get(0);
 
-            return table.ToString().Replace("\u00A0", "&#160;");
+            return table.toXML().Replace("\u00A0", "&#160;");
         }
     }
 }
