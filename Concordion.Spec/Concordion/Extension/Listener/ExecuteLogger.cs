@@ -2,12 +2,11 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using Concordion.Api;
-using Concordion.Api.Listener;
+using org.concordion.api.listener;
 
 namespace Concordion.Spec.Concordion.Extension.Listener
 {
-    public class ExecuteLogger : IExecuteListener
+    public class ExecuteLogger : ExecuteListener
     {
         private readonly TextWriter m_LogWriter;
 
@@ -16,14 +15,14 @@ namespace Concordion.Spec.Concordion.Extension.Listener
             this.m_LogWriter = logWriter;
         }
 
-        public void ExecuteCompleted(ExecuteEvent executeEvent)
+        public void executeCompleted(ExecuteEvent executeEvent)
         {
-            Element element = executeEvent.Element;
-            if (element.IsNamed("tr"))
+            var element = executeEvent.getElement();
+            if (element.isNamed("tr"))
             {
                 var stringWriter = new StringWriter();
                 stringWriter.Write("Execute '");
-                var childElements = element.GetChildElements();
+                var childElements = element.getChildElements();
                 bool firstChild = true;
                 foreach (var childElement in childElements)
                 {
@@ -35,14 +34,14 @@ namespace Concordion.Spec.Concordion.Extension.Listener
                     {
                         stringWriter.Write(", ");
                     }
-                    stringWriter.Write(childElement.Text);
+                    stringWriter.Write(childElement.getText());
                 }
                 stringWriter.Write("'");
                 m_LogWriter.WriteLine(stringWriter.ToString());
             }
             else
             {
-                m_LogWriter.WriteLine("Execute '{0}'", element.Text);
+                m_LogWriter.WriteLine("Execute '{0}'", element.getText());
             }
         }
     }

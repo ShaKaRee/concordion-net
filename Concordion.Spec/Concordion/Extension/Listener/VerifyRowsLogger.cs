@@ -1,9 +1,9 @@
 using System.IO;
-using Concordion.Api.Listener;
+using org.concordion.api.listener;
 
 namespace Concordion.Spec.Concordion.Extension.Listener
 {
-    public class VerifyRowsLogger : IVerifyRowsListener
+    public class VerifyRowsLogger : VerifyRowsListener
     {
         #region Fields
 
@@ -18,20 +18,20 @@ namespace Concordion.Spec.Concordion.Extension.Listener
             this.m_LogWriter = logWriter;
         }
 
-        public void ExpressionEvaluated(ExpressionEvaluatedEvent expressionEvaluatedEvent)
+        public void expressionEvaluated(ExpressionEvaluatedEvent expressionEvaluatedEvent)
         {
             this.m_LogWriter.WriteLine("Evaluated '{0}'",
-                                  expressionEvaluatedEvent.Element.GetAttributeValue("verifyRows", HtmlFramework.NAMESPACE_CONCORDION_2007));
+                                  expressionEvaluatedEvent.getElement().getAttributeValue("verifyRows", HtmlFramework.NAMESPACE_CONCORDION_2007));
         }
 
-        public void MissingRow(MissingRowEvent missingRowEvent)
+        public void missingRow(MissingRowEvent missingRowEvent)
         {
-            this.m_LogWriter.WriteLine("Missing Row '{0}'", missingRowEvent.RowElement.Text);
+            this.m_LogWriter.WriteLine("Missing Row '{0}'", missingRowEvent.getRowElement().getText());
         }
 
-        public void SurplusRow(SurplusRowEvent surplusRowEvent)
+        public void surplusRow(SurplusRowEvent surplusRowEvent)
         {
-            this.m_LogWriter.WriteLine("Surplus Row '{0}'", surplusRowEvent.RowElement.Text);
+            this.m_LogWriter.WriteLine("Surplus Row '{0}'", surplusRowEvent.getRowElement().getText());
         }
 
         #endregion

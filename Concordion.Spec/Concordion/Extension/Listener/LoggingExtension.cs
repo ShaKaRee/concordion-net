@@ -2,12 +2,11 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using Concordion.Api.Extension;
+using org.concordion.api.extension;
 
 namespace Concordion.Spec.Concordion.Extension.Listener
 {
-    public class LoggingExtension : IConcordionExtension
+    public class LoggingExtension : ConcordionExtension
     {
         private readonly AssertLogger m_AssertLogger;
 
@@ -22,13 +21,13 @@ namespace Concordion.Spec.Concordion.Extension.Listener
             this.m_VerifyRowsLogger = new VerifyRowsLogger(logWriter);
         }
 
-        public void AddTo(IConcordionExtender concordionExtender)
+        public void addTo(ConcordionExtender concordionExtender)
         {
-            concordionExtender.WithAssertEqualsListener(m_AssertLogger);
-            concordionExtender.WithAssertTrueListener(m_AssertLogger);
-            concordionExtender.WithAssertFalseListener(m_AssertLogger);
-            concordionExtender.WithExecuteListener(m_ExecuteLogger);
-            concordionExtender.WithVerifyRowsListener(m_VerifyRowsLogger);
+            concordionExtender.withAssertEqualsListener(m_AssertLogger);
+            concordionExtender.withAssertTrueListener(m_AssertLogger);
+            concordionExtender.withAssertFalseListener(m_AssertLogger);
+            concordionExtender.withExecuteListener(m_ExecuteLogger);
+            concordionExtender.withVerifyRowsListener(m_VerifyRowsLogger);
         }
     }
 }

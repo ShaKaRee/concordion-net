@@ -1,17 +1,17 @@
 using System;
-using Concordion.Api.Extension;
+using org.concordion.api.extension;
 
 namespace Concordion.Spec.Concordion.Extension.Resource
 {
-    public class ResourceExtension : IConcordionExtension
+    public class ResourceExtension : ConcordionExtension
     {
         public static readonly String SourcePath = "/test/concordion/o.png";
 
-        public void AddTo(IConcordionExtender concordionExtender)
+        public void addTo(ConcordionExtender concordionExtender)
         {
-            concordionExtender.WithResource(
-                                    SourcePath, 
-                                    new global::Concordion.Api.Resource(("/images/o.png")));
+            concordionExtender.withResource(
+                                    SourcePath,
+                                    new org.concordion.api.Resource(("/images/o.png")));
         }
     }
 }
