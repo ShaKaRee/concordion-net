@@ -1,15 +1,14 @@
-using Concordion.Api;
-using Concordion.Api.Extension;
+using org.concordion.api.extension;
 
 namespace Concordion.Spec.Concordion.Extension.Css
 {
-    public class CssLinkedExtension : IConcordionExtension
+    public class CssLinkedExtension : ConcordionExtension
     {
-        public void AddTo(IConcordionExtender concordionExtender)
+        public void addTo(ConcordionExtender concordionExtender)
         {
-            concordionExtender.WithLinkedCss(
+            concordionExtender.withLinkedCSS(
                                     CssExtensionTest.SourcePath, 
-                                    new global::Concordion.Api.Resource("/css/my.css"));
+                                    new org.concordion.api.Resource("/css/my.css"));
         }
     }
 }

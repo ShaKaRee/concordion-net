@@ -200,6 +200,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include=".NET.Api\Extension\ExtensionAttribute.cs" />
+    <Compile Include=".NET.Api\Extension\ExtensionsAttribute.cs" />
     <Compile Include="Api\AbstractCommand.cs" />
     <Compile Include="Api\AssertionErrorException.cs" />
     <Compile Include="Api\Element.cs" />

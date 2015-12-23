@@ -2,10 +2,8 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using Concordion.Api;
-using Concordion.Api.Extension;
 using Concordion.Spec.Support;
+using org.concordion.api.extension;
 
 namespace Concordion.Spec.Concordion.Extension
 {
@@ -13,7 +11,7 @@ namespace Concordion.Spec.Concordion.Extension
     {
         #region Fields
 
-        protected IConcordionExtension Extension { get; set; }
+        protected ConcordionExtension Extension { get; set; }
 
         protected TestRig TestRig { get; set; }
 
