@@ -1,15 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Xml.Linq;
-using Concordion.Api;
-using Concordion.Api.Extension;
-using Concordion.Api.Listener;
+using org.concordion.api.extension;
+using org.concordion.api.listener;
+using nu.xom;
+using Attribute = nu.xom.Attribute;
+using Element = org.concordion.api.Element;
 
 namespace Concordion.Spec.Concordion.Extension.Configuration
 {
-    public class FakeExtensionBase : IConcordionExtension, IDocumentParsingListener
+    public class FakeExtensionBase : ConcordionExtension, DocumentParsingListener
     {
         public static readonly String FakeExtensionAttrName = "fake.extensions";
         private readonly string m_Text;
@@ -22,20 +22,20 @@ namespace Concordion.Spec.Concordion.Extension.Configuration
             this.m_Text = text;
         }
 
-        public void BeforeParsing(XDocument document)
+        public void beforeParsing(Document document)
         {
-            var rootElement = new Element(document.Root);
-            var existingValue = rootElement.GetAttributeValue(FakeExtensionAttrName);
+            var rootElement = new Element(document.getRootElement());
+            var existingValue = rootElement.getAttributeValue(FakeExtensionAttrName);
             var newValue = this.m_Text;
             if (existingValue != null) {
                 newValue = existingValue + ", " + newValue;
             }
-            rootElement.AddAttribute(FakeExtensionAttrName, newValue);
+            rootElement.addAttribute(FakeExtensionAttrName, newValue);
         }
 
-        public void AddTo(IConcordionExtender concordionExtender)
+        public void addTo(ConcordionExtender concordionExtender)
         {
-            concordionExtender.WithDocumentParsingListener(this);
+            concordionExtender.withDocumentParsingListener(this);
         }
     }
 }

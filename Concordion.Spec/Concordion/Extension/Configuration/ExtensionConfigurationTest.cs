@@ -30,12 +30,12 @@ namespace Concordion.Spec.Concordion.Extension.Configuration
             var processingResult = testRig
                 .WithFixture(fixture)
                 .ProcessFragment("<p>anything..</p>");
-            //ToDo
-            //var extensionNamesString = processingResult.GetRootElement().GetAttributeValue(FakeExtensionBase.FakeExtensionAttrName);
-            //var extensionNames = extensionNamesString.Split(',').Select(extensionName => extensionName.Trim()).ToList();
-            //extensionNames.Sort();
-            //return String.Join(", ", extensionNames.ToArray());
-            return null;
+            var rootElement = processingResult.GetRootElement();
+            var xml = rootElement.toXML();
+            var extensionNamesString = rootElement.getAttributeValue(FakeExtensionBase.FakeExtensionAttrName);
+            var extensionNames = extensionNamesString.Split(',').Select(extensionName => extensionName.Trim()).ToList();
+            extensionNames.Sort();
+            return String.Join(", ", extensionNames.ToArray());
         }
 
         public void LoadConfiguration(string configContent)

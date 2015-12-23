@@ -1,5 +1,3 @@
-using Concordion.Api.Extension;
-
 namespace Concordion.Spec.Concordion.Extension.Configuration
 {
     public class FakeExtension1 : FakeExtensionBase

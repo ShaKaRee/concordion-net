@@ -1,16 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Concordion.Api.Extension;
+using org.concordion.api.extension;
 
 namespace Concordion.Spec.Concordion.Extension.Configuration
 {
     public class ExampleFixtureWithFieldAttributes
     {
-        [Extension]
-        public IConcordionExtension extension = new FakeExtension1();
+        [NET.Api.Extension.Extension]
+        public ConcordionExtension extension = new FakeExtension1();
 
-        [Extension]
+        [NET.Api.Extension.Extension]
         public FakeExtension2 extension2 = new FakeExtension2();
     }
 }

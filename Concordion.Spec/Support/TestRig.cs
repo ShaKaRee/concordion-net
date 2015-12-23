@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Concordion.Api.Extension;
-using Concordion.Internal;
 using Concordion.Internal.Extension;
 using Concordion.NET.Internal;
 using org.concordion.api;
+using org.concordion.api.extension;
 using org.concordion.@internal;
 using SimpleEvaluatorFactory = Concordion.NET.Internal.SimpleEvaluatorFactory;
 
@@ -39,7 +38,7 @@ namespace Concordion.Spec.Support
             set;
         }
 
-        private IConcordionExtension Extension { get; set; }
+        private ConcordionExtension Extension { get; set; }
 
         public TestRig()
         {
@@ -66,16 +65,15 @@ namespace Concordion.Spec.Support
                 .withAssertEqualsListener(eventRecorder)
                 .withThrowableListener(eventRecorder);
 
-            //ToDo
-            //if (this.Fixture != null)
-            //{
-            //    new ExtensionLoader(this.Configuration).AddExtensions(this.Fixture, concordionBuilder);
-            //}
-            
-            //if (this.Extension != null)
-            //{
-            //    this.Extension.AddTo(concordionBuilder);
-            //}
+            if (this.Fixture != null)
+            {
+                new ExtensionLoader(this.Configuration).AddExtensions(this.Fixture, concordionBuilder);
+            }
+
+            if (this.Extension != null)
+            {
+                this.Extension.addTo(concordionBuilder);
+            }
 
             var concordion = concordionBuilder.build();
 
@@ -134,7 +132,7 @@ namespace Concordion.Spec.Support
             return this.Target.HasCopiedResource(resource);
         }
 
-        public TestRig WithExtension(IConcordionExtension extension)
+        public TestRig WithExtension(ConcordionExtension extension)
         {
             this.Extension = extension;
             return this;
