@@ -1,9 +1,9 @@
 using System.IO;
-using Concordion.Api.Extension;
+using org.concordion.api.extension;
 
 namespace Concordion.Spec.Concordion.Extension.Command
 {
-    public class CommandExtension : IConcordionExtension
+    public class CommandExtension : ConcordionExtension
     {
         private readonly TextWriter m_LogWriter;
 
@@ -12,9 +12,9 @@ namespace Concordion.Spec.Concordion.Extension.Command
             this.m_LogWriter = logWriter;
         }
 
-        public void AddTo(IConcordionExtender concordionExtender)
+        public void addTo(ConcordionExtender concordionExtender)
         {
-            concordionExtender.WithCommand("http://myorg.org/my/extension", "log", new LogCommand(this.m_LogWriter));
+            concordionExtender.withCommand("http://myorg.org/my/extension", "log", new LogCommand(this.m_LogWriter));
         }
     }
 }

@@ -1,10 +1,9 @@
 using System.IO;
-using Concordion.Api;
-using Concordion.Internal;
+using org.concordion.api;
 
 namespace Concordion.Spec.Concordion.Extension.Command
 {
-    public class LogCommand : ICommand
+    public class LogCommand : org.concordion.api.Command
     {
         private TextWriter LogWriter { get; set; }
 
@@ -13,16 +12,16 @@ namespace Concordion.Spec.Concordion.Extension.Command
             this.LogWriter = logWriter;
         }
 
-        public void Setup(CommandCall commandCall, IEvaluator evaluator, IResultRecorder resultRecorder)
+        public void setUp(CommandCall commandCall, Evaluator evaluator, ResultRecorder resultRecorder)
         {
         }
 
-        public void Execute(CommandCall commandCall, IEvaluator evaluator, IResultRecorder resultRecorder)
+        public void execute(CommandCall commandCall, Evaluator evaluator, ResultRecorder resultRecorder)
         {
-            this.LogWriter.WriteLine(commandCall.Element.Text);
+            this.LogWriter.WriteLine(commandCall.getElement().getText());
         }
 
-        public void Verify(CommandCall commandCall, IEvaluator evaluator, IResultRecorder resultRecorder)
+        public void verify(CommandCall commandCall, Evaluator evaluator, ResultRecorder resultRecorder)
         {
         }
     }

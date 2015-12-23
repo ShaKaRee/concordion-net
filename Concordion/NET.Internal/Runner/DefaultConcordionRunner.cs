@@ -17,6 +17,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using Concordion.Internal.Extension;
 using org.concordion.api;
 using org.concordion.@internal;
 using File = java.io.File;
@@ -57,7 +58,7 @@ namespace Concordion.NET.Internal.Runner
                 var specResource = specLocator.locateSpecification(fixture);
                 if (source.canFind(specResource))
                 {
-                    var fixtureResult = RunSingleSpecification(fixture, source, specLocator, target);
+                    var fixtureResult = RunSingleSpecification(fixture, source, specLocator, target, specificationConfig);
                     AddToTestResults(fixtureResult, testSummary);
                     anySpecExecuted = true;
                 }
@@ -98,7 +99,8 @@ namespace Concordion.NET.Internal.Runner
             return result;
         }
 
-        private ResultSummary RunSingleSpecification(object fixture, Source source, SpecificationLocator specificationLocator, FileTarget target)
+        private ResultSummary RunSingleSpecification(object fixture, Source source, 
+            SpecificationLocator specificationLocator, FileTarget target, SpecificationConfig specificationConfig)
         {
             var concordionExtender = new ConcordionBuilder();
             concordionExtender
@@ -107,8 +109,8 @@ namespace Concordion.NET.Internal.Runner
                 .withSpecificationLocator(specificationLocator)
                 //.withFixture(fixture)
                 .withEvaluatorFactory(new SimpleEvaluatorFactory());
-            //ToDo: var extensionLoader = new ExtensionLoader(m_SpecificationConfig);
-            //extensionLoader.AddExtensions(m_Fixture, concordionExtender);
+            var extensionLoader = new ExtensionLoader(specificationConfig);
+            extensionLoader.AddExtensions(fixture, concordionExtender);
 
             var concordion = concordionExtender.build();
             return concordion.process(specificationLocator.locateSpecification(fixture), fixture);
