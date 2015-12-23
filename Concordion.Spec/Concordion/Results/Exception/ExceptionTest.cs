@@ -1,41 +1,43 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Concordion.Spec.Support;
 using Concordion.Integration;
+using java.lang;
 using org.concordion.api;
 using org.concordion.api.listener;
 using org.concordion.@internal.listener;
+using String = System.String;
 
 namespace Concordion.Spec.Concordion.Results.Exception
 {
     [ConcordionTest]
     public class ExceptionTest
     {
-        private List<string> stackTraceElements = new List<string>();
+        private List<StackTraceElement> stackTraceElements = new List<StackTraceElement>();
 
         public void addStackTraceElement(string declaringClassName, string methodName, string filename, int lineNumber)
         {
-            stackTraceElements.Add(String.Format("at {0}.{1} in {2}:line {3}", declaringClassName, methodName, filename, lineNumber));
+            if (filename.Equals("null"))
+            {
+                filename = null;
+            }
+            stackTraceElements.Add(new StackTraceElement(declaringClassName, methodName, filename, lineNumber));//stackTraceElements.Add(String.Format("at {0}.{1} in {2}:line {3}", declaringClassName, methodName, filename, lineNumber));
         }
 
         public string markAsException(string fragment, string expression, string errorMessage)
         {
-            var exception = new StackTraceSettingException(errorMessage);
-            exception.StackTraceElements.AddRange(stackTraceElements);
+            Throwable t = new Throwable(errorMessage);
+            t.setStackTrace(stackTraceElements.ToArray());
 
-            var document = new TestRig()
-                                .ProcessFragment(fragment)
-                                .GetDocument();
-            var xmlDocument = document.toXML();
+            Element element = new Element((nu.xom.Element)new TestRig()
+                .ProcessFragment(fragment)
+                .GetDocument()
+                .query("//p")
+                .get(0));
 
-            var element = new Element((nu.xom.Element) document.query("//p").get(0));
-            var xmlSTringBeforeException = element.toXML();
+            new ThrowableRenderer().throwableCaught(new ThrowableCaughtEvent(t, element, expression));
 
-            new ThrowableRenderer().throwableCaught(new ThrowableCaughtEvent(exception, element, expression));
-
-            var xmlString = element.toXML();
-            return xmlString;
+            return element.toXML();
         }
     }
 }

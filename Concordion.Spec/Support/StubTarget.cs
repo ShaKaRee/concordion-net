@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using java.io;
 using org.concordion.api;
 using Concordion.Internal.Util;
-using System.Drawing;
 
 namespace Concordion.Spec.Support
 {
