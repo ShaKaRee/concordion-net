@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Xml.Linq;
 using Concordion.Integration;
 using Concordion.Spec.Support;
 
@@ -23,17 +21,11 @@ namespace Concordion.Spec.Concordion.Command.VerifyRows.Results
             var document = new TestRig()
                                 .WithFixture(this)
                                 .ProcessFragment(inputFragment)
-                                .GetXDocument();
+                                .GetDocument();
 
-            var tables = document.Descendants("table");
+            var tables = document.query("//table").get(0);
 
-            foreach (var table in tables)
-            {
-                // stops loop after first entry, simulating the java code.
-                return table.ToString().Replace("\u00A0", "&#160;");
-            }
-
-            return String.Empty;
+            return tables.toXML().Replace("\u00A0", "&#160;");
         }
 
         public ICollection<Person> getPeople()
