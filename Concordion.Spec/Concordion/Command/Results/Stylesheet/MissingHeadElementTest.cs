@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Xml.Linq;
 using Concordion.Integration;
 using Concordion.Spec.Support;
+using nu.xom;
 
 namespace Concordion.Spec.Concordion.Command.Results.Stylesheet
 {
@@ -15,39 +14,38 @@ namespace Concordion.Spec.Concordion.Command.Results.Stylesheet
         {
             var rootElement = new TestRig()
                                     .Process(html)
-                                    .GetXDocument()
-                                    .Root;
+                                    .GetDocument()
+                                    .getRootElement();
             RemoveIrrelevantElements(rootElement);
-            var result = rootElement.ToString(SaveOptions.None);
-            return result;
+            return rootElement.toXML();
         }
 
-        private void RemoveIrrelevantElements(XElement rootElement)
+        private void RemoveIrrelevantElements(Element rootElement)
         {
             RemoveIrrelevantStylesheet(rootElement);
             RemoveIrrelevantMetadata(rootElement);
             RemoveIrrelevantFooter(rootElement);
         }
 
-        private void RemoveIrrelevantStylesheet(XElement rootElement)
+        private void RemoveIrrelevantStylesheet(Element rootElement)
         {
-            var head = rootElement.Element("head");
-            var style = head.Element("style");
-            style.Remove();
+            var head = rootElement.getFirstChildElement("head");
+            var style = head.getFirstChildElement("style");
+            head.removeChild(style);
         }
 
-        private void RemoveIrrelevantMetadata(XElement rootElement)
+        private void RemoveIrrelevantMetadata(Element rootElement)
         {
-            var head = rootElement.Element("head");
-            var meta = head.Element("meta");
-            meta.Remove();
+            var head = rootElement.getFirstChildElement("head");
+            var meta = head.getFirstChildElement("meta");
+            head.removeChild(meta);
         }
 
-        private void RemoveIrrelevantFooter(XElement rootElement)
+        private void RemoveIrrelevantFooter(Element rootElement)
         {
-            var body = rootElement.Element("body");
-            var footer = body.Element("div");
-            footer.Remove();
+            var body = rootElement.getFirstChildElement("body");
+            var footer = body.getFirstChildElement("div");
+            body.removeChild(footer);
         }
     }
 }
