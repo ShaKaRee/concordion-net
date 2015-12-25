@@ -335,7 +335,6 @@
     <Compile Include="Internal\Util\TypeInfo.cs" />
     <Compile Include="Internal\XmlSpecification.cs" />
     <Compile Include="Internal\XmlSpecificationReader.cs" />
-    <Compile Include="NET.Internal\RunnerAdapter.cs" />
     <Compile Include="NET.Internal\Runner\DefaultConcordionRunner.cs" />
     <Compile Include="NET.Internal\SimpleEvaluator.cs" />
     <Compile Include="NET.Internal\SimpleEvaluatorFactory.cs" />
