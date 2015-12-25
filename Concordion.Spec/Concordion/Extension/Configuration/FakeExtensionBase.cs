@@ -4,7 +4,6 @@ using System.Linq;
 using org.concordion.api.extension;
 using org.concordion.api.listener;
 using nu.xom;
-using Attribute = nu.xom.Attribute;
 using Element = org.concordion.api.Element;
 
 namespace Concordion.Spec.Concordion.Extension.Configuration

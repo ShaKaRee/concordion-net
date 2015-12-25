@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using org.concordion.api.extension;
+﻿using org.concordion.api.extension;
 
 namespace Concordion.Spec.Concordion.Extension.Configuration
 {

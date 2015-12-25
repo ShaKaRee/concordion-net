@@ -9,27 +9,25 @@
       file. </p>
     <h2>Attributes</h2>
     <h3>[Extension]</h3>
-    <p>Within a fixture class, fields that are annotated with <code>Concordion.Api.Extension.Extension</code> will be
-      added to Concordion as extensions.</p>
-    <p>Fields with this attribute must be public and must implement <code>Concordion.Api.Extension.IConcordionExtension</code>.</p>
+    <p>Within a fixture class, fields that are annotated with <code>Concordion.NET.Api.Extension.Extension</code> will be
+      added to Concordion.NET as extensions.</p>
+    <p>Fields with this attribute must be public and must implement 
+	org.concordion.api.extension<code>.ConcordionExtension</code>.</p>
     <div class="example">
       <h4>Example - Extensions fields</h4>
       <p>Executing a class that contains [Extension] attributes on fields with instances of
-        IConcordionExtension:</p>
+        ConcordionExtension:</p>
       <pre class="java">
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using Concordion.Api.Extension;
+using org.concordion.api.extension;
 
 namespace <span concordion:set="#namespace1">Concordion.Spec.Concordion.Extension.Configuration</span>
 {
     public class <span concordion:set="#fixture1">ExampleFixtureWithFieldAttributes</span>
     {
-        [Extension]
-        public IConcordionExtension extension = new FakeExtension1();
+        [NET.Api.Extension.Extension]
+        public ConcordionExtension extension = new FakeExtension1();
 
-        [Extension]
+        [NET.Api.Extension.Extension]
         public FakeExtension2 extension2 = new FakeExtension2();
     }
 }   </pre>
@@ -43,25 +41,19 @@ namespace <span concordion:set="#namespace1">Concordion.Spec.Concordion.Extensio
       <h4>Example - Extension fields in superclass</h4>
       <p>Executing the following fixture:</p>
       <pre class="java">
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using Concordion.Api.Extension;
+using org.concordion.api.extension;
 
 namespace <span concordion:set="#namespace2">Concordion.Spec.Concordion.Extension.Configuration</span>
 {
     class <span concordion:set="#fixture2">ExampleDerivedFixtureWithFieldAttributes</span> : ExampleFixtureBaseWithFieldAttributes
     {
-        [Extension]
-        public IConcordionExtension extension = new FakeExtension1("ExampleExtension");
+        [NET.Api.Extension.Extension]
+        public ConcordionExtension extension = new FakeExtension1("ExampleExtension");
     }
 }    </pre>
       <p> which has superclass </p>
       <pre class="java">
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using Concordion.Api.Extension;
+using Concordion.NET.Api.Extension;
 
 namespace Concordion.Spec.Concordion.Extension.Configuration
 {
@@ -76,19 +68,17 @@ namespace Concordion.Spec.Concordion.Extension.Configuration
     </div>
     <h3>[Extensions]</h3>
     <p>As an alternative, extensions that require no state from the fixture can be defined statically on the fixture
-      class with the <code>Concordion.Api.Extension.Extensions</code> attribute. This attribute is parameterised with a
+      class with the <code>Concordion.NET.Api.Extension.Extensions</code> attribute. This attribute is 
+	parameterized with a
       list of the extension, or extension factory, classes to be installed.</p>
-    <p> Extensions must implement <code>Concordion.Api.Extension.IConcordionExtension</code>. Extension factories must
-      implement <code>Concordion.Api.Extension.IConcordionExtensionFactory</code>. </p>
+    <p> Extensions must implement <code>org.concordion.api.extension.ConcordionExtension</code>. Extension factories must
+      implement <code>org.concordion.api.extension.ConcordionExtensionFactory</code>. </p>
     <!-- ==================================================== -->
     <div class="example">
       <h4>Example - Extensions</h4>
       <p>Executing the following fixture:</p>
       <pre class="java">
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using Concordion.Api.Extension;
+using Concordion.NET.Api.Extension;
 
 namespace <span concordion:set="#namespace3">Concordion.Spec.Concordion.Extension.Configuration</span>
 {
@@ -107,10 +97,7 @@ namespace <span concordion:set="#namespace3">Concordion.Spec.Concordion.Extensio
       <h4>Example - Extensions from superclass are loaded</h4>
       <p>Executing the following fixture:</p>
       <pre class="java">
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using Concordion.Api.Extension;
+using Concordion.NET.Api.Extension;
 
 namespace <span concordion:set="#namespace4">Concordion.Spec.Concordion.Extension.Configuration</span>
 {
@@ -120,10 +107,7 @@ namespace <span concordion:set="#namespace4">Concordion.Spec.Concordion.Extensio
     }
 }    </pre>
       <p> which has superclass </p>
-      <pre class="java">using System;
-using System.Collections.Generic;
-using System.Linq;
-using Concordion.Api.Extension;
+      <pre class="java">using Concordion.NET.Api.Extension;
 
 namespace Concordion.Spec.Concordion.Extension.Configuration
 {
@@ -145,8 +129,8 @@ namespace Concordion.Spec.Concordion.Extension.Configuration
       <li>the fully-qualified class name of extension factories that will create an extension.</li>
     </ul>
     <p> All extensions and/or extension factories must be available to the class loader. Extensions must implement 
-      <code>Concordion.Api.Extension.IConcordionExtension</code>.
-      Extension factories must implement <code>Concordion.Api.Extension.IConcordionExtensionFactory</code>. </p>
+      org.concordion.api.extension<code>.ConcordionExtension</code>.
+      Extension factories must implement org.concordion.api.extension<code>.ConcordionExtensionFactory</code>. </p>
     <h4>Examples</h4>
     <!-- ==================================================== -->
     <div class="example">
@@ -159,7 +143,7 @@ namespace Concordion.Spec.Concordion.Extension.Configuration
     &lt;Extension assembly="Concordion.Spec" type="Concordion.Spec.Concordion.Extension.Configuration.FakeExtension2Factory" /&gt;
   &lt;/ConcordionExtensions&gt;
 &lt;/Specification&gt;</pre>
-      <p>Concordion fixtures will be <span concordion:execute="#result5 = Process()">runn</span> with both extensions 
+      <p>Concordion.NET fixtures will be <span concordion:execute="#result5 = Process()">run</span> with both extensions 
         <span concordion:assertEquals="#result5">FakeExtension1, FakeExtension2FromFactory</span>.</p>
     </div>
     
@@ -171,10 +155,7 @@ namespace Concordion.Spec.Concordion.Extension.Configuration
     <h4>Example - Combined configuration methods</h4>
     <p>Executing the following fixture:</p>
     <pre class="java">
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using Concordion.Api.Extension;
+using Concordion.NET.Api.Extension;
 
 namespace <span concordion:set="#namespace6">Concordion.Spec.Concordion.Extension.Configuration</span>
 {
