@@ -1,4 +1,4 @@
-using Concordion.Api.Extension;
+using Concordion.NET.Api.Extension;
 using Concordion.Integration;
 
 namespace Concordion.Spec.Concordion.Extension.FileSuffix

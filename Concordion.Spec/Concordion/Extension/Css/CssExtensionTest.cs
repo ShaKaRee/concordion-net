@@ -1,4 +1,3 @@
-using System;
 using Concordion.Integration;
 
 namespace Concordion.Spec.Concordion.Extension.Css
@@ -24,7 +23,7 @@ namespace Concordion.Spec.Concordion.Extension.Css
             this.TestRig.WithResource(new org.concordion.api.Resource(SourcePath), TestCss);
         }
     
-        public bool hasCSSDeclaration(String cssFilename)
+        public bool hasCSSDeclaration(string cssFilename)
         {
             return this.ProcessingResult.HasCssDeclaration(cssFilename);
         }

@@ -1,15 +1,14 @@
-using Concordion.Api.Extension;
-using Concordion.Internal;
 using Concordion.NET.Internal;
+using org.concordion.api.extension;
 
 namespace Concordion.Spec.Concordion.Extension.FileSuffix
 {
-    public class XhtmlExtension : IConcordionExtension
+    public class XhtmlExtension : ConcordionExtension
     {
-        public void AddTo(IConcordionExtender concordionExtender)
+        public void addTo(ConcordionExtender concordionExtender)
         {
-            //ToDo concordionExtender
-            //    .WithSpecificationLocator(new ClassNameBasedSpecificationLocator("xhtml"));
+            concordionExtender
+                .withSpecificationLocator(new ClassNameBasedSpecificationLocator("xhtml"));
         }
     }
 }

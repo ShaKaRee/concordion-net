@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using Concordion.Runners.NUnit;
+﻿using Concordion.Runners.NUnit;
 using Concordion.Spec.Support;
 using NUnit.Framework;
 
 namespace Concordion.Spec.Concordion.Integration
 {
     [TestFixture]
-    public class NUnitRunnerTest : Runners.NUnit.ExecutableSpecification
+    public class NUnitRunnerTest : ExecutableSpecification
     {
         public bool GreetingsProcessed(string fragment)
         {

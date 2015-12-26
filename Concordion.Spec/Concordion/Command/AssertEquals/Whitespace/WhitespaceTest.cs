@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Concordion.Internal;
-using System.Text.RegularExpressions;
+﻿using System.Text.RegularExpressions;
 using Concordion.Integration;
 using Concordion.Spec.Support;
+using org.concordion.@internal;
 
 namespace Concordion.Spec.Concordion.Command.AssertEquals.Whitespace
 {
@@ -51,7 +47,7 @@ namespace Concordion.Spec.Concordion.Command.AssertEquals.Whitespace
         {
             // Bit naughty calling internal method normalize() directly 
             return replaceRealWhitespaceCharactersWithNames(
-                    new DefaultExpectationChecker().Normalize(replaceNamedWhitespaceWithRealWhitespaceCharacters(s)));
+                    CatchAllExpectationChecker.normalize(replaceNamedWhitespaceWithRealWhitespaceCharacters(s)));
         }
 
         private static string replaceNamedWhitespaceWithRealWhitespaceCharacters(string s) 

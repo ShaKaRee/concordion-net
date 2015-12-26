@@ -1,4 +1,3 @@
-using System;
 using Concordion.Integration;
 
 namespace Concordion.Spec.Concordion.Extension.JavaScript
@@ -6,8 +5,8 @@ namespace Concordion.Spec.Concordion.Extension.JavaScript
     [ConcordionTest]
     public class JavaScriptExtensionTest : AbstractExtensionTestCase
     {
-        public static readonly String SourcePath = "/test/concordion/my.js";
-        public static readonly String TestJs = "/* My test JS */";
+        public static readonly string SourcePath = "/test/concordion/my.js";
+        public static readonly string TestJs = "/* My test JS */";
 
         public void addLinkedJavaScriptExtension()
         {

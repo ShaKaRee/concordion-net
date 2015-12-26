@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
+﻿using System.IO;
 using org.concordion.api.listener;
 
 namespace Concordion.Spec.Concordion.Extension.Listener

@@ -31,7 +31,7 @@ namespace Concordion.Spec.Concordion.Extension
             process("<p>anything..</p>");
         }
     
-        public void process(String fragment)
+        public void process(string fragment)
         {
             TestRig = new TestRig();
             this.ConfigureTestRig();

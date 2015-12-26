@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using Concordion.Internal.Util;
 using Concordion.Integration;
 using Concordion.Spec.Support;
+using org.concordion.@internal.util;
 using nu.xom;
 
 namespace Concordion.Spec.Concordion.Command.VerifyRows
@@ -43,7 +42,7 @@ namespace Concordion.Spec.Concordion.Command.VerifyRows
                 var cell = (Element) row.query("td").get(0);
                 cssClass = cell.getAttributeValue("class");
             }
-            Check.NotNull(cssClass, "cssClass is null");
+            Check.notNull(cssClass, "cssClass is null");
             return cssClass.ToUpper();
         }
 

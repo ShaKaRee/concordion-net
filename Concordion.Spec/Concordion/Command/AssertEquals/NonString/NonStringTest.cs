@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
 using Concordion.Integration;
 using Concordion.Spec.Support;
 
@@ -36,11 +32,9 @@ namespace Concordion.Spec.Concordion.Command.AssertEquals.NonString
                 throw new Exception("Unsupported result-type '" + resultType + "'.");
             }
 
-            fragment = Regex.Replace(fragment, "\\(some expectation\\)", expectedString);
-
             return new TestRig()
                 .WithStubbedEvaluationResult(simulatedResult)
-                .ProcessFragment(fragment)
+                .ProcessFragment(fragment.Replace("(some expectation)", expectedString))
                 .SuccessOrFailureInWords();
         }
     }

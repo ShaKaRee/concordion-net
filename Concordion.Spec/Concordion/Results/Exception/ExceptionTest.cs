@@ -1,12 +1,10 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using Concordion.Spec.Support;
 using Concordion.Integration;
 using java.lang;
 using org.concordion.api;
 using org.concordion.api.listener;
 using org.concordion.@internal.listener;
-using String = System.String;
 
 namespace Concordion.Spec.Concordion.Results.Exception
 {
@@ -21,7 +19,7 @@ namespace Concordion.Spec.Concordion.Results.Exception
             {
                 filename = null;
             }
-            stackTraceElements.Add(new StackTraceElement(declaringClassName, methodName, filename, lineNumber));//stackTraceElements.Add(String.Format("at {0}.{1} in {2}:line {3}", declaringClassName, methodName, filename, lineNumber));
+            stackTraceElements.Add(new StackTraceElement(declaringClassName, methodName, filename, lineNumber));
         }
 
         public string markAsException(string fragment, string expression, string errorMessage)

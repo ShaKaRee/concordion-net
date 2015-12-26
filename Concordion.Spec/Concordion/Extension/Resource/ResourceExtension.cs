@@ -1,11 +1,10 @@
-using System;
 using org.concordion.api.extension;
 
 namespace Concordion.Spec.Concordion.Extension.Resource
 {
     public class ResourceExtension : ConcordionExtension
     {
-        public static readonly String SourcePath = "/test/concordion/o.png";
+        public static readonly string SourcePath = "/test/concordion/o.png";
 
         public void addTo(ConcordionExtender concordionExtender)
         {

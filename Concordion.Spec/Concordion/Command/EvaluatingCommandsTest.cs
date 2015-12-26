@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using Concordion.Integration;
-using NUnit.Framework;
 
 namespace Concordion.Spec.Concordion.Command
 {

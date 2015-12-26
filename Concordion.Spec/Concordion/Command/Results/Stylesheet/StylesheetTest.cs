@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using Concordion.Integration;
 using Concordion.Spec.Support;
 using org.concordion.api;
@@ -19,7 +17,7 @@ namespace Concordion.Spec.Concordion.Command.Results.Stylesheet
                 .GetRootElement();
         }
 
-        public String getRelativePosition(string outer, string target, string sibling)
+        public string getRelativePosition(string outer, string target, string sibling)
         {
             var outerElement = outputDocument.getFirstDescendantNamed(outer);
 

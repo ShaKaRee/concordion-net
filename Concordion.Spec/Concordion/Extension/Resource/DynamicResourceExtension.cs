@@ -1,4 +1,3 @@
-using System;
 using org.concordion.api.extension;
 using org.concordion.api.listener;
 using java.io;
@@ -7,7 +6,7 @@ namespace Concordion.Spec.Concordion.Extension.Resource
 {
     public class DynamicResourceExtension : ConcordionExtension, ConcordionBuildListener
     {
-        public static readonly String SourcePath = "/test/concordion/o.png";
+        public static readonly string SourcePath = "/test/concordion/o.png";
         private org.concordion.api.Target m_Target;
 
         public void addTo(ConcordionExtender concordionExtender)

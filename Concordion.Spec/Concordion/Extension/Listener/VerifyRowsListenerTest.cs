@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Concordion.Integration;
 
@@ -13,7 +12,7 @@ namespace Concordion.Spec.Concordion.Extension.Listener
             Extension = new LoggingExtension(LogWriter);
         }
 
-        public List<String> getGeorgeAndRingo()
+        public List<string> getGeorgeAndRingo()
         {
             var result = new string[] {"George Harrison", "Ringo Starr"};
             return result.ToList();

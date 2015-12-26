@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using Concordion.Integration;
+﻿using Concordion.Integration;
 using Concordion.Spec.Support;
 
 namespace Concordion.Spec.Concordion.Command.AssertEquals

@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using org.concordion.api;
+﻿using org.concordion.api;
 using Concordion.Spec.Support;
 
 namespace Concordion.Spec.Concordion.Results.Breadcrumbs
@@ -36,8 +33,8 @@ namespace Concordion.Spec.Concordion.Results.Breadcrumbs
     
         public class Result 
         {
-            public String text = "";
-            public String html = "";
+            public string text = "";
+            public string html = "";
         }
     }
 }

@@ -1,6 +1,5 @@
-﻿using Concordion.Integration;
-using Concordion.Internal;
-using System.IO;
+﻿using System.IO;
+using Concordion.Integration;
 using Concordion.NET.Internal.Runner;
 using Concordion.NET.Internal;
 
@@ -42,8 +41,8 @@ namespace Concordion.Spec.Concordion.Configuration
 
             var specificationConfig = new SpecificationConfig().Load(this.GetType());
             specificationConfig.BaseInputDirectory = null;
-            var fixtureRunner = new FixtureRunner(specificationConfig);
-            var testResult = fixtureRunner.Run(this);
+            var fixtureRunner = new DefaultConcordionRunner();
+            var testResult = fixtureRunner.Run(this, specificationConfig);
 
             m_InTestRun = false;
 

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Concordion.Integration;
-using System.Text.RegularExpressions;
+﻿using Concordion.Integration;
 using Concordion.Spec.Support;
 
 namespace Concordion.Spec.Concordion.Command.AssertEquals.NonString
@@ -18,11 +13,9 @@ namespace Concordion.Spec.Concordion.Command.AssertEquals.NonString
                 result = null;
             }
 
-            snippet = Regex.Replace(snippet, "\\(some expectation\\)", expectedString);
-
             return new TestRig()
                 .WithStubbedEvaluationResult(result)
-                .ProcessFragment(snippet)
+                .ProcessFragment(snippet.Replace("(some expectation)", expectedString))
                 .SuccessOrFailureInWords();
         }
     }
