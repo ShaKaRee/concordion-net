@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
-using System.Xml.Linq;
 using Concordion.Test.Support;
 using NUnit.Framework;
-using Concordion.Internal.Listener;
+using org.concordion.@internal.listener;
+using nu.xom;
+using Attribute = nu.xom.Attribute;
 
 namespace Concordion.Test.Listener
 {
@@ -14,22 +15,22 @@ namespace Concordion.Test.Listener
     public class MetadataCreatorTest
     {
         private MetadataCreator metadataCreator;
-        private XElement html; 
-        private XDocument document;
-        private XElement head;
+        private Element html; 
+        private Document document;
+        private Element head;
     
         [SetUp]
         public void Init() {
-            html = new XElement("html");
-            head = new XElement("head");
-            html.Add(head);
-            document = new XDocument(html);
+            html = new Element("html");
+            head = new Element("head");
+            html.add(head);
+            document = new Document(html);
             metadataCreator = new MetadataCreator();
         }
     
         [Test]
         public void AddsContentTypeMetadataIfMissing() {
-            metadataCreator.BeforeParsing(document);
+            metadataCreator.beforeParsing(document);
             Assert.AreEqual(
                 "<html><head><meta http-equiv=\"content-type\" content=\"text/html; charset=UTF-8\" /></head></html>",
                 new HtmlUtil().RemoveWhitespaceBetweenTags(html.ToString()));
@@ -37,14 +38,14 @@ namespace Concordion.Test.Listener
 
         [Test]
         public void DoesNotAddContentTypeMetadataIfAlreadyPresent() {
-            var meta = new XElement("meta");
-            meta.SetAttributeValue("http-equiv", "Content-Type");
-            meta.SetAttributeValue("content", "text/html; charset=UTF-8");
-            head.Add(new XElement(meta));
+            var meta = new Element("meta");
+            meta.addAttribute(new Attribute("http-equiv", "Content-Type"));
+            meta.addAttribute(new Attribute("content", "text/html; charset=UTF-8"));
+            head.add(new Element(meta));
             Assert.AreEqual(
                 "<html><head><meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\" /></head></html>",
                 new HtmlUtil().RemoveWhitespaceBetweenTags(html.ToString()));
-            metadataCreator.BeforeParsing(document);
+            metadataCreator.beforeParsing(document);
             Assert.AreEqual(
                 "<html><head><meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\" /></head></html>",
                 new HtmlUtil().RemoveWhitespaceBetweenTags(html.ToString()));

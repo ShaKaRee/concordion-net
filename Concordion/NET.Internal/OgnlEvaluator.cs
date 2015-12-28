@@ -14,9 +14,9 @@
 
 using System;
 using System.Data;
-using Concordion.Internal.Util;
 using ognl;
 using org.concordion.api;
+using org.concordion.@internal.util;
 
 namespace Concordion.NET.Internal
 {
@@ -61,8 +61,8 @@ namespace Concordion.NET.Internal
 
         private void PutVariable(string rawVariableName, object value)
         {
-            Check.IsFalse(rawVariableName.StartsWith("#"), "Variable name passed to evaluator should not start with #");
-            Check.IsTrue(!rawVariableName.Equals("in"), "'%s' is a reserved word and cannot be used for variables names", rawVariableName);
+            Check.isFalse(rawVariableName.StartsWith("#"), "Variable name passed to evaluator should not start with #");
+            Check.isTrue(!rawVariableName.Equals("in"), "'%s' is a reserved word and cannot be used for variables names", rawVariableName);
             this.OgnlContext[rawVariableName] = value;
         }
 
@@ -93,8 +93,8 @@ namespace Concordion.NET.Internal
 
         public virtual object evaluate(string expression)
         {
-            Check.NotNull(this.Fixture, "Root object is null");
-            Check.NotNull(expression, "Expression to evaluate cannot be null");
+            Check.notNull(this.Fixture, "Root object is null");
+            Check.notNull(expression, "Expression to evaluate cannot be null");
             return Ognl.getValue(expression, this.OgnlContext, this.Fixture);
         }
 

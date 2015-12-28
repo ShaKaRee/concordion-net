@@ -2,10 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using Concordion.Internal;
-using Concordion.NET.Internal;
+using Concordion.NET.Internal.Runner;
 using NUnit.Core;
-using Concordion.Api;
 using org.concordion.api;
 
 namespace Concordion.NUnit.Addin
@@ -45,9 +43,9 @@ namespace Concordion.NUnit.Addin
 
             Fixture = Reflect.Construct(m_FixtureType);
             RunFixtureSetUp();
-            var fixtureRunner = new FixtureRunner();
-            var concordionResult = fixtureRunner.Run(Fixture);
-            var testResult = NUnitTestResult(concordionResult, fixtureRunner.ResultPath);
+            var testRunner = new DefaultConcordionRunner();
+            var concordionResult = testRunner.Run(Fixture);
+            var testResult = NUnitTestResult(concordionResult, ""); //ToDo: testRunner.ResultPath);
             RunFixtureTearDown();
 
             listener.TestFinished(testResult);

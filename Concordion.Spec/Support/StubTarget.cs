@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using java.io;
 using org.concordion.api;
-using Concordion.Internal.Util;
+using org.concordion.@internal.util;
 
 namespace Concordion.Spec.Support
 {
@@ -19,7 +19,7 @@ namespace Concordion.Spec.Support
 
         public string GetWrittenString(Resource resource)
         {
-            Check.IsTrue(this.writtenStrings.ContainsKey(resource), "Expected resource '" + resource.getPath() + "' was not written to target");
+            Check.isTrue(this.writtenStrings.ContainsKey(resource), "Expected resource '" + resource.getPath() + "' was not written to target");
             return this.writtenStrings[resource];
         }
 

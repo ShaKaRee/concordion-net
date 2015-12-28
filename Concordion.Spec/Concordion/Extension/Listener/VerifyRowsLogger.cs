@@ -21,7 +21,8 @@ namespace Concordion.Spec.Concordion.Extension.Listener
         public void expressionEvaluated(ExpressionEvaluatedEvent expressionEvaluatedEvent)
         {
             this.m_LogWriter.WriteLine("Evaluated '{0}'",
-                                  expressionEvaluatedEvent.getElement().getAttributeValue("verifyRows", HtmlFramework.NAMESPACE_CONCORDION_2007));
+                                  expressionEvaluatedEvent.getElement().getAttributeValue(
+                                  "verifyRows", "http://www.concordion.org/2007/concordion"));
         }
 
         public void missingRow(MissingRowEvent missingRowEvent)

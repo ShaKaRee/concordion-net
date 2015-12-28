@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Xml.Linq;
-using Concordion.Internal;
+using Concordion.NET.Internal.Runner;
 using NUnit.Framework;
 
 namespace Concordion.Runners.NUnit
@@ -14,7 +13,7 @@ namespace Concordion.Runners.NUnit
         [Test]
         public void ConcordionTest()
         {
-            var concordionResult = new FixtureRunner().Run(this);
+            var concordionResult = new DefaultConcordionRunner().Run(this);
             if (concordionResult.hasExceptions())
             {
                 throw new Exception("Exception in Concordion test: please see Concordion test reports");

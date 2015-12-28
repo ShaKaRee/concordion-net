@@ -2,10 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Concordion.Internal.Util;
-using System.IO;
 using java.io;
 using org.concordion.api;
+using org.concordion.@internal.util;
 
 namespace Concordion.Spec.Support
 {
@@ -35,7 +34,7 @@ namespace Concordion.Spec.Support
 
         public InputStream createInputStream(Resource resource)
         {
-            Check.IsTrue(canFind(resource), "No such resource exists in simulator: " + resource.getPath());
+            Check.isTrue(canFind(resource), "No such resource exists in simulator: " + resource.getPath());
             return new ByteArrayInputStream(Encoding.UTF8.GetBytes(this.resources[resource]));
         }
 

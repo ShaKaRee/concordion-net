@@ -116,140 +116,15 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include=".NET.Api\Extension\ExtensionAttribute.cs" />
-    <Compile Include=".NET.Api\Extension\ExtensionsAttribute.cs" />
-    <Compile Include="Api\AbstractCommand.cs" />
-    <Compile Include="Api\AssertionErrorException.cs" />
-    <Compile Include="Api\Element.cs" />
-    <Compile Include="Api\ExpectedToFailAttribute.cs" />
-    <Compile Include="Api\ExpectedToPassAttribute.cs" />
-    <Compile Include="Api\Extension\ExtensionsAttribute.cs" />
-    <Compile Include="Api\Extension\ExtensionAttribute.cs" />
-    <Compile Include="Api\Extension\IConcordionExtender.cs" />
-    <Compile Include="Api\Extension\IConcordionExtension.cs" />
-    <Compile Include="Api\Extension\IConcordionExtensionFactory.cs" />
-    <Compile Include="Api\ICommand.cs" />
-    <Compile Include="Api\ICommandFactory.cs" />
-    <Compile Include="Api\IContext.cs" />
-    <Compile Include="Api\IEvaluator.cs" />
-    <Compile Include="Api\IEvaluatorFactory.cs" />
-    <Compile Include="Api\IResultRecorder.cs" />
-    <Compile Include="Api\IResultSummary.cs" />
-    <Compile Include="Api\IRunner.cs" />
-    <Compile Include="Api\ISource.cs" />
-    <Compile Include="Api\ISpecification.cs" />
-    <Compile Include="Api\ISpecificationLocator.cs" />
-    <Compile Include="Api\ISpecificationReader.cs" />
-    <Compile Include="Api\ITarget.cs" />
-    <Compile Include="Api\Listener\AssertFailureEvent.cs" />
-    <Compile Include="Api\Listener\ConcordionBuildEvent.cs" />
-    <Compile Include="Api\Listener\ExecuteEvent.cs" />
-    <Compile Include="Api\Listener\ExpressionEvaluatedEvent.java.cs" />
-    <Compile Include="Api\Listener\IConcordionBuildListener.cs" />
-    <Compile Include="Api\Listener\IAssertTrueListener.cs" />
-    <Compile Include="Api\Listener\IAssertFalseListener.cs" />
-    <Compile Include="Api\Listener\IAssertListener.cs" />
-    <Compile Include="Api\Listener\AssertSuccessEvent.cs" />
-    <Compile Include="Api\Listener\ExceptionCaughtEvent.cs" />
-    <Compile Include="Api\Listener\IAssertEqualsListener.cs" />
-    <Compile Include="Api\Listener\IDocumentParsingListener.cs" />
-    <Compile Include="Api\Listener\IExceptionCaughtListener.cs" />
-    <Compile Include="Api\Listener\IExecuteListener.cs" />
-    <Compile Include="Api\Listener\IRunListener.cs" />
-    <Compile Include="Api\Listener\ISpecificationProcessingListener.cs" />
-    <Compile Include="Api\Listener\IVerifyRowsListener.cs" />
-    <Compile Include="Api\Listener\MissingRowEvent.cs" />
-    <Compile Include="Api\Listener\RunFailureEvent.cs" />
-    <Compile Include="Api\Listener\RunIgnoreEvent.cs" />
-    <Compile Include="Api\Listener\RunSuccessEvent.cs" />
-    <Compile Include="Api\Listener\SpecificationProcessingEvent.cs" />
-    <Compile Include="Api\Listener\SurplusRowEvent.cs" />
-    <Compile Include="Api\Resource.cs" />
-    <Compile Include="Api\Result.cs" />
-    <Compile Include="Api\ResultDetails.cs" />
-    <Compile Include="Api\RunnerResult.cs" />
-    <Compile Include="Api\UnimplementedAttribute.cs" />
-    <Compile Include="Concordion.cs" />
+    <Compile Include="NET.Api\Extension\ExtensionAttribute.cs" />
+    <Compile Include="NET.Api\Extension\ExtensionsAttribute.cs" />
     <Compile Include="NET.Internal\ClassNameBasedSpecificationLocator.cs" />
     <Compile Include="NET.Internal\EmbeddedResourceSource.cs" />
     <Compile Include="NET.Internal\FileSource.cs" />
-    <Compile Include="NET.Internal\IOUtil.cs" />
     <Compile Include="NET.Internal\OgnlEvaluator.cs" />
     <Compile Include="GlobalSuppressions.cs" />
-    <Compile Include="HtmlFramework.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>HtmlFramework.resx</DependentUpon>
-    </Compile>
     <Compile Include="Integration\ConcordionTestAttribute.cs" />
-    <Compile Include="Internal\AbstractCheckerBase.cs" />
-    <Compile Include="Internal\BannedWordsValidator.cs" />
-    <Compile Include="Internal\BooleanExpectationChecker.cs" />
-    <Compile Include="Internal\BrowserStyleWhitespaceComparer.cs" />
-    <Compile Include="Internal\ChainOfExpectationCheckers.cs" />
-    <Compile Include="Internal\CommandCall.cs" />
-    <Compile Include="Internal\CommandCallList.cs" />
-    <Compile Include="Internal\CommandRegistry.cs" />
-    <Compile Include="Internal\Commands\AbstractCommandDecorator.cs" />
-    <Compile Include="Internal\Commands\AssertEqualsCommand.cs" />
-    <Compile Include="Internal\Commands\AssertFalseCommand.cs" />
-    <Compile Include="Internal\Commands\AssertTrueCommand.cs" />
-    <Compile Include="Internal\Commands\BooleanCommand.cs" />
-    <Compile Include="Internal\Commands\DefaultExecuteStrategy.cs" />
-    <Compile Include="Internal\Commands\EchoCommand.cs" />
-    <Compile Include="Internal\Commands\ExecuteCommand.cs" />
-    <Compile Include="Internal\Commands\IExecuteStrategy.cs" />
-    <Compile Include="Internal\Commands\ListExecuteStrategy.cs" />
-    <Compile Include="Internal\Commands\LocalTextDecorator.cs" />
-    <Compile Include="Internal\Commands\RunCommand.cs" />
-    <Compile Include="Internal\Commands\SetCommand.cs" />
-    <Compile Include="Internal\Commands\SpecificationCommand.cs" />
-    <Compile Include="Internal\Commands\TableExecuteStrategy.cs" />
-    <Compile Include="Internal\Commands\ExceptionCatchingDecorator.cs" />
-    <Compile Include="Internal\Commands\VerifyRowsCommand.cs" />
-    <Compile Include="Internal\ConcordionAssertionException.cs" />
-    <Compile Include="Internal\ConcordionConfig.cs" />
-    <Compile Include="Internal\ConcordionConfigParser.cs" />
-    <Compile Include="Internal\ConcordionModule.cs" />
-    <Compile Include="Internal\DefaultExpectationChecker.cs" />
-    <Compile Include="Internal\DocumentParser.cs" />
     <Compile Include="Internal\Extension\ExtensionLoader.cs" />
-    <Compile Include="Internal\FixtureRunner.cs" />
-    <Compile Include="Internal\IExpectationChecker.cs" />
-    <Compile Include="Internal\ExpectedToFailFixtureState.cs" />
-    <Compile Include="Internal\IFixtureState.cs" />
-    <Compile Include="Internal\IExpressionValidator.cs" />
-    <Compile Include="Internal\Listener\AssertResultRenderer.cs" />
-    <Compile Include="Internal\Listener\BreadCrumbRenderer.cs" />
-    <Compile Include="Internal\Listener\DocumentStructureImprover.cs" />
-    <Compile Include="Internal\Listener\ExceptionRenderer.cs" />
-    <Compile Include="Internal\Listener\JavaScriptEmbedder.cs" />
-    <Compile Include="Internal\Listener\JavaScriptLinker.cs" />
-    <Compile Include="Internal\Listener\MetadataCreator.cs" />
-    <Compile Include="Internal\Listener\PageFooterRenderer.cs" />
-    <Compile Include="Internal\Listener\RunResultRenderer.cs" />
-    <Compile Include="Internal\Listener\SpecificationRenderer.cs" />
-    <Compile Include="Internal\Listener\StylesheetEmbedder.cs" />
-    <Compile Include="Internal\Listener\StylesheetLinker.cs" />
-    <Compile Include="Internal\Listener\VerifyRowResultRenderer.cs" />
-    <Compile Include="Internal\ListEntry.cs" />
-    <Compile Include="Internal\ListSupport.cs" />
-    <Compile Include="Internal\ObjectFactory.cs" />
-    <Compile Include="Internal\UnimplementedFixtureState.cs" />
-    <Compile Include="Internal\ParsingEventArgs.cs" />
-    <Compile Include="Internal\ExpectedToPassFixtureState.cs" />
-    <Compile Include="Internal\Row.cs" />
-    <Compile Include="Internal\Runner\DefaultConcordionRunner.cs" />
-    <Compile Include="Internal\StringExtensionMethods.cs" />
-    <Compile Include="Internal\SummarizingResultRecorder.cs" />
-    <Compile Include="Internal\Table.cs" />
-    <Compile Include="Internal\TableSupport.cs" />
-    <Compile Include="Internal\Util\Announcer.cs" />
-    <Compile Include="Internal\Util\Check.cs" />
-    <Compile Include="Internal\Util\IOUtil.cs" />
-    <Compile Include="Internal\Util\TypeInfo.cs" />
-    <Compile Include="Internal\XmlSpecification.cs" />
-    <Compile Include="Internal\XmlSpecificationReader.cs" />
     <Compile Include="NET.Internal\Runner\DefaultConcordionRunner.cs" />
     <Compile Include="NET.Internal\SimpleEvaluator.cs" />
     <Compile Include="NET.Internal\SimpleEvaluatorFactory.cs" />
@@ -258,24 +133,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="HtmlFramework.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>HtmlFramework.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="packages.config" />
-    <None Include="Resources\logo.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\visibility-toggler.js" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Concordion.config">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Resources\embedded.css" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">

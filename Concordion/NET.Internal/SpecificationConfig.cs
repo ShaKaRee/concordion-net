@@ -16,8 +16,6 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
-using Concordion.Api.Extension;
-using Concordion.Internal;
 
 namespace Concordion.NET.Internal
 {

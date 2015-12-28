@@ -122,7 +122,7 @@ namespace Concordion.Spec.Support
         private string WrapWithNamespaceDeclaration(string fragment)
         {
             return "<html xmlns:concordion='"
-                + HtmlFramework.NAMESPACE_CONCORDION_2007 + "'>"
+                + "http://www.concordion.org/2007/concordion" + "'>"
                 + fragment
                 + "</html>";
         }

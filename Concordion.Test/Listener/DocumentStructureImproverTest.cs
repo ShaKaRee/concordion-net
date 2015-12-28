@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Xml.Linq;
-using Concordion.Internal.Listener;
 using Concordion.Test.Support;
 using NUnit.Framework;
+using org.concordion.@internal.listener;
 
 namespace Concordion.Test.Listener
 {

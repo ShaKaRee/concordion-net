@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using Concordion.Internal.Util;
 using Concordion.NET.Internal;
 using org.concordion.api.extension;
+using org.concordion.@internal.util;
 using ExtensionAttribute = Concordion.NET.Api.Extension.ExtensionAttribute;
 using ExtensionsAttribute = Concordion.NET.Api.Extension.ExtensionsAttribute;
 
@@ -82,7 +82,7 @@ namespace Concordion.Internal.Extension
                 if (HasAttribute(fieldInfo, typeof(ExtensionAttribute), false))
                 {
                     var extension = fieldInfo.GetValue(fixture) as ConcordionExtension;
-                    Check.NotNull(extension, string.Format("Extension field '{0}' must be non-null", fieldInfo.Name));
+                    Check.notNull(extension, string.Format("Extension field '{0}' must be non-null", fieldInfo.Name));
                     extensions.Add(extension);
                 }
             }

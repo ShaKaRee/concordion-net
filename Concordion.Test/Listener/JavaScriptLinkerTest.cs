@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Xml.Linq;
-using Concordion.Api;
 using Concordion.Test.Support;
 using NUnit.Framework;
-using Concordion.Internal.Listener;
+using org.concordion.api;
+using org.concordion.@internal.listener;
 
 namespace Concordion.Test.Listener
 {
@@ -24,7 +24,7 @@ namespace Concordion.Test.Listener
             var head = new XElement("head");
             html.Add(head);
 
-            javaScriptLinker.BeforeParsing(new XDocument(html));
+            javaScriptLinker.beforeParsing(new XDocument(html));
 
             var expected = "<head><script type=\"text/javascript\"></script></head>";
             var actual = new HtmlUtil().RemoveWhitespaceBetweenTags(head.ToString());

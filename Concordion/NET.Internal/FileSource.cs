@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using Concordion.Internal;
+using System.Text;
 using ikvm.extensions;
 using org.concordion.api;
 using InputStream = java.io.InputStream;
@@ -79,12 +79,28 @@ namespace Concordion.NET.Internal
             {
                 return filePath;
             }
-            filePath = Path.Combine(BaseDirectory, resourcePath.RemoveFirst(FixtureAssembly.GetName().Name.Replace('.', PathSeparator) + PathSeparator));
+            filePath = Path.Combine(BaseDirectory, this.RemoveFirst(resourcePath, FixtureAssembly.GetName().Name.Replace('.', PathSeparator) + PathSeparator));
             if (System.IO.File.Exists(filePath))
             {
                 return filePath;
             }
             return null;
+        }
+
+        private string RemoveFirst(string str, string toRemove)
+        {
+            if (String.IsNullOrEmpty(toRemove)) return String.Empty;
+            var index = str.IndexOf(toRemove);
+            var builder = new StringBuilder();
+
+            if (index != -1)
+            {
+                builder.Append(str.Substring(0, index));
+                builder.Append(str.Substring(index + toRemove.Length));
+                return builder.ToString();
+            }
+
+            return str;
         }
 
         #endregion
