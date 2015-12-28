@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
 using Concordion.Test.Support;
 using NUnit.Framework;
 using org.concordion.@internal.listener;
@@ -23,7 +21,7 @@ namespace Concordion.Test.Listener
         public void Init() {
             html = new Element("html");
             head = new Element("head");
-            html.add(head);
+            html.appendChild(head);
             document = new Document(html);
             metadataCreator = new MetadataCreator();
         }
@@ -33,7 +31,7 @@ namespace Concordion.Test.Listener
             metadataCreator.beforeParsing(document);
             Assert.AreEqual(
                 "<html><head><meta http-equiv=\"content-type\" content=\"text/html; charset=UTF-8\" /></head></html>",
-                new HtmlUtil().RemoveWhitespaceBetweenTags(html.ToString()));
+                new HtmlUtil().RemoveWhitespaceBetweenTags(html.toXML()));
         }
 
         [Test]
@@ -41,14 +39,14 @@ namespace Concordion.Test.Listener
             var meta = new Element("meta");
             meta.addAttribute(new Attribute("http-equiv", "Content-Type"));
             meta.addAttribute(new Attribute("content", "text/html; charset=UTF-8"));
-            head.add(new Element(meta));
+            head.appendChild(new Element(meta));
             Assert.AreEqual(
                 "<html><head><meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\" /></head></html>",
-                new HtmlUtil().RemoveWhitespaceBetweenTags(html.ToString()));
+                new HtmlUtil().RemoveWhitespaceBetweenTags(html.toXML()));
             metadataCreator.beforeParsing(document);
             Assert.AreEqual(
                 "<html><head><meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\" /></head></html>",
-                new HtmlUtil().RemoveWhitespaceBetweenTags(html.ToString()));
+                new HtmlUtil().RemoveWhitespaceBetweenTags(html.toXML()));
         }
     }
 }

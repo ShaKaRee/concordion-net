@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using Concordion.Api;
-using Concordion.Internal;
+﻿using System.IO;
 using Concordion.NET.Internal;
 using NUnit.Framework;
 
@@ -19,7 +13,7 @@ namespace Concordion.Test.Internal
             var specificationLocator = new ClassNameBasedSpecificationLocator();
             var resource = specificationLocator.locateSpecification(this);
             var path = resource.getPath().Replace(Path.DirectorySeparatorChar, '/');
-            Assert.AreEqual("Concordion/Test/Internal/SpecificationLocator.html", path, "path from SpecificationLocator contains 'Test'");
+            Assert.AreEqual("/Concordion/Test/Internal/SpecificationLocator.html", path, "path from SpecificationLocator contains 'Test'");
         }
 
         [Test]
@@ -28,7 +22,7 @@ namespace Concordion.Test.Internal
             var specificationLocator = new ClassNameBasedSpecificationLocator();
             var resource = specificationLocator.locateSpecification(new DummyContainingTestInNameTest());
             var path = resource.getPath().Replace(Path.DirectorySeparatorChar, '/');
-            Assert.AreEqual("Concordion/Test/Internal/DummyContainingTestInName.html", path, "path from SpecificiationLocator removed 'Test' in the middle");
+            Assert.AreEqual("/Concordion/Test/Internal/DummyContainingTestInName.html", path, "path from SpecificiationLocator removed 'Test' in the middle");
         }
     }
 }
