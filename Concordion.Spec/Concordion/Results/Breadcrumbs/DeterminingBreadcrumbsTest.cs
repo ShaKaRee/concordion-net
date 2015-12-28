@@ -1,4 +1,4 @@
-﻿using Concordion.Integration;
+﻿using Concordion.NET.Integration;
 
 namespace Concordion.Spec.Concordion.Results.Breadcrumbs
 {

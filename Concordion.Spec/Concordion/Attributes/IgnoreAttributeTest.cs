@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
-using Concordion.Integration;
 //using Concordion.NUnit.Addin;
 //using NUnit.Core;
 using NUnit.Framework;

@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using Concordion.Integration;
+using Concordion.NET.Integration;
 using NUnit.Framework;
 
 namespace Concordion.Spec.Concordion.Integration

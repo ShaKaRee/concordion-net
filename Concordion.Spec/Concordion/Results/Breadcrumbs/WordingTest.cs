@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Text.RegularExpressions;
-using Concordion.Integration;
+using Concordion.NET.Integration;
 
 namespace Concordion.Spec.Concordion.Results.Breadcrumbs
 {

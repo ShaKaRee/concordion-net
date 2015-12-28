@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using Concordion.Integration;
+using Concordion.NET.Integration;
 using Concordion.Spec.Support;
 
 namespace Concordion.Spec.Concordion.Command.VerifyRows.Results

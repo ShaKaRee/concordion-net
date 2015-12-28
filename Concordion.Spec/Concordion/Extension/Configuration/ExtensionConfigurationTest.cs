@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
-using Concordion.Integration;
-using Concordion.Internal;
+using Concordion.NET.Integration;
 using Concordion.NET.Internal;
 using Concordion.Spec.Support;
 

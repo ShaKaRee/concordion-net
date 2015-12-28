@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using Concordion.NET.Internal.Runner;
 using NUnit.Framework;
 

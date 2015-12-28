@@ -1,4 +1,4 @@
-﻿using Concordion.Integration;
+﻿using Concordion.NET.Integration;
 using NUnit.Framework;
 
 namespace Concordion.Spec.Concordion.Attributes

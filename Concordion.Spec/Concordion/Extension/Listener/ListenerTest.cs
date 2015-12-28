@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Globalization;
 using System.Threading;
-using Concordion.Integration;
+using Concordion.NET.Integration;
 
 namespace Concordion.Spec.Concordion.Extension.Listener
 {

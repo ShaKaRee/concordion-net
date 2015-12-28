@@ -1,4 +1,4 @@
-﻿using Concordion.Integration;
+﻿using Concordion.NET.Integration;
 using Concordion.Spec.Support;
 
 namespace Concordion.Spec.Concordion.Results.AssertEquals.Success

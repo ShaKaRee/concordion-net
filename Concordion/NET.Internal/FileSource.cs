@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
+﻿using System.IO;
 using System.Reflection;
 using System.Text;
 using ikvm.extensions;
 using org.concordion.api;
 using InputStream = java.io.InputStream;
 using FileInputStream = java.io.FileInputStream;
-using File = java.io.File;
 
 namespace Concordion.NET.Internal
 {
@@ -89,7 +85,7 @@ namespace Concordion.NET.Internal
 
         private string RemoveFirst(string str, string toRemove)
         {
-            if (String.IsNullOrEmpty(toRemove)) return String.Empty;
+            if (string.IsNullOrEmpty(toRemove)) return string.Empty;
             var index = str.IndexOf(toRemove);
             var builder = new StringBuilder();
 

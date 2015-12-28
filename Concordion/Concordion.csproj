@@ -118,13 +118,13 @@
   <ItemGroup>
     <Compile Include="NET.Api\Extension\ExtensionAttribute.cs" />
     <Compile Include="NET.Api\Extension\ExtensionsAttribute.cs" />
+    <Compile Include="NET.Integration\ConcordionTestAttribute.cs" />
     <Compile Include="NET.Internal\ClassNameBasedSpecificationLocator.cs" />
     <Compile Include="NET.Internal\EmbeddedResourceSource.cs" />
+    <Compile Include="NET.Internal\Extension\ExtensionLoader.cs" />
     <Compile Include="NET.Internal\FileSource.cs" />
     <Compile Include="NET.Internal\OgnlEvaluator.cs" />
     <Compile Include="GlobalSuppressions.cs" />
-    <Compile Include="Integration\ConcordionTestAttribute.cs" />
-    <Compile Include="Internal\Extension\ExtensionLoader.cs" />
     <Compile Include="NET.Internal\Runner\DefaultConcordionRunner.cs" />
     <Compile Include="NET.Internal\SimpleEvaluator.cs" />
     <Compile Include="NET.Internal\SimpleEvaluatorFactory.cs" />

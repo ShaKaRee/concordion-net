@@ -1,5 +1,5 @@
 ﻿using System;
-using Concordion.Integration;
+using Concordion.NET.Integration;
 using Concordion.Spec.Support;
 using org.concordion.api;
 

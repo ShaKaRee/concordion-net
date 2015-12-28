@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Concordion.Integration;
+using Concordion.NET.Integration;
 
 namespace Concordion.Spec.Examples
 {

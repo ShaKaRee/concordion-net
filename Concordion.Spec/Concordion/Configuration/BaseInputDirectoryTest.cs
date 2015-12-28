@@ -1,5 +1,5 @@
 ﻿using System.IO;
-using Concordion.Integration;
+using Concordion.NET.Integration;
 using Concordion.NET.Internal.Runner;
 using Concordion.NET.Internal;
 

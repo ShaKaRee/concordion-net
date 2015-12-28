@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text.RegularExpressions;
+﻿using System.Text.RegularExpressions;
 using org.concordion.api;
 
 namespace Concordion.NET.Internal
@@ -19,7 +16,7 @@ namespace Concordion.NET.Internal
             this.m_SpecificationSuffix = mSpecificationSuffix;
         }
 
-        public org.concordion.api.Resource locateSpecification(object fixture)
+        public Resource locateSpecification(object fixture)
         {
             var fixtureName = fixture.GetType().ToString();
             fixtureName = fixtureName.Replace(".", "\\");
@@ -28,7 +25,7 @@ namespace Concordion.NET.Internal
             fixtureName = Regex.Replace(fixtureName, "(Fixture|Test)$", "");
             //Suffix from Concordion.Specification.config
             var path = "\\" + fixtureName + "." + m_SpecificationSuffix;
-            return new org.concordion.api.Resource(path);
+            return new Resource(path);
         }
 
         #endregion

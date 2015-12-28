@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
-using Concordion.Integration;
+using Concordion.NET.Integration;
 using Concordion.NET.Internal;
 using Concordion.NET.Internal.Runner;
 

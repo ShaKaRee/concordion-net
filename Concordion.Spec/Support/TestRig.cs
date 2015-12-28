@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Concordion.Internal.Extension;
 using Concordion.NET.Internal;
+using Concordion.NET.Internal.Extension;
 using org.concordion.api;
 using org.concordion.api.extension;
 using org.concordion.@internal;

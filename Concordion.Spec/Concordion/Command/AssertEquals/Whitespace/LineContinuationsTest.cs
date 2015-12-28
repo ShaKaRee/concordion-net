@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Text.RegularExpressions;
-using Concordion.Integration;
+using Concordion.NET.Integration;
 using Concordion.Spec.Support;
 
 namespace Concordion.Spec.Concordion.Command.AssertEquals.Whitespace

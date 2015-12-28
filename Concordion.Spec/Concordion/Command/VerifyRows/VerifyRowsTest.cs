@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using Concordion.Integration;
+using Concordion.NET.Integration;
 using Concordion.Spec.Support;
 using org.concordion.@internal.util;
 using nu.xom;
