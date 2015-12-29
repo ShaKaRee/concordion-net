@@ -215,13 +215,13 @@
     <Compile Include="Support\TestRig.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Concordion.NET\Concordion.NET.csproj">
+      <Project>{28a6b922-39b7-4703-abcc-103352537ef2}</Project>
+      <Name>Concordion.NET</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Concordion.Runners\Concordion.Runners.csproj">
       <Project>{c57b6220-6ce6-4165-9144-214be62ce074}</Project>
       <Name>Concordion.Runners</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Concordion\Concordion.csproj">
-      <Project>{F401D347-5762-49DA-B7DF-4C6C9E79E08A}</Project>
-      <Name>Concordion</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

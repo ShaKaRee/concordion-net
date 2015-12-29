@@ -4,13 +4,14 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{C57B6220-6CE6-4165-9144-214BE62CE074}</ProjectGuid>
+    <ProjectGuid>{28A6B922-39B7-4703-ABCC-103352537EF2}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Concordion.Runners</RootNamespace>
-    <AssemblyName>Concordion.Runners</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <RootNamespace>Concordion.NET</RootNamespace>
+    <AssemblyName>Concordion.NET</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -31,32 +32,41 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="ConcordionCore, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="ConcordionCore">
       <HintPath>..\tools\Concordion\ConcordionCore.dll</HintPath>
     </Reference>
-    <Reference Include="nunit.framework, Version=2.6.4.14350, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\tools\NUnit-2.6.4\nunit.framework.dll</HintPath>
+    <Reference Include="IKVM.OpenJDK.Core">
+      <HintPath>..\packages\IKVM.8.1.5717.0\lib\IKVM.OpenJDK.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.framework, Version=2.6.4.14350, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL" />
+    <Reference Include="OGNL">
+      <HintPath>..\tools\OGNL.NET\OGNL.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="NUnit\ExecutableSpecification.cs" />
+    <Compile Include="Api\Extension\ExtensionAttribute.cs" />
+    <Compile Include="Api\Extension\ExtensionsAttribute.cs" />
+    <Compile Include="Integration\ConcordionTestAttribute.cs" />
+    <Compile Include="Internal\ClassNameBasedSpecificationLocator.cs" />
+    <Compile Include="Internal\EmbeddedResourceSource.cs" />
+    <Compile Include="Internal\Extension\ExtensionLoader.cs" />
+    <Compile Include="Internal\FileSource.cs" />
+    <Compile Include="Internal\OgnlEvaluator.cs" />
+    <Compile Include="Internal\Runner\DefaultConcordionRunner.cs" />
+    <Compile Include="Internal\SimpleEvaluator.cs" />
+    <Compile Include="Internal\SimpleEvaluatorFactory.cs" />
+    <Compile Include="Internal\SpecificationConfig.cs" />
+    <Compile Include="Internal\SpecificationConfigParser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="NUnit\ExecutableSpecification.html" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Concordion.NET\Concordion.NET.csproj">
-      <Project>{28a6b922-39b7-4703-abcc-103352537ef2}</Project>
-      <Name>Concordion.NET</Name>
-    </ProjectReference>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

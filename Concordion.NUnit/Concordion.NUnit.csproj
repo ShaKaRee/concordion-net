@@ -55,13 +55,13 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Concordion\Concordion.csproj">
-      <Project>{F401D347-5762-49DA-B7DF-4C6C9E79E08A}</Project>
-      <Name>Concordion</Name>
-    </ProjectReference>
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
+    <ProjectReference Include="..\Concordion.NET\Concordion.NET.csproj">
+      <Project>{28a6b922-39b7-4703-abcc-103352537ef2}</Project>
+      <Name>Concordion.NET</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

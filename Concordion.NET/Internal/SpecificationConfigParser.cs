@@ -1,7 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Xml.Linq;
+using Concordion.NET.Internal.Runner;
 
 namespace Concordion.NET.Internal
 {
@@ -110,8 +113,8 @@ namespace Concordion.NET.Internal
         private void LoadRunners(XElement element)
         {
             java.lang.System.setProperty("concordion.runner.concordion.net",
-                "Concordion.NET.Internal.Runner.DefaultConcordionRunner, Concordion, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null");
-
+                "Concordion.NET.Internal.Runner.DefaultConcordionRunner, Concordion.NET, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null");
+            
             var runners = element.Element("Runners");
             if (runners == null) return;
 
