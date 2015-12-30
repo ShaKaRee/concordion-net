@@ -144,12 +144,13 @@ namespace Concordion.NET.Internal
 
         private void LoadSpecificationSuffix(XElement element)
         {
+            var defaultSpecificationFileExtensions = new List<string> {"html", "xhtml"};
+            Config.SpecificationFileExtensions = defaultSpecificationFileExtensions;
             var specificationExtensions = element.Element("SpecificationFileExtensions");
             if (specificationExtensions == null) return;
             var extensionNames = (from extension in specificationExtensions.Elements("FileExtension").Attributes().ToList() 
                                   where extension != null select extension.Value).ToList();
-            
-			Config.SpecificationFileExtensions = extensionNames;
+            Config.SpecificationFileExtensions = extensionNames;
         }
     }
 }
