@@ -41,9 +41,18 @@ namespace Concordion.NUnit.Addin
 
             Fixture = Reflect.Construct(m_FixtureType);
             RunFixtureSetUp();
-            var testRunner = new DefaultConcordionRunner();
-            var concordionResult = testRunner.Run(Fixture);
-            var testResult = NUnitTestResult(concordionResult, ""); //ToDo: testRunner.ResultPath);
+            TestResult testResult;
+            try
+            {
+                var testRunner = new DefaultConcordionRunner();
+                var concordionResult = testRunner.Run(Fixture);
+                testResult = NUnitTestResult(concordionResult, ""); //ToDo: testRunner.ResultPath);
+            }
+            catch (Exception exception)
+            {
+                testResult = new TestResult(this);
+                testResult.Error(exception);
+            }
             RunFixtureTearDown();
 
             listener.TestFinished(testResult);
