@@ -91,7 +91,6 @@ namespace Concordion.NET.Internal.Runner
                 .withSource(source)
                 .withTarget(target)
                 .withSpecificationLocator(specificationLocator)
-                //.withFixture(fixture)
                 .withEvaluatorFactory(new SimpleEvaluatorFactory());
             var extensionLoader = new ExtensionLoader(specificationConfig);
             extensionLoader.AddExtensions(fixture, concordionExtender);
