@@ -1,5 +1,4 @@
 ﻿using System.Reflection;
-using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 // General Information about an assembly is controlled through the following 
@@ -10,7 +9,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("concordion.org")]
 [assembly: AssemblyProduct("Concordion.Test")]
-[assembly: AssemblyCopyright("Copyright © concordion.org 2015")]
+[assembly: AssemblyCopyright("Copyright © concordion.org 2016")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
