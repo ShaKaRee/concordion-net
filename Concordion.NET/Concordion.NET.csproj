@@ -32,8 +32,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="ConcordionCore">
-      <HintPath>..\tools\Concordion\ConcordionCore.dll</HintPath>
+    <Reference Include="Concordion">
+      <HintPath>..\tools\Concordion\Concordion.dll</HintPath>
     </Reference>
     <Reference Include="IKVM.OpenJDK.Core">
       <HintPath>..\packages\IKVM.8.1.5717.0\lib\IKVM.OpenJDK.Core.dll</HintPath>

@@ -31,9 +31,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="ConcordionCore, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\tools\Concordion\ConcordionCore.dll</HintPath>
+    <Reference Include="Concordion">
+      <HintPath>..\tools\Concordion\Concordion.dll</HintPath>
     </Reference>
     <Reference Include="nunit.core">
       <HintPath>..\tools\NUnit-2.6.4\nunit.core.dll</HintPath>
