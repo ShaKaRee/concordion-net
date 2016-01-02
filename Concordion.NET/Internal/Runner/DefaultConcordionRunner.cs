@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Reflection;
 using Concordion.NET.Internal.Extension;
+using Concordion.NET.Internal.Util;
 using org.concordion.api;
 using org.concordion.@internal;
 using File = java.io.File;
@@ -30,7 +31,7 @@ namespace Concordion.NET.Internal.Runner
                 ? (Source)new EmbeddedResourceSource(fixture.GetType().Assembly)
                 : new FileSource(fixture.GetType().Assembly, specificationConfig.BaseInputDirectory);
 
-            var target = new FileTarget(new File(specificationConfig.BaseOutputDirectory));
+            var target = new FileTarget(new File(specificationConfig.BaseOutputDirectory), new IOUtil());
 
             var testSummary = new SummarizingResultRecorder();
             var anySpecExecuted = false;
@@ -91,7 +92,8 @@ namespace Concordion.NET.Internal.Runner
                 .withSource(source)
                 .withTarget(target)
                 .withSpecificationLocator(specificationLocator)
-                .withEvaluatorFactory(new SimpleEvaluatorFactory());
+                .withEvaluatorFactory(new SimpleEvaluatorFactory())
+                .withIOUtil(new IOUtil());
             var extensionLoader = new ExtensionLoader(specificationConfig);
             extensionLoader.AddExtensions(fixture, concordionExtender);
 

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Concordion.NET.Internal;
 using Concordion.NET.Internal.Extension;
+using Concordion.NET.Internal.Util;
 using org.concordion.api;
 using org.concordion.api.extension;
 using org.concordion.@internal;
@@ -64,6 +65,7 @@ namespace Concordion.Spec.Support
                 .withTarget(this.Target)
                 .withAssertEqualsListener(eventRecorder)
                 .withThrowableListener(eventRecorder);
+                //.withIOUtil(new IOUtil());
 
             if (this.Fixture != null)
             {

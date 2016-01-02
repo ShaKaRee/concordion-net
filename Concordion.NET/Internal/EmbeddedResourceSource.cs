@@ -45,13 +45,13 @@ namespace Concordion.NET.Internal
 
         #region Source Members
 
-        public bool canFind(org.concordion.api.Resource resource)
+        public bool canFind(Resource resource)
         {
             var fullyQualifiedTypeName = ConvertPathToNamespace(resource.getPath());
             return FixtureAssembly.GetManifestResourceInfo(fullyQualifiedTypeName) != null;
         }
 
-        public InputStream createInputStream(org.concordion.api.Resource resource)
+        public InputStream createInputStream(Resource resource)
         {
             var fullyQualifiedTypeName = ConvertPathToNamespace(resource.getPath());
 

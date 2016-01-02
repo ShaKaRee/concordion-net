@@ -62,10 +62,21 @@
     <Compile Include="Internal\SimpleEvaluatorFactory.cs" />
     <Compile Include="Internal\SpecificationConfig.cs" />
     <Compile Include="Internal\SpecificationConfigParser.cs" />
+    <Compile Include="Internal\Util\IOUtil.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Resources\embedded.css" />
+    <Content Include="Resources\visibility-toggler.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="HtmlFramework.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
