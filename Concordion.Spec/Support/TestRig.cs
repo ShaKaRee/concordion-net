@@ -61,11 +61,11 @@ namespace Concordion.Spec.Support
 
             var concordionBuilder = new ConcordionBuilder()
                 .withEvaluatorFactory(this.EvaluatorFactory)
+                .withIOUtil(new IOUtil())
                 .withSource(this.Source)
                 .withTarget(this.Target)
                 .withAssertEqualsListener(eventRecorder)
                 .withThrowableListener(eventRecorder);
-                //.withIOUtil(new IOUtil());
 
             if (this.Fixture != null)
             {
