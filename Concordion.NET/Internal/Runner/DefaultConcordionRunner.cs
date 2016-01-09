@@ -89,11 +89,11 @@ namespace Concordion.NET.Internal.Runner
         {
             var concordionExtender = new ConcordionBuilder();
             concordionExtender
+                .withIOUtil(new IOUtil())
                 .withSource(source)
                 .withTarget(target)
                 .withSpecificationLocator(specificationLocator)
-                .withEvaluatorFactory(new SimpleEvaluatorFactory())
-                .withIOUtil(new IOUtil());
+                .withEvaluatorFactory(new SimpleEvaluatorFactory());
             var extensionLoader = new ExtensionLoader(specificationConfig);
             extensionLoader.AddExtensions(fixture, concordionExtender);
 

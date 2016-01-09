@@ -11,7 +11,8 @@ namespace Concordion.NET.Internal.Util
             var resourceManager = new ResourceManager("Concordion.NET.HtmlFramework", typeof(IOUtil).Assembly);
             var resourceName = resourcePath.Substring(resourcePath.LastIndexOf('/') + 1);
             var resourceAsString = resourceManager.GetString(resourceName);
-            return resourceAsString;
+            var result = resourceAsString.Replace("\r", "");
+            return result;
         }
 
         public override string readResourceAsString(string resourcePath, string charsetName)
