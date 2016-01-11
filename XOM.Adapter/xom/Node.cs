@@ -8,7 +8,7 @@ using System.Xml.XPath;
 
 namespace nu.xom
 {
-    public abstract class Node : java.lang.Object
+    public abstract class Node
     {
         protected XElement m_XElement;
 
@@ -55,6 +55,22 @@ namespace nu.xom
         public string toXML()
         {
             return this.m_XElement.ToString(SaveOptions.None);
+        }
+
+        public bool @equals(object obj)
+        {
+            if (obj == null) return false;
+            if (this == obj) return true;
+
+            var node = obj as Node;
+            if (node == null) return false;
+
+            return this.m_XElement.Equals(node.m_XElement);
+        }
+
+        public int hashCode()
+        {
+            return this.m_XElement.GetHashCode();
         }
     }
 }
