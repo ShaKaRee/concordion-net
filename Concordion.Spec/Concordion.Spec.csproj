@@ -92,9 +92,6 @@
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
-    <Reference Include="xom">
-      <HintPath>..\tools\Concordion\xom.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Concordion\Attributes\AttributesTest.cs" />
@@ -220,6 +217,10 @@
     <ProjectReference Include="..\Concordion.Runners\Concordion.Runners.csproj">
       <Project>{c57b6220-6ce6-4165-9144-214be62ce074}</Project>
       <Name>Concordion.Runners</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\XOM.Adapter\XOM.Adapter.csproj">
+      <Project>{7e03e1c4-da4d-4216-9a86-11e49e648dd3}</Project>
+      <Name>XOM.Adapter</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Reflection;
 using System.IO;
+using Concordion.NET.IO;
 using java.io;
 using org.concordion.api;
 using ikvm.io;
@@ -58,7 +59,7 @@ namespace Concordion.NET.Internal
             if (canFind(resource))
             {
                 Stream manifestResourceStream = FixtureAssembly.GetManifestResourceStream(fullyQualifiedTypeName);
-                return new InputStreamWrapper(manifestResourceStream);
+                return new StreamWrapper(manifestResourceStream);
             }
 
             throw new InvalidOperationException(String.Format("Cannot open the resource {0}", fullyQualifiedTypeName));

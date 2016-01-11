@@ -1,10 +1,12 @@
 ﻿using System.IO;
 using System.Reflection;
 using System.Text;
+using Concordion.NET.IO;
 using ikvm.extensions;
 using org.concordion.api;
 using InputStream = java.io.InputStream;
 using FileInputStream = java.io.FileInputStream;
+using ikvm.io;
 
 namespace Concordion.NET.Internal
 {
@@ -24,10 +26,10 @@ namespace Concordion.NET.Internal
             set;
         }
 
-        public Assembly FixtureAssembly
+        private Assembly FixtureAssembly
         {
             get;
-            private set;
+            set;
         }
 
         #endregion
@@ -44,14 +46,10 @@ namespace Concordion.NET.Internal
 
         #region Source Members
 
-        public TextReader CreateReader(org.concordion.api.Resource resource)
+        public InputStream createInputStream(Resource resource)
         {
-            return new StreamReader(new FileStream(ExistingFilePath(resource), FileMode.Open));
-        }
-
-        public InputStream createInputStream(org.concordion.api.Resource resource)
-        {
-            return new FileInputStream(new java.io.File(ExistingFilePath(resource)));
+            return new StreamWrapper(new FileStream(this.ExistingFilePath(resource), FileMode.Open));
+            //return new FileInputStream(new java.io.File(ExistingFilePath(resource)));
         }
 
         public bool canFind(org.concordion.api.Resource resource)
@@ -63,7 +61,7 @@ namespace Concordion.NET.Internal
 
         #region private methods
 
-        private string ExistingFilePath(org.concordion.api.Resource resource)
+        private string ExistingFilePath(Resource resource)
         {
             var resourcePath = resource.getPath().Replace("/", "\\");
             if (resourcePath.StartsWith("\\"))
@@ -71,12 +69,12 @@ namespace Concordion.NET.Internal
                 resourcePath = resourcePath.substring(1);
             }
             var filePath = Path.Combine(BaseDirectory, resourcePath);
-            if (System.IO.File.Exists(filePath))
+            if (File.Exists(filePath))
             {
                 return filePath;
             }
             filePath = Path.Combine(BaseDirectory, this.RemoveFirst(resourcePath, FixtureAssembly.GetName().Name.Replace('.', PathSeparator) + PathSeparator));
-            if (System.IO.File.Exists(filePath))
+            if (File.Exists(filePath))
             {
                 return filePath;
             }
