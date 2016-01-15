@@ -9,22 +9,17 @@ namespace nu.xom
 {
     public class Document : Node
     {
-        private XDocument m_Document;
+        private readonly XDocument m_XDocument;
 
-        public Document(XDocument document)
+        public Document(XDocument xDocument) : base(xDocument)
         {
-            this.m_Document = document;
+            this.m_XDocument = xDocument;
         }
 
         public Element getRootElement()
         {
-            var rootElement = this.m_Document.Root;
+            var rootElement = this.m_XDocument.Root;
             return new Element(rootElement);
-        }
-
-        public Nodes query(string xpath)
-        {
-            return new Nodes(this.m_Document.XPathSelectElements(xpath));
         }
     }
 }

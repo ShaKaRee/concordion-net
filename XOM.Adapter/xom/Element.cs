@@ -8,9 +8,15 @@ namespace nu.xom
 {
     public class Element : ParentNode
     {
-        public Element(string name) : base(new XElement(name)) { }
+        private readonly XElement m_XElement;
 
-        public Element(XElement xElement) : base(xElement) { }
+        public Element(string name) : this(new XElement(name)) { }
+
+        public Element(XElement xNode)
+            : base(xNode)
+        {
+            this.m_XElement = xNode;
+        }
 
         public string getValue()
         {
@@ -30,12 +36,14 @@ namespace nu.xom
 
         public void removeChild(Node child)
         {
-            throw new NotSupportedException("not supported on xom adapter");
+            child.detach();
         }
 
         public void addAttribute(Attribute attribute)
         {
-            this.m_XElement.SetAttributeValue(attribute.XAttribute.Name, attribute.XAttribute.Value);
+            var xName = attribute.XAttribute.Name;
+            var value = attribute.XAttribute.Value;
+            this.m_XElement.SetAttributeValue(xName, value);
         }
 
         public string getAttributeValue(string name)
@@ -68,12 +76,8 @@ namespace nu.xom
 
         public Attribute removeAttribute(Attribute attribute)
         {
-            throw new NotSupportedException("not supported on xom adapter");
-        }
-
-        public Document getDocument()
-        {
-            return new Document(this.m_XElement.Document);
+            attribute.detach();
+            return attribute;
         }
 
         public Element getFirstChildElement(string name)

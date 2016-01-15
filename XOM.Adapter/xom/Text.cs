@@ -10,12 +10,10 @@ namespace nu.xom
     {
         public XText XText { private set; get; }
 
-        public Text(string data)
-        {
-            this.XText = new XText(data);
-        }
+        public Text(string data) : this(new XText(data))
+        { }
 
-        public Text(XText xText)
+        public Text(XText xText) : base(xText)
         {
             this.XText = xText;
         }

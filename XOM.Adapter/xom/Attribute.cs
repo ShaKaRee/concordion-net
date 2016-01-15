@@ -6,14 +6,13 @@ using System.Xml.Linq;
 
 namespace nu.xom
 {
-    public class Attribute : Node
+    public class Attribute
     {
         public XAttribute XAttribute { private set; get; }
 
         public Attribute(string localName, string value)
-        {
-            this.XAttribute = new XAttribute(localName, value);
-        }
+            : this(new XAttribute(localName, value))
+        { }
 
         public Attribute(XAttribute xAttribute)
         {
@@ -33,6 +32,11 @@ namespace nu.xom
         public string getValue()
         {
             return this.XAttribute.Value;
+        }
+
+        public void detach()
+        {
+            this.XAttribute.Remove();
         }
     }
 }

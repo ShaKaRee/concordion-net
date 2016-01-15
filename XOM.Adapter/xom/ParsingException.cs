@@ -1,11 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using java.lang;
 
 namespace nu.xom
 {
     public class ParsingException : Exception
     {
+        public ParsingException()
+        { }
+
+        public ParsingException(System.Exception exception) 
+            : base(exception) 
+        { }
     }
 }

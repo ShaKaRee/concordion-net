@@ -10,28 +10,36 @@ namespace nu.xom
 {
     public abstract class Node
     {
-        protected XElement m_XElement;
+        private readonly XNode m_XNode;
+
+        protected Node(XNode xNode)
+        {
+            this.m_XNode = xNode;
+        }
 
         public void detach()
         {
-            this.m_XElement.Remove();
+            this.m_XNode.Remove();
         }
 
         public Document getDocument()
         {
-            return new Document(this.m_XElement.Document);
+            return new Document(this.m_XNode.Document);
         }
 
         public Nodes query(string xPath)
         {
-            throw new NotSupportedException("not supported on xom adapter");
+            return query(xPath, null);
         }
 
         public Nodes query(string xPath, XPathContext namespaces)
         {
             IList<XElement> descendantElements = new List<XElement>();
+            if (!(this.m_XNode is XContainer)) return new Nodes(descendantElements);
+
+            var xContainer = this.m_XNode as XContainer;
             var name = GetName(xPath);
-            foreach (XElement element in this.m_XElement.Descendants())
+            foreach (var element in xContainer.Descendants())
             {
                 if (element.Name.LocalName.Equals(name))
                 {
@@ -49,12 +57,19 @@ namespace nu.xom
 
         private static string GetName(string xPath)
         {
-            return xPath.Substring(xPath.LastIndexOf(":") + 1);
+            if (xPath.LastIndexOf(":") != -1)
+            {
+                return xPath.Substring(xPath.LastIndexOf(":") + 1);
+            }
+            else
+            {
+                return xPath.Substring(xPath.LastIndexOf("/") + 1);
+            }
         }
 
         public string toXML()
         {
-            return this.m_XElement.ToString(SaveOptions.None);
+            return this.m_XNode.ToString(SaveOptions.None);
         }
 
         public bool @equals(object obj)
@@ -65,12 +80,12 @@ namespace nu.xom
             var node = obj as Node;
             if (node == null) return false;
 
-            return this.m_XElement.Equals(node.m_XElement);
+            return this.m_XNode.Equals(node.m_XNode);
         }
 
         public int hashCode()
         {
-            return this.m_XElement.GetHashCode();
+            return this.m_XNode.GetHashCode();
         }
     }
 }

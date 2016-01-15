@@ -17,30 +17,31 @@ namespace nu.xom
     {
         public Document build(InputStream inputStream)
         {
-            TextReader textReader;
-            if (inputStream is StreamWrapper)
+            try
             {
-                var streamWrapper = inputStream as StreamWrapper;
-                textReader = new StreamReader(streamWrapper.Stream);
-            }
-            else
-            {
-                var stringBuilder = new StringBuilder();
-                var availableBytes = 0;
-                do
+                TextReader textReader;
+                if (inputStream is StreamWrapper)
                 {
-                    availableBytes = inputStream.available();
-                    var bytes = new byte[availableBytes];
-                    inputStream.read(bytes, 0, availableBytes);
-                    stringBuilder.Append(bytes);
-                } while (availableBytes > 0);
-                var xmlString = stringBuilder.ToString();
-                textReader = new StringReader(xmlString);
-            }
+                    //ToDo: simplify - use always nu.xom.uti.io.StreamWrapper
+                    //var streamWrapper = inputStream as StreamWrapper;
+                    //textReader = new StreamReader(streamWrapper.Stream);
+                    var streamWrapper = new util.io.StreamWrapper(inputStream);
+                    textReader = new StreamReader(streamWrapper);
+                }
+                else
+                {
+                    var streamWrapper = new util.io.StreamWrapper(inputStream);
+                    textReader = new StreamReader(streamWrapper);
+                }
 
-            var xDocument = XDocument.Load(textReader);
-            inputStream.close();
-            return new Document(xDocument);
+                var xDocument = XDocument.Load(textReader);
+                inputStream.close();
+                return new Document(xDocument);
+            }
+            catch (System.Exception exception)
+            {
+                throw new ParsingException(exception);
+            }
         }
     }
 }

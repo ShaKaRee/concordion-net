@@ -9,9 +9,12 @@ namespace nu.xom
 {
     public class ParentNode : Node
     {
-        public ParentNode(XElement xElement)
+        private XContainer m_XContainer;
+
+        public ParentNode(XContainer xNode)
+            : base(xNode)
         {
-            this.m_XElement = xElement;
+            this.m_XContainer = xNode;
         }
 
         public void insertChild(Node child, int position)
@@ -20,7 +23,7 @@ namespace nu.xom
             var childAsParentNode = child as ParentNode;
             if (childAsParentNode != null)
             {
-                this.m_XElement.AddFirst(childAsParentNode.m_XElement);
+                this.m_XContainer.AddFirst(childAsParentNode.m_XContainer);
             }
         }
 
@@ -29,23 +32,23 @@ namespace nu.xom
             var childAsParentNode = child as ParentNode;
             if (childAsParentNode != null)
             {
-                this.m_XElement.Add(childAsParentNode.m_XElement);
+                this.m_XContainer.Add(childAsParentNode.m_XContainer);
             }
             var childAsText = child as Text;
             if (childAsText != null)
             {
-                this.m_XElement.Add(childAsText.XText);
+                this.m_XContainer.Add(childAsText.XText);
             }
         }
 
         public int getChildCount()
         {
-            return this.m_XElement.Nodes().Count();
+            return this.m_XContainer.Nodes().Count();
         }
 
         public Node getChild(int position)
         {
-            var result = this.m_XElement.Nodes().ElementAt(position);
+            var result = this.m_XContainer.Nodes().ElementAt(position);
             if (result is XElement)
             {
                 return new Element(result as XElement);
