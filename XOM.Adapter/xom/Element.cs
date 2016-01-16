@@ -48,7 +48,8 @@ namespace nu.xom
 
         public string getAttributeValue(string name)
         {
-            XAttribute attribute = this.m_XElement.Attribute(XName.Get(name));
+            var xName = XName.Get(name.Substring(name.LastIndexOf(":") + 1));
+            XAttribute attribute = this.m_XElement.Attribute(xName);
             return (attribute != null) ? attribute.Value : null;
         }
 
