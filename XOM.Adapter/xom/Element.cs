@@ -97,10 +97,11 @@ namespace nu.xom
             return this.m_XElement.Name.LocalName;
         }
 
-        public ParentNode getParentNode()
-        {
-            return new Element(this.m_XElement.Parent);
-        }
+        //ToDo: remove obsolete code
+        //public ParentNode getParentNode()
+        //{
+        //    return new Element(this.m_XElement.Parent);
+        //}
 
         public Elements getChildElements()
         {

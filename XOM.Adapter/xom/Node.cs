@@ -10,21 +10,21 @@ namespace nu.xom
 {
     public abstract class Node
     {
-        private readonly XNode m_XNode;
+        public XNode XNode { get; private set; }
 
         protected Node(XNode xNode)
         {
-            this.m_XNode = xNode;
+            this.XNode = xNode;
         }
 
         public void detach()
         {
-            this.m_XNode.Remove();
+            this.XNode.Remove();
         }
 
         public Document getDocument()
         {
-            return new Document(this.m_XNode.Document);
+            return new Document(this.XNode.Document);
         }
 
         public Nodes query(string xPath)
@@ -35,9 +35,9 @@ namespace nu.xom
         public Nodes query(string xPath, XPathContext namespaces)
         {
             IList<XElement> descendantElements = new List<XElement>();
-            if (!(this.m_XNode is XContainer)) return new Nodes(descendantElements);
+            if (!(this.XNode is XContainer)) return new Nodes(descendantElements);
 
-            var xContainer = this.m_XNode as XContainer;
+            var xContainer = this.XNode as XContainer;
             var name = GetName(xPath);
             foreach (var element in xContainer.Descendants())
             {
@@ -55,21 +55,18 @@ namespace nu.xom
             //return new Nodes(xPathSelectElements);
         }
 
-        private static string GetName(string xPath)
-        {
-            if (xPath.LastIndexOf(":") != -1)
-            {
-                return xPath.Substring(xPath.LastIndexOf(":") + 1);
-            }
-            else
-            {
-                return xPath.Substring(xPath.LastIndexOf("/") + 1);
-            }
-        }
-
         public string toXML()
         {
-            return this.m_XNode.ToString(SaveOptions.None);
+            return this.XNode.ToString(SaveOptions.None);
+        }
+
+        public ParentNode getParent()
+        {
+            if (this.XNode.Parent is XElement)
+            {
+                return new Element(this.XNode.Parent as XElement);
+            }
+            return null;
         }
 
         public bool @equals(object obj)
@@ -80,12 +77,24 @@ namespace nu.xom
             var node = obj as Node;
             if (node == null) return false;
 
-            return this.m_XNode.Equals(node.m_XNode);
+            return this.XNode.Equals(node.XNode);
         }
 
         public int hashCode()
         {
-            return this.m_XNode.GetHashCode();
+            return this.XNode.GetHashCode();
+        }
+
+        private static string GetName(string xPath)
+        {
+            if (xPath.LastIndexOf(":") != -1)
+            {
+                return xPath.Substring(xPath.LastIndexOf(":") + 1);
+            }
+            else
+            {
+                return xPath.Substring(xPath.LastIndexOf("/") + 1);
+            }
         }
     }
 }

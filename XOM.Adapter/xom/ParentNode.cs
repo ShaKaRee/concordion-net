@@ -19,11 +19,13 @@ namespace nu.xom
 
         public void insertChild(Node child, int position)
         {
-            if (position != 0) throw new NotSupportedException("insert only supported on position 0");
-            var childAsParentNode = child as ParentNode;
-            if (childAsParentNode != null)
+            if (position == 0)
             {
-                this.m_XContainer.AddFirst(childAsParentNode.m_XContainer);
+                this.m_XContainer.AddFirst(child.XNode);
+            }
+            else {
+                var elementAtPosition = this.m_XContainer.Nodes().ElementAt(position);
+                elementAtPosition.AddBeforeSelf(child.XNode);
             }
         }
 
@@ -58,6 +60,11 @@ namespace nu.xom
                 return new Text(result as XText);
             }
             return null;
+        }
+
+        public int indexOf(Node node)
+        {
+            return this.m_XContainer.Nodes().ToList().IndexOf(node.XNode);
         }
     }
 }
