@@ -51,7 +51,7 @@ namespace nu.xom
             //ToDo: remove obsolete code
             //var namespaceManager = new XmlNamespaceManager(new NameTable());
             //namespaceManager.AddNamespace(namespaces.Prefix, namespaces.Uri);
-            //var xPathSelectElements = this.m_XElement.XPathSelectElements(xPath, namespaceManager);
+            //var xPathSelectElements = this.XElement.XPathSelectElements(xPath, namespaceManager);
             //return new Nodes(xPathSelectElements);
         }
 

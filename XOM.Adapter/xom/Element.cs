@@ -8,30 +8,30 @@ namespace nu.xom
 {
     public class Element : ParentNode
     {
-        private readonly XElement m_XElement;
+        public XElement XElement { get; private set; }
 
         public Element(string name) : this(new XElement(name)) { }
 
         public Element(XElement xNode)
             : base(xNode)
         {
-            this.m_XElement = xNode;
+            this.XElement = xNode;
         }
 
         public string getValue()
         {
-            return this.m_XElement.Value;
+            return this.XElement.Value;
         }
 
         public void appendChild(string text)
         {
-            this.m_XElement.Add(text);
+            this.XElement.Add(text);
         }
 
         public void appendChild(Text text)
         {
             var xText = text.XText;
-            this.m_XElement.Add(xText);
+            this.XElement.Add(xText);
         }
 
         public void removeChild(Node child)
@@ -43,36 +43,36 @@ namespace nu.xom
         {
             var xName = attribute.XAttribute.Name;
             var value = attribute.XAttribute.Value;
-            this.m_XElement.SetAttributeValue(xName, value);
+            this.XElement.SetAttributeValue(xName, value);
         }
 
         public string getAttributeValue(string name)
         {
             var xName = XName.Get(name.Substring(name.LastIndexOf(":") + 1));
-            XAttribute attribute = this.m_XElement.Attribute(xName);
+            XAttribute attribute = this.XElement.Attribute(xName);
             return (attribute != null) ? attribute.Value : null;
         }
 
         public string getAttributeValue(string localName, string namespaceURI)
         {
-            XAttribute attribute = this.m_XElement.Attribute(XName.Get(localName, namespaceURI));
+            XAttribute attribute = this.XElement.Attribute(XName.Get(localName, namespaceURI));
             return (attribute != null) ? attribute.Value : null;
         }
 
         public Attribute getAttribute(int index)
         {
-            var xAttribute = this.m_XElement.Attributes().ElementAt(index);
+            var xAttribute = this.XElement.Attributes().ElementAt(index);
             return new Attribute(xAttribute);
         }
 
         public Attribute getAttribute(string name)
         {
-            return new Attribute(this.m_XElement.Attributes(XName.Get(name)).ElementAt(0));
+            return new Attribute(this.XElement.Attributes(XName.Get(name)).ElementAt(0));
         }
 
         public int getAttributeCount()
         {
-            return this.m_XElement.Attributes().Count();
+            return this.XElement.Attributes().Count();
         }
 
         public Attribute removeAttribute(Attribute attribute)
@@ -83,7 +83,7 @@ namespace nu.xom
 
         public Element getFirstChildElement(string name)
         {
-            foreach (XElement descendant in this.m_XElement.Descendants())
+            foreach (XElement descendant in this.XElement.Descendants())
             {
                 if (descendant.Name.LocalName == name)
                 {
@@ -95,24 +95,24 @@ namespace nu.xom
 
         public string getLocalName()
         {
-            return this.m_XElement.Name.LocalName;
+            return this.XElement.Name.LocalName;
         }
 
         //ToDo: remove obsolete code
         //public ParentNode getParentNode()
         //{
-        //    return new Element(this.m_XElement.Parent);
+        //    return new Element(this.XElement.Parent);
         //}
 
         public Elements getChildElements()
         {
-            return new Elements(this.m_XElement.Elements());
+            return new Elements(this.XElement.Elements());
         }
 
         public Elements getChildElements(string name)
         {
             List<XElement> result = new List<XElement>();
-            var allChildElements = this.m_XElement.Elements();
+            var allChildElements = this.XElement.Elements();
             foreach (var childElement in allChildElements)
             {
                 if (childElement.Name.LocalName.Equals(name) || 

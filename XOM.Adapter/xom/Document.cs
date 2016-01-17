@@ -16,6 +16,9 @@ namespace nu.xom
             this.m_XDocument = xDocument;
         }
 
+        public Document(Element element) : this(new XDocument(element.XElement))
+        { }
+
         public Element getRootElement()
         {
             var rootElement = this.m_XDocument.Root;
