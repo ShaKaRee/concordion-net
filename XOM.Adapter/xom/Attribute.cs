@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Linq;
 using System.Xml.Linq;
 
 namespace nu.xom
@@ -32,6 +29,11 @@ namespace nu.xom
         public string getValue()
         {
             return this.XAttribute.Value;
+        }
+
+        public void setValue(string value)
+        {
+            this.XAttribute.SetValue(value);
         }
 
         public void detach()

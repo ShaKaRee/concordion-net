@@ -56,6 +56,10 @@
       <Project>{28a6b922-39b7-4703-abcc-103352537ef2}</Project>
       <Name>Concordion.NET</Name>
     </ProjectReference>
+    <ProjectReference Include="..\XOM.Adapter\XOM.Adapter.csproj">
+      <Project>{7e03e1c4-da4d-4216-9a86-11e49e648dd3}</Project>
+      <Name>XOM.Adapter</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
