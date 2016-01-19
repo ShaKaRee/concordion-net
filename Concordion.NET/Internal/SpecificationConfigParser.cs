@@ -112,8 +112,10 @@ namespace Concordion.NET.Internal
         /// <param name="element">The element.</param>
         private void LoadRunners(XElement element)
         {
-            java.lang.System.setProperty("concordion.runner.concordion.net",
-                "Concordion.NET.Internal.Runner.DefaultConcordionRunner, Concordion.NET, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null");
+            var runnerNamespace = "concordion.runner.";
+
+            java.lang.System.setProperty(runnerNamespace + "concordion.net",
+                typeof(DefaultConcordionRunner).AssemblyQualifiedName);
             
             var runners = element.Element("Runners");
             if (runners == null) return;
@@ -123,8 +125,7 @@ namespace Concordion.NET.Internal
                 var alias = runner.Attribute("alias");
                 var runnerTypeText = runner.Attribute("type");
                 if (alias == null || runnerTypeText == null) continue;
-                java.lang.System.setProperty("concordion.runner.",
-                    runnerTypeText.Value);
+                java.lang.System.setProperty(runnerNamespace + alias.Value, runnerTypeText.Value);
             }
         }
 
