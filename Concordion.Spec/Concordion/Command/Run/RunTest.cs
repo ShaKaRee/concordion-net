@@ -9,8 +9,8 @@ namespace Concordion.Spec.Concordion.Command.Run
     {
     	public string successOrFailure(string fragment, string hardCodedTestResult, string evaluationResult)
     	{
-            java.lang.System.setProperty("concordion.runner.runtestrunner", 
-                "Concordion.Spec.Concordion.Command.Run.RunTestRunner, Concordion.Spec, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null");
+    	    java.lang.System.setProperty("concordion.runner.runtestrunner",
+    	        typeof(RunTestRunner).AssemblyQualifiedName);
 
     	    if ("SUCCESS".Equals(hardCodedTestResult))
     	    {
