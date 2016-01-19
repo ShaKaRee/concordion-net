@@ -20,10 +20,15 @@ namespace Concordion.NET.Internal
         {
             var fixtureName = fixture.GetType().ToString();
             fixtureName = fixtureName.Replace(".", "\\");
-
-            //Add Test und Fixture -> Case Sensitive 
-            fixtureName = Regex.Replace(fixtureName, "(Fixture|Test)$", "");
-            //Suffix from Concordion.Specification.config
+            if (fixtureName.EndsWith("Test"))
+            {
+                fixtureName = fixtureName.Substring(0, fixtureName.Length - 4);
+            }
+            else if (fixtureName.EndsWith("Fixture"))
+            {
+                fixtureName = fixtureName.Substring(0, fixtureName.Length - 7);
+            }
+            
             var path = "\\" + fixtureName + "." + m_SpecificationSuffix;
             return new Resource(path);
         }
