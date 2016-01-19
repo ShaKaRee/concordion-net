@@ -180,7 +180,7 @@ namespace Concordion.NET.Internal.Runner
 
         #endregion
 
-        #region IRunner Members
+        #region Runner Members
 
         public ResultSummary execute(Resource resource, string specificationPath)
         {
