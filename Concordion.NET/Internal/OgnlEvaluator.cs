@@ -78,9 +78,16 @@ namespace Concordion.NET.Internal
 
         public virtual object evaluate(string expression)
         {
-            Check.notNull(this.Fixture, "Root object is null");
-            Check.notNull(expression, "Expression to evaluate cannot be null");
-            return Ognl.getValue(expression, this.OgnlContext, this.Fixture);
+            try
+            {
+                Check.notNull(this.Fixture, "Root object is null");
+                Check.notNull(expression, "Expression to evaluate cannot be null");
+                return Ognl.getValue(expression, this.OgnlContext, this.Fixture);
+            }
+            catch (OgnlException ognlException)
+            {
+                throw ognlException.getReason();
+            }
         }
 
         #endregion

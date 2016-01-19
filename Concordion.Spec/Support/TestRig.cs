@@ -79,16 +79,9 @@ namespace Concordion.Spec.Support
 
             var concordion = concordionBuilder.build();
 
-            try
-            {
-                ResultSummary resultSummary = concordion.process(resource, this.Fixture);
-                string xml = this.Target.GetWrittenString(resource);
-                return new ProcessingResult(resultSummary, eventRecorder, xml);
-            }
-            catch (Exception e)
-            {
-                throw new Exception("Test rig failed to process specification", e);
-            }
+            ResultSummary resultSummary = concordion.process(resource, this.Fixture);
+            string xml = this.Target.GetWrittenString(resource);
+            return new ProcessingResult(resultSummary, eventRecorder, xml);
         }
 
         public ProcessingResult Process(string html)
