@@ -56,6 +56,7 @@
     <Compile Include="Internal\EmbeddedResourceSource.cs" />
     <Compile Include="Internal\Extension\ExtensionLoader.cs" />
     <Compile Include="Internal\FileSource.cs" />
+    <Compile Include="Internal\FileTarget.cs" />
     <Compile Include="Internal\OgnlEvaluator.cs" />
     <Compile Include="Internal\Runner\DefaultConcordionRunner.cs" />
     <Compile Include="Internal\SimpleEvaluator.cs" />
@@ -63,13 +64,17 @@
     <Compile Include="Internal\SpecificationConfig.cs" />
     <Compile Include="Internal\SpecificationConfigParser.cs" />
     <Compile Include="Internal\Util\IOUtil.cs" />
-    <Compile Include="IO\StreamWrapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\XOM.Adapter\XOM.Adapter.csproj">
+      <Project>{7e03e1c4-da4d-4216-9a86-11e49e648dd3}</Project>
+      <Name>XOM.Adapter</Name>
+    </ProjectReference>
+  </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\embedded.css" />
     <Content Include="Resources\visibility-toggler.js" />

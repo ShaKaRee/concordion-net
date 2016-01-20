@@ -31,7 +31,7 @@ namespace Concordion.NET.Internal.Runner
                 ? (Source)new EmbeddedResourceSource(fixture.GetType().Assembly)
                 : new FileSource(fixture.GetType().Assembly, specificationConfig.BaseInputDirectory);
 
-            var target = new FileTarget(new File(specificationConfig.BaseOutputDirectory), new IOUtil());
+            var target = new FileTarget(specificationConfig.BaseOutputDirectory);
 
             var testSummary = new SummarizingResultRecorder();
             var anySpecExecuted = false;
@@ -85,7 +85,7 @@ namespace Concordion.NET.Internal.Runner
         }
 
         private ResultSummary RunSingleSpecification(object fixture, Source source, 
-            SpecificationLocator specificationLocator, FileTarget target, SpecificationConfig specificationConfig)
+            SpecificationLocator specificationLocator, Target target, SpecificationConfig specificationConfig)
         {
             var concordionExtender = new ConcordionBuilder();
             concordionExtender

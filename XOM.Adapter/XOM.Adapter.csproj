@@ -54,12 +54,6 @@
     <Compile Include="xom\ValidityException.cs" />
     <Compile Include="xom\XPathContext.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Concordion.NET\Concordion.NET.csproj">
-      <Project>{28A6B922-39B7-4703-ABCC-103352537EF2}</Project>
-      <Name>Concordion.NET</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

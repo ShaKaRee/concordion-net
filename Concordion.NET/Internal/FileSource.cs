@@ -1,11 +1,9 @@
 ﻿using System.IO;
 using System.Reflection;
 using System.Text;
-using Concordion.NET.IO;
 using ikvm.extensions;
 using org.concordion.api;
 using InputStream = java.io.InputStream;
-using FileInputStream = java.io.FileInputStream;
 using ikvm.io;
 
 namespace Concordion.NET.Internal
@@ -48,8 +46,7 @@ namespace Concordion.NET.Internal
 
         public InputStream createInputStream(Resource resource)
         {
-            return new StreamWrapper(new FileStream(this.ExistingFilePath(resource), FileMode.Open));
-            //return new FileInputStream(new java.io.File(ExistingFilePath(resource)));
+            return new InputStreamWrapper(new FileStream(this.ExistingFilePath(resource), FileMode.Open));
         }
 
         public bool canFind(org.concordion.api.Resource resource)
