@@ -59,8 +59,8 @@
     <Compile Include="Internal\FileTarget.cs" />
     <Compile Include="Internal\OgnlEvaluator.cs" />
     <Compile Include="Internal\Runner\DefaultConcordionRunner.cs" />
-    <Compile Include="Internal\SimpleEvaluator.cs" />
-    <Compile Include="Internal\SimpleEvaluatorFactory.cs" />
+    <Compile Include="Internal\BridgingEvaluator.cs" />
+    <Compile Include="Internal\BridgingEvaluatorFactory.cs" />
     <Compile Include="Internal\SpecificationConfig.cs" />
     <Compile Include="Internal\SpecificationConfigParser.cs" />
     <Compile Include="Internal\Util\IOUtil.cs" />

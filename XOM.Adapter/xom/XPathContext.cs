@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace nu.xom
+﻿namespace nu.xom
 {
     public class XPathContext
     {
@@ -11,7 +6,7 @@ namespace nu.xom
 
         public string Uri { get; set; }
 
-        public XPathContext(String prefix, String uri)
+        public XPathContext(string prefix, string uri)
         {
             this.Prefix = prefix;
             this.Uri = uri;

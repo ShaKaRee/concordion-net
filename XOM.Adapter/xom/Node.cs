@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Xml;
+﻿using System.Collections.Generic;
 using System.Xml.Linq;
-using System.Xml.XPath;
 
 namespace nu.xom
 {
@@ -47,12 +42,6 @@ namespace nu.xom
                 }
             }
             return new Nodes(descendantElements);
-
-            //ToDo: remove obsolete code
-            //var namespaceManager = new XmlNamespaceManager(new NameTable());
-            //namespaceManager.AddNamespace(namespaces.Prefix, namespaces.Uri);
-            //var xPathSelectElements = this.XElement.XPathSelectElements(xPath, namespaceManager);
-            //return new Nodes(xPathSelectElements);
         }
 
         public string toXML()

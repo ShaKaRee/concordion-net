@@ -7,7 +7,6 @@ using Concordion.NET.Internal.Util;
 using org.concordion.api;
 using org.concordion.api.extension;
 using org.concordion.@internal;
-using SimpleEvaluatorFactory = Concordion.NET.Internal.SimpleEvaluatorFactory;
 
 namespace Concordion.Spec.Support
 {
@@ -43,7 +42,7 @@ namespace Concordion.Spec.Support
 
         public TestRig()
         {
-            this.EvaluatorFactory = new SimpleEvaluatorFactory();
+            this.EvaluatorFactory = new BridgingEvaluatorFactory();
             this.Source = new StubSource();
             this.Configuration = new SpecificationConfig();
         }

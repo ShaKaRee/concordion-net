@@ -1,34 +1,16 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Text.RegularExpressions;
 
 namespace Concordion.NET.Internal
 {
-    public class SimpleEvaluator : OgnlEvaluator
+    public class BridgingEvaluator : OgnlEvaluator
     {
-        #region Fields
-
-        private static readonly string METHOD_NAME_PATTERN = "[a-z][a-zA-Z0-9_]*";
-        private static readonly string PROPERTY_NAME_PATTERN = "[a-z][a-zA-Z0-9_]*";
-        private static readonly string STRING_PATTERN = "'[^']+'";
-        private static readonly string LHS_VARIABLE_PATTERN = "#" + METHOD_NAME_PATTERN;
-        private static readonly string RHS_VARIABLE_PATTERN = "(" + LHS_VARIABLE_PATTERN + "|#TEXT|#HREF|#LEVEL)";
-
-        #endregion
-
-        #region Properties
-
-
-
-        #endregion
-
         #region Constructor
         
-        public SimpleEvaluator(object fixture)
+        public BridgingEvaluator(object fixture)
             : base(fixture)
-        {
-        } 
+        { } 
 
         #endregion
 
@@ -40,6 +22,13 @@ namespace Concordion.NET.Internal
             if (value is int) return new java.lang.Integer((int)value);
             if (value is Int64) return new java.lang.Long((Int64)value);
             if (value is double) return new java.lang.Double((double)value);
+            if (value is DateTime)
+            {
+                var datetime = (DateTime) value;
+                return new java.util.Date(
+                    datetime.Year, datetime.Month, datetime.Day,
+                    datetime.Hour, datetime.Minute, datetime.Second);
+            }
             if (value is string) return java.lang.String.valueOf(value);
             if (value is IEnumerable)
             {
@@ -61,7 +50,7 @@ namespace Concordion.NET.Internal
             if (value is java.lang.Integer) return Convert.ToInt32(value.ToString());
             if (value is java.lang.Long) return Convert.ToInt64(value.ToString());
             if (value is java.lang.Double) return Convert.ToDouble(value.ToString());
-            //if (value is ) return Convert.ToDateTime(value);
+            if (value is java.util.Date) return Convert.ToDateTime(value);
             if (value is java.lang.String) return Convert.ToString(value.ToString());
             return value;
         }

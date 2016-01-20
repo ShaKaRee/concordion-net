@@ -1,7 +1,6 @@
 ﻿using System.IO;
 using System.Reflection;
 using System.Text;
-using ikvm.extensions;
 using org.concordion.api;
 using InputStream = java.io.InputStream;
 using ikvm.io;
@@ -49,7 +48,7 @@ namespace Concordion.NET.Internal
             return new InputStreamWrapper(new FileStream(this.ExistingFilePath(resource), FileMode.Open));
         }
 
-        public bool canFind(org.concordion.api.Resource resource)
+        public bool canFind(Resource resource)
         {
             return ExistingFilePath(resource) != null;
         }
@@ -63,14 +62,15 @@ namespace Concordion.NET.Internal
             var resourcePath = resource.getPath().Replace("/", "\\");
             if (resourcePath.StartsWith("\\"))
             {
-                resourcePath = resourcePath.substring(1);
+                resourcePath = resourcePath.Substring(1);
             }
             var filePath = Path.Combine(BaseDirectory, resourcePath);
             if (File.Exists(filePath))
             {
                 return filePath;
             }
-            filePath = Path.Combine(BaseDirectory, this.RemoveFirst(resourcePath, FixtureAssembly.GetName().Name.Replace('.', PathSeparator) + PathSeparator));
+            filePath = Path.Combine(BaseDirectory, 
+                this.RemoveFirst(resourcePath, FixtureAssembly.GetName().Name.Replace('.', PathSeparator) + PathSeparator));
             if (File.Exists(filePath))
             {
                 return filePath;

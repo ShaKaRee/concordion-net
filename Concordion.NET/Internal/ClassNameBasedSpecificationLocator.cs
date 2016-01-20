@@ -1,5 +1,4 @@
-﻿using System.Text.RegularExpressions;
-using org.concordion.api;
+﻿using org.concordion.api;
 
 namespace Concordion.NET.Internal
 {

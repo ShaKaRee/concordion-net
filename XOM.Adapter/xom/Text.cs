@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Xml.Linq;
+﻿using System.Xml.Linq;
 
 namespace nu.xom
 {
@@ -10,10 +6,12 @@ namespace nu.xom
     {
         public XText XText { private set; get; }
 
-        public Text(string data) : this(new XText(data))
+        public Text(string data) 
+            : this(new XText(data))
         { }
 
-        public Text(XText xText) : base(xText)
+        public Text(XText xText) 
+            : base(xText)
         {
             this.XText = xText;
         }

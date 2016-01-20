@@ -5,7 +5,6 @@ using Concordion.NET.Internal.Extension;
 using Concordion.NET.Internal.Util;
 using org.concordion.api;
 using org.concordion.@internal;
-using File = java.io.File;
 
 namespace Concordion.NET.Internal.Runner
 {
@@ -50,24 +49,6 @@ namespace Concordion.NET.Internal.Runner
             }
             if (anySpecExecuted) return testSummary;
 
-            
-            //string specPath;
-            //if (!string.IsNullOrEmpty(m_SpecificationConfig.BaseInputDirectory))
-            //{
-            //    specPath = string.Format("directory {0}",
-            //        Path.GetFullPath(m_SpecificationConfig.BaseInputDirectory));
-            //}
-            //else
-            //{
-            //    specPath = string.Format("assembly {0}",
-            //        m_Fixture.GetType().Assembly.GetName().Name);
-            //}
-            //testSummary.record(org.concordion.api.Result.EXCEPTION);
-            //testSummary.Error(new AssertionErrorException(string.Format(
-            //    "no active specification found for {0} in {1}",
-            //    this.m_Fixture.GetType().Name,
-            //    specPath)));
-
             throw new InvalidOperationException(string.Format("no specification extensions defined for: {0}", specificationConfig));
         }
 
@@ -93,7 +74,7 @@ namespace Concordion.NET.Internal.Runner
                 .withSource(source)
                 .withTarget(target)
                 .withSpecificationLocator(specificationLocator)
-                .withEvaluatorFactory(new SimpleEvaluatorFactory());
+                .withEvaluatorFactory(new BridgingEvaluatorFactory());
             var extensionLoader = new ExtensionLoader(specificationConfig);
             extensionLoader.AddExtensions(fixture, concordionExtender);
 
@@ -107,17 +88,14 @@ namespace Concordion.NET.Internal.Runner
 
             if (singleResult.hasExceptions())
             {
-                //resultSummary.AddResultDetails(singleResult.ErrorDetails);
                 resultSummary.record(singleResult);
             }
             else if (singleResult.getFailureCount() > 0)
             {
-                //resultSummary.AddResultDetails(singleResult.FailureDetails);
                 resultSummary.record(singleResult);
             }
             else
             {
-                //ToDo: resultSummary..Success();
                 resultSummary.record(singleResult);
             }
         }

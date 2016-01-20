@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Linq;
-using System.Xml.XPath;
 
 namespace nu.xom
 {
@@ -10,7 +8,9 @@ namespace nu.xom
     {
         public XElement XElement { get; private set; }
 
-        public Element(string name) : this(new XElement(name)) { }
+        public Element(string name) 
+            : this(new XElement(name))
+        { }
 
         public Element(XElement xNode)
             : base(xNode)
@@ -97,12 +97,6 @@ namespace nu.xom
         {
             return this.XElement.Name.LocalName;
         }
-
-        //ToDo: remove obsolete code
-        //public ParentNode getParentNode()
-        //{
-        //    return new Element(this.XElement.Parent);
-        //}
 
         public Elements getChildElements()
         {
