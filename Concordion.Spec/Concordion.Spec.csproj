@@ -165,7 +165,6 @@
     <Compile Include="Concordion\Extension\Resource\ResourceExtensionTest.cs" />
     <Compile Include="Concordion\Integration\IntegrationTest.cs" />
     <Compile Include="Concordion\Integration\ConstructorTest.cs" />
-    <Compile Include="Concordion\Integration\NUnitRunnerTest.cs" />
     <Compile Include="Concordion\Integration\SetupMethodTest.cs" />
     <Compile Include="Concordion\Results\AssertEquals\Failure\AnchorsTest.cs" />
     <Compile Include="Concordion\Results\AssertEquals\Failure\EmptyFailureTest.cs" />
@@ -201,10 +200,6 @@
     <ProjectReference Include="..\Concordion.NET\Concordion.NET.csproj">
       <Project>{28a6b922-39b7-4703-abcc-103352537ef2}</Project>
       <Name>Concordion.NET</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Concordion.Runners\Concordion.Runners.csproj">
-      <Project>{c57b6220-6ce6-4165-9144-214be62ce074}</Project>
-      <Name>Concordion.Runners</Name>
     </ProjectReference>
     <ProjectReference Include="..\XOM.Adapter\XOM.Adapter.csproj">
       <Project>{7e03e1c4-da4d-4216-9a86-11e49e648dd3}</Project>

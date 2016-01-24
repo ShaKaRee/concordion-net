@@ -4,14 +4,13 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{C57B6220-6CE6-4165-9144-214BE62CE074}</ProjectGuid>
+    <ProjectGuid>{B8F4EC35-D56A-4EFD-8235-E0A03468DED7}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Concordion.Runners</RootNamespace>
-    <AssemblyName>Concordion.Runners</AssemblyName>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <RootNamespace>Concordion.Runners.Spec</RootNamespace>
+    <AssemblyName>Concordion.Runners.Spec</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -21,7 +20,6 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -32,36 +30,28 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Concordion">
-      <HintPath>..\tools\Concordion\Concordion.dll</HintPath>
-    </Reference>
     <Reference Include="nunit.framework, Version=2.6.4.14350, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\tools\NUnit-2.6.4\nunit.framework.dll</HintPath>
     </Reference>
+    <Reference Include="System" />
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="NUnit\ExecutableSpecification.cs" />
+    <Compile Include="Concordion\Integration\NUnitRunnerTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="NUnit\ExecutableSpecification.html" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Concordion.NET\Concordion.NET.csproj">
-      <Project>{28a6b922-39b7-4703-abcc-103352537ef2}</Project>
-      <Name>Concordion.NET</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\XOM.Adapter\XOM.Adapter.csproj">
-      <Project>{7e03e1c4-da4d-4216-9a86-11e49e648dd3}</Project>
-      <Name>XOM.Adapter</Name>
+    <ProjectReference Include="..\Concordion.Runners\Concordion.Runners.csproj">
+      <Project>{c57b6220-6ce6-4165-9144-214be62ce074}</Project>
+      <Name>Concordion.Runners</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Concordion.Runners.Spec.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
