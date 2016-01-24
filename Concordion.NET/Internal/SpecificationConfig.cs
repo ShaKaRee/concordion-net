@@ -104,6 +104,12 @@ namespace Concordion.NET.Internal
             return this;
         }
 
+        public void AddRunner(string name, string assemblyQualifiedTypeName)
+        {
+            const string runnerNamespace = "concordion.runner.";
+            java.lang.System.setProperty(runnerNamespace + name, assemblyQualifiedTypeName);
+        }
+
         #endregion
 
     }

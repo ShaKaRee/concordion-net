@@ -112,10 +112,7 @@ namespace Concordion.NET.Internal
         /// <param name="element">The element.</param>
         private void LoadRunners(XElement element)
         {
-            var runnerNamespace = "concordion.runner.";
-
-            java.lang.System.setProperty(runnerNamespace + "concordion.net",
-                typeof(DefaultConcordionRunner).AssemblyQualifiedName);
+            Config.AddRunner("concordion.net", typeof(DefaultConcordionRunner).AssemblyQualifiedName);
             
             var runners = element.Element("Runners");
             if (runners == null) return;
@@ -125,7 +122,7 @@ namespace Concordion.NET.Internal
                 var alias = runner.Attribute("alias");
                 var runnerTypeText = runner.Attribute("type");
                 if (alias == null || runnerTypeText == null) continue;
-                java.lang.System.setProperty(runnerNamespace + alias.Value, runnerTypeText.Value);
+                Config.AddRunner(alias.Value, runnerTypeText.Value);
             }
         }
 
@@ -137,9 +134,10 @@ namespace Concordion.NET.Internal
             Config.ConcordionExtensions = new Dictionary<string, string>();
             foreach (var extensionDefinition in concordionExtensions.Elements("Extension"))
             {
-                var typeName = extensionDefinition.Attribute("type").Value;
-                var assemblyName = extensionDefinition.Attribute("assembly").Value;
-                Config.ConcordionExtensions.Add(typeName, assemblyName);
+                var typeName = extensionDefinition.Attribute("type");
+                var assemblyName = extensionDefinition.Attribute("assembly");
+                if (typeName == null || assemblyName == null) continue;
+                Config.ConcordionExtensions.Add(typeName.Value, assemblyName.Value);
             }
         }
 
