@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Xml.Linq;
 
 namespace nu.xom
@@ -20,8 +21,8 @@ namespace nu.xom
                 this.m_XContainer.AddFirst(child.XNode);
             }
             else {
-                var elementAtPosition = this.m_XContainer.Nodes().ElementAt(position);
-                elementAtPosition.AddBeforeSelf(child.XNode);
+                var elementAtPosition = this.m_XContainer.Nodes().ElementAt(position - 1);
+                elementAtPosition.AddAfterSelf(child.XNode);
             }
         }
 
