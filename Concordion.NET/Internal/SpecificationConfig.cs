@@ -62,17 +62,6 @@ namespace Concordion.NET.Internal
         #region Methods
 
         /// <summary>
-        /// Loads the specified type.
-        /// </summary>
-        /// <param name="type">The type.</param>
-        /// <returns></returns>
-        public SpecificationConfig Load(Type type)
-        {
-            Load(type.Assembly);
-            return this;
-        }
-
-        /// <summary>
         /// Loads the specified assembly.
         /// </summary>
         /// <param name="assembly">The assembly.</param>
