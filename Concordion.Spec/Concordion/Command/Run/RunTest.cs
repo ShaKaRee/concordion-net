@@ -11,7 +11,7 @@ namespace Concordion.Spec.Concordion.Command.Run
     	{
             if ("SUCCESS".Equals(hardCodedTestResult))
     	    {
-    	        RunTestRunner.Result = Result.SUCCESS;
+    	        RunTestRunner.Result = Result.SUCCESS;   
     	    }
     	    if ("FAILURE".Equals(hardCodedTestResult))
     	    {
